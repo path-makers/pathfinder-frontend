@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "399386195271",
+    "firebase_url": "https://sololife-3ffad-default-rtdb.firebaseio.com",
+    "project_id": "sololife-3ffad",
+    "storage_bucket": "sololife-3ffad.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:399386195271:android:83d52ce57e342773c2c862",
+        "android_client_info": {
+          "package_name": "com.example.mysolelife"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "399386195271-1clpu1ba42j709ukmj6mhcqnnrkeuftu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArDbMo3fqWS2ou1u3C6tHSkbYuNkveSl8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "399386195271-1clpu1ba42j709ukmj6mhcqnnrkeuftu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
