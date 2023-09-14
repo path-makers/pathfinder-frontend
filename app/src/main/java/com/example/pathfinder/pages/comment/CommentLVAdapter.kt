@@ -1,4 +1,4 @@
-package com.example.pathfinder.comment
+package com.example.pathfinder.pages.comment
 
 import android.view.LayoutInflater
 import android.view.View

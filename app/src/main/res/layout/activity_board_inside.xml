@@ -15,7 +15,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                tools:context=".board.BoardInsideActivity">
+                tools:context=".pages.board.BoardInsideActivity">
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"

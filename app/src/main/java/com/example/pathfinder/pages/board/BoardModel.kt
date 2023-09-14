@@ -1,4 +1,4 @@
-package com.example.pathfinder.board
+package com.example.pathfinder.pages.board
 
 data class BoardModel (
     val title : String="",

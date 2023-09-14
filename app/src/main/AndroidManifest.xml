@@ -17,15 +17,17 @@
         <activity
             android:name=".setting.SettingActivity"
             android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".pages.board.edit.BoardEditActivity"-->
+<!--            android:exported="false" />-->
+        <activity android:name=".pages.board.edit.BoardEditView"/>
+        <activity android:name=".pages.board.Inside.BoardInsideView"/>
+        <activity android:name=".pages.board.write.BoardWriteView"/>
+
         <activity
-            android:name=".board.BoardEditActivity"
+            android:name=".pages.board.BoardWriteActivity"
             android:exported="false" />
-        <activity
-            android:name=".board.BoardInsideActivity"
-            android:exported="false" />
-        <activity
-            android:name=".board.BoardWriteActivity"
-            android:exported="false" />
+
         <activity
             android:name=".auth.JoinActivity"
             android:exported="false" />

@@ -44,23 +44,6 @@ class HomeFragment : Fragment() {
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
 
-//        database.addValueEventListener(object : ValueEventListener {
-//            override fun onDataChange(dataSnapshot: DataSnapshot) {
-//                for (snapshot in dataSnapshot.children) {
-//                    val dateParts = snapshot.key?.split("-")?.map { it.toInt() }
-//                    if (dateParts != null && dateParts.size == 3) {
-//                        datesWithExercises.add(CalendarDay.from(dateParts[0], dateParts[1], dateParts[2]))
-//                    }
-//                }
-//
-//                // Add decorator
-//                binding.calendarView.addDecorator(EventDecorator(android.R.color.holo_red_dark, datesWithExercises))
-//            }
-//
-//            override fun onCancelled(databaseError: DatabaseError) {
-//                // Handle database error
-//            }
-//        })
 
         binding.calendarView.setOnDateChangedListener { _, date, _ ->
             val formattedDate = "${date.year}-${date.month + 1}-${date.day}"

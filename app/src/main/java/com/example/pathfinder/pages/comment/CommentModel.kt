@@ -1,4 +1,4 @@
-package com.example.pathfinder.comment
+package com.example.pathfinder.pages.comment
 
 class CommentModel (
     val commentTitle : String = "",

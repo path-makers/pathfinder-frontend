@@ -10,11 +10,11 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import com.example.pathfinder.R
-import com.example.pathfinder.board.BoardInsideActivity
-import com.example.pathfinder.board.BoardListLVAdapter
-import com.example.pathfinder.board.BoardModel
-import com.example.pathfinder.board.BoardWriteActivity
+import com.example.pathfinder.pages.board.BoardListLVAdapter
+import com.example.pathfinder.pages.board.Inside.BoardInsideView
+import com.example.pathfinder.pages.board.BoardModel
 import com.example.pathfinder.databinding.FragmentTalkBinding
+import com.example.pathfinder.pages.board.write.BoardWriteView
 import com.example.pathfinder.utils.FBRef
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -63,15 +63,15 @@ class TalkFragment : Fragment() {
 
             //두번째 방법으로는 firebase에 있는 board에 대한 데이터의 id를 기반으로 다시 데이터를
             //받아오는 방법
-            val intent = Intent(context, BoardInsideActivity::class.java)
-            intent.putExtra("key",boardKeyList[position])
+            val intent = Intent(context, BoardInsideView::class.java)
+            intent.putExtra("key", boardKeyList[position])
             startActivity(intent)
 
         }
 
 
         binding.writeBtn.setOnClickListener {
-            val intent = Intent(context, BoardWriteActivity::class.java)
+            val intent = Intent(context, BoardWriteView::class.java)
             startActivity(intent)
         }
 

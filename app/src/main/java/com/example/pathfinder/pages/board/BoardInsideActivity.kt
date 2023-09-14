@@ -1,4 +1,4 @@
-package com.example.pathfinder.board
+package com.example.pathfinder.pages.board
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -11,10 +11,11 @@ import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.example.pathfinder.R
-import com.example.pathfinder.comment.CommentLVAdapter
-import com.example.pathfinder.comment.CommentModel
+import com.example.pathfinder.pages.comment.CommentLVAdapter
+import com.example.pathfinder.pages.comment.CommentModel
 import com.example.pathfinder.databinding.ActivityBoardInsideBinding
 import com.example.pathfinder.fragments.TalkFragment
+import com.example.pathfinder.pages.board.edit.BoardEditView
 import com.example.pathfinder.utils.FBAuth
 import com.example.pathfinder.utils.FBRef
 import com.google.android.gms.tasks.OnCompleteListener
@@ -45,19 +46,9 @@ class BoardInsideActivity : AppCompatActivity() {
             showDialog()
         }
 
-        //첫번쨰 방법
-//        val title = intent.getStringExtra("title").toString()
-//        val content = intent.getStringExtra("content").toString()
-//        val time = intent.getStringExtra("time").toString()
-//
-//
-//        binding.titleArea.text = title
-//        binding.textArea.text = content
-//        binding.timeArea.text = time
 
-        //두번째 방법
         key = intent.getStringExtra("key").toString()
-//        Toast.makeText(this, key, Toast.LENGTH_LONG).show()
+
         getBoardData(key)
         getImageData(key)
 
@@ -123,7 +114,7 @@ class BoardInsideActivity : AppCompatActivity() {
 
             //Toast.makeText(this, "수정버튼을 눌렀습니다.", Toast.LENGTH_LONG).show()
 
-            val intent = Intent(this, BoardEditActivity::class.java)
+            val intent = Intent(this, BoardEditView::class.java)
             intent.putExtra("key", key).toString()
             startActivity(intent)
 
