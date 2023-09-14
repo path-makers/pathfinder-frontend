@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".pages.board.BoardWriteActivity">
+        tools:context=".pages.board.write.BoardWriteView">
 
         <ScrollView
             android:layout_width="match_parent"

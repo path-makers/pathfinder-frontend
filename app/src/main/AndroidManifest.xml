@@ -25,10 +25,6 @@
         <activity android:name=".pages.board.write.BoardWriteView"/>
 
         <activity
-            android:name=".pages.board.BoardWriteActivity"
-            android:exported="false" />
-
-        <activity
             android:name=".auth.JoinActivity"
             android:exported="false" />
         <activity
