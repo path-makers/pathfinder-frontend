@@ -1,4 +1,4 @@
-package com.example.pathfinder.setting
+package com.example.pathfinder.pages.setting
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

@@ -1,4 +1,4 @@
-package com.example.chatgpt
+package com.example.pathfinder.models
 
 import com.stfalcon.chatkit.commons.models.IUser
 

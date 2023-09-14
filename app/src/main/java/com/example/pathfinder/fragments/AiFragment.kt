@@ -14,8 +14,8 @@ import com.android.volley.RetryPolicy
 import com.android.volley.VolleyError
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import com.example.chatgpt.Message
-import com.example.chatgpt.User
+import com.example.pathfinder.models.Message
+import com.example.pathfinder.models.User
 import com.example.pathfinder.R
 import com.stfalcon.chatkit.commons.ImageLoader
 import com.stfalcon.chatkit.messages.MessagesList

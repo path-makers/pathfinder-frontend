@@ -11,8 +11,8 @@ import com.example.pathfinder.R
 import com.example.pathfinder.databinding.ActivityBoardInsideBinding
 import com.example.pathfinder.pages.board.edit.BoardEditView
 
-import com.example.pathfinder.pages.comment.CommentLVAdapter
-import com.example.pathfinder.pages.comment.CommentModel
+import com.example.pathfinder.pages.board.CommentLVAdapter
+import com.example.pathfinder.pages.board.CommentModel
 import com.example.pathfinder.utils.FBAuth
 
 

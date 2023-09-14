@@ -15,7 +15,7 @@
         android:theme="@style/Theme.pathfinder"
         tools:targetApi="31">
         <activity
-            android:name=".setting.SettingActivity"
+            android:name=".pages.setting.SettingActivity"
             android:exported="false" />
 <!--        <activity-->
 <!--            android:name=".pages.board.edit.BoardEditActivity"-->

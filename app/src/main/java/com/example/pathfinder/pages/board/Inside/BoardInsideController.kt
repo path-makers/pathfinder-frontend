@@ -1,6 +1,6 @@
 package com.example.pathfinder.pages.board.Inside
 import com.example.pathfinder.pages.board.BoardModel
-import com.example.pathfinder.pages.comment.CommentModel
+import com.example.pathfinder.pages.board.CommentModel
 
 
 class BoardInsideController(private val view: BoardInsideView) {

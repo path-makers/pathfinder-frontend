@@ -2,7 +2,7 @@ package com.example.pathfinder.pages.board.Inside
 import android.util.Log
 
 import com.example.pathfinder.pages.board.BoardModel
-import com.example.pathfinder.pages.comment.CommentModel
+import com.example.pathfinder.pages.board.CommentModel
 
 import com.example.pathfinder.utils.FBRef
 import com.google.firebase.database.DataSnapshot
