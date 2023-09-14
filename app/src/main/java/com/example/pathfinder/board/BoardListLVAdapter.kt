@@ -1,15 +1,13 @@
-package com.example.mysolelife.board
+package com.example.pathfinder.board
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.example.mysolelife.R
-import com.example.mysolelife.utils.FBAuth
-import org.w3c.dom.Text
+import com.example.pathfinder.R
+import com.example.pathfinder.utils.FBAuth
 
 class BoardListLVAdapter(val boardList : MutableList<BoardModel>): BaseAdapter(){
     override fun getCount(): Int {

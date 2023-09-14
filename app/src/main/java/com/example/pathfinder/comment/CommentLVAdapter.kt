@@ -1,14 +1,11 @@
-package com.example.mysolelife.comment
+package com.example.pathfinder.comment
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
-import android.widget.LinearLayout
 import android.widget.TextView
-import com.example.mysolelife.R
-import com.example.mysolelife.utils.FBAuth
+import com.example.pathfinder.R
 
 class CommentLVAdapter(val commentList : MutableList<CommentModel>):BaseAdapter() {
     override fun getCount(): Int {

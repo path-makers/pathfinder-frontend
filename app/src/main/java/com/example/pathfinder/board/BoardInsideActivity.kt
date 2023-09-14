@@ -1,4 +1,4 @@
-package com.example.mysolelife.board
+package com.example.pathfinder.board
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,18 +6,17 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Button
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
-import com.example.mysolelife.R
-import com.example.mysolelife.comment.CommentLVAdapter
-import com.example.mysolelife.comment.CommentModel
-import com.example.mysolelife.databinding.ActivityBoardInsideBinding
-import com.example.mysolelife.fragments.TalkFragment
-import com.example.mysolelife.utils.FBAuth
-import com.example.mysolelife.utils.FBRef
+import com.example.pathfinder.R
+import com.example.pathfinder.comment.CommentLVAdapter
+import com.example.pathfinder.comment.CommentModel
+import com.example.pathfinder.databinding.ActivityBoardInsideBinding
+import com.example.pathfinder.fragments.TalkFragment
+import com.example.pathfinder.utils.FBAuth
+import com.example.pathfinder.utils.FBRef
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot

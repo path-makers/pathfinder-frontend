@@ -1,4 +1,4 @@
-package com.example.mysolelife
+package com.example.pathfinder
 
 import org.junit.Test
 

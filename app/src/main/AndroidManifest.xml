@@ -12,7 +12,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MySoleLife"
+        android:theme="@style/Theme.pathfinder"
         tools:targetApi="31">
         <activity
             android:name=".setting.SettingActivity"
@@ -25,12 +25,6 @@
             android:exported="false" />
         <activity
             android:name=".board.BoardWriteActivity"
-            android:exported="false" />
-        <activity
-            android:name=".contentsList.ContentShowActivity"
-            android:exported="false" />
-        <activity
-            android:name=".contentsList.ContentListActivity"
             android:exported="false" />
         <activity
             android:name=".auth.JoinActivity"

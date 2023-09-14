@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.mysolelife'
+    namespace 'com.example.pathfinder'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.mysolelife"
+        applicationId "com.example.pathfinder"
         minSdk 24
         targetSdk 33
         versionCode 1
@@ -17,6 +17,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
 
     buildTypes {
         release {

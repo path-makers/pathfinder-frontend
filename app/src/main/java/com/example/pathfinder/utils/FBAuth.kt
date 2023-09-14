@@ -1,12 +1,7 @@
-package com.example.mysolelife.utils
+package com.example.pathfinder.utils
 
-import com.example.mysolelife.auth.JoinActivity
-import com.example.mysolelife.databinding.ActivityJoinBinding
-import com.example.mysolelife.databinding.FragmentStoreBinding
+import com.example.pathfinder.databinding.ActivityJoinBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.auth.ktx.userProfileChangeRequest
-import com.google.firebase.ktx.Firebase
 import java.text.SimpleDateFormat
 import java.util.*
 

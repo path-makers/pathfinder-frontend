@@ -1,12 +1,10 @@
-package com.example.mysolelife
+package com.example.pathfinder
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
 import android.widget.ImageView
-import com.example.mysolelife.auth.IntroActivity
-import com.example.mysolelife.setting.SettingActivity
+import com.example.pathfinder.setting.SettingActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase

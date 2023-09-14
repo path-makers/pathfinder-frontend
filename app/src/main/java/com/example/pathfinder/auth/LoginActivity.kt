@@ -1,13 +1,13 @@
-package com.example.mysolelife.auth
+package com.example.pathfinder.auth
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import com.example.mysolelife.MainActivity
-import com.example.mysolelife.R
-import com.example.mysolelife.databinding.ActivityLoginBinding
+import com.example.pathfinder.MainActivity
+import com.example.pathfinder.R
+import com.example.pathfinder.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase

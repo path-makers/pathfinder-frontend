@@ -1,4 +1,4 @@
-package com.example.mysolelife.fragments
+package com.example.pathfinder.fragments
 
 import android.app.AlertDialog
 import android.os.Bundle
@@ -9,18 +9,14 @@ import android.widget.EditText
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
-import com.example.mysolelife.R
-import com.example.mysolelife.databinding.FragmentHomeBinding
+import com.example.pathfinder.R
+import com.example.pathfinder.databinding.FragmentHomeBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.DayViewDecorator
 import com.prolificinteractive.materialcalendarview.DayViewFacade
-import com.prolificinteractive.materialcalendarview.MaterialCalendarView
 import com.prolificinteractive.materialcalendarview.spans.DotSpan
 
 class HomeFragment : Fragment() {

@@ -1,4 +1,4 @@
-package com.example.mysolelife.fragments
+package com.example.pathfinder.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,13 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
-import com.example.mysolelife.R
-import com.example.mysolelife.board.BoardInsideActivity
-import com.example.mysolelife.board.BoardListLVAdapter
-import com.example.mysolelife.board.BoardModel
-import com.example.mysolelife.board.BoardWriteActivity
-import com.example.mysolelife.databinding.FragmentTalkBinding
-import com.example.mysolelife.utils.FBRef
+import com.example.pathfinder.R
+import com.example.pathfinder.board.BoardInsideActivity
+import com.example.pathfinder.board.BoardListLVAdapter
+import com.example.pathfinder.board.BoardModel
+import com.example.pathfinder.board.BoardWriteActivity
+import com.example.pathfinder.databinding.FragmentTalkBinding
+import com.example.pathfinder.utils.FBRef
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener

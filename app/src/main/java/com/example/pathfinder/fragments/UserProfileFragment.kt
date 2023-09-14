@@ -1,4 +1,4 @@
-package com.example.mysolelife.fragments
+package com.example.pathfinder.fragments
 
 import android.app.Activity
 import android.content.ContentValues.TAG
@@ -17,8 +17,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 
-import com.example.mysolelife.R
-import com.example.mysolelife.databinding.FragmentStoreBinding
+import com.example.pathfinder.R
+import com.example.pathfinder.databinding.FragmentStoreBinding
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.ktx.Firebase

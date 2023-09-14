@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.mysolelife.fragments.HomeFragment"
+        android:name="com.example.pathfinder.fragments.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
 
@@ -25,7 +25,7 @@
 
     <fragment
         android:id="@+id/storeFragment"
-        android:name="com.example.mysolelife.fragments.UserProfileFragment"
+        android:name="com.example.pathfinder.fragments.UserProfileFragment"
         android:label="fragment_store"
         tools:layout="@layout/fragment_store" >
 
@@ -39,7 +39,7 @@
     </fragment>
     <fragment
         android:id="@+id/talkFragment"
-        android:name="com.example.mysolelife.fragments.TalkFragment"
+        android:name="com.example.pathfinder.fragments.TalkFragment"
         android:label="fragment_talk"
         tools:layout="@layout/fragment_talk" >
 
@@ -53,7 +53,7 @@
     </fragment>
     <fragment
         android:id="@+id/chatFragment"
-        android:name="com.example.mysolelife.fragments.AiFragment"
+        android:name="com.example.pathfinder.fragments.AiFragment"
         android:label="fragment_chat"
         tools:layout="@layout/fragment_chat" />
 </navigation>

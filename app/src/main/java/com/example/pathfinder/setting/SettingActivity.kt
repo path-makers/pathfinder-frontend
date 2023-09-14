@@ -1,14 +1,12 @@
-package com.example.mysolelife.setting
+package com.example.pathfinder.setting
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import android.widget.Toast
-import com.example.mysolelife.R
-import com.example.mysolelife.R.id
-import com.example.mysolelife.auth.IntroActivity
+import com.example.pathfinder.R
+import com.example.pathfinder.R.id
+import com.example.pathfinder.auth.IntroActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase

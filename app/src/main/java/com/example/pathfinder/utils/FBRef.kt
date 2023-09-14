@@ -1,4 +1,4 @@
-package com.example.mysolelife.utils
+package com.example.pathfinder.utils
 
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase

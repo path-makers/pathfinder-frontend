@@ -14,5 +14,5 @@ dependencyResolutionManagement {
         jcenter()
     }
 }
-rootProject.name = "MySoleLife"
+rootProject.name = "pathfinder"
 include ':app'

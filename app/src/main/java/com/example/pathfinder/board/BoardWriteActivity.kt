@@ -1,4 +1,4 @@
-package com.example.mysolelife.board
+package com.example.pathfinder.board
 
 import android.content.ContentValues.TAG
 import android.content.Intent
@@ -8,12 +8,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import com.example.mysolelife.R
-import com.example.mysolelife.databinding.ActivityBoardWriteBinding
-import com.example.mysolelife.utils.FBAuth
-import com.example.mysolelife.utils.FBRef
+import com.example.pathfinder.R
+import com.example.pathfinder.databinding.ActivityBoardWriteBinding
+import com.example.pathfinder.utils.FBAuth
+import com.example.pathfinder.utils.FBRef
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage

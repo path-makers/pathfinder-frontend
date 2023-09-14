@@ -1,15 +1,14 @@
-package com.example.mysolelife.board
+package com.example.pathfinder.board
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
-import com.example.mysolelife.R
-import com.example.mysolelife.databinding.ActivityBoardEditBinding
-import com.example.mysolelife.utils.FBAuth
-import com.example.mysolelife.utils.FBRef
+import com.example.pathfinder.R
+import com.example.pathfinder.databinding.ActivityBoardEditBinding
+import com.example.pathfinder.utils.FBAuth
+import com.example.pathfinder.utils.FBRef
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError

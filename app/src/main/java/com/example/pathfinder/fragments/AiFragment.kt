@@ -1,4 +1,4 @@
-package com.example.mysolelife.fragments
+package com.example.pathfinder.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -16,7 +16,7 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.chatgpt.Message
 import com.example.chatgpt.User
-import com.example.mysolelife.R
+import com.example.pathfinder.R
 import com.stfalcon.chatkit.commons.ImageLoader
 import com.stfalcon.chatkit.messages.MessagesList
 import com.stfalcon.chatkit.messages.MessagesListAdapter
