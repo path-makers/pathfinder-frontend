@@ -22,7 +22,7 @@ class BoardWriteView : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_board_write)
+
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_board_write)
         controller = BoardWriteController()

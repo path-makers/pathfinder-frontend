@@ -30,7 +30,6 @@ class BoardInsideView : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_board_inside)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_board_inside)
         controller = BoardInsideController(this)
