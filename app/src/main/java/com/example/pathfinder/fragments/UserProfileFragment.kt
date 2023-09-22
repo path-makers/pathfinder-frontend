@@ -111,14 +111,6 @@ class UserProfileFragment : Fragment() {
         }
 
 
-        binding.homeTab.setOnClickListener {
-            it.findNavController().navigate(R.id.action_storeFragment_to_homeFragment)
-        }
-
-        binding.talkTab.setOnClickListener {
-            it.findNavController().navigate(R.id.action_storeFragment_to_talkFragment)
-        }
-
 
         return binding.root
     }

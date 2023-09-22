@@ -9,6 +9,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
@@ -22,7 +26,14 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+
+
         auth = Firebase.auth
+
+        findViewById<BottomNavigationView>(R.id.bottomNavigationView).post {
+            val navController = findNavController(R.id.fragmentContainerView)
+            findViewById<BottomNavigationView>(R.id.bottomNavigationView).setupWithNavController(navController)
+        }
 
     }
 }

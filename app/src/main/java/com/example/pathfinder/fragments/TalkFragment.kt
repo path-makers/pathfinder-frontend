@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.findNavController
 import com.example.pathfinder.R
 import com.example.pathfinder.pages.board.BoardListLVAdapter
 import com.example.pathfinder.pages.board.Inside.BoardInsideView
@@ -75,21 +74,6 @@ class TalkFragment : Fragment() {
             startActivity(intent)
         }
 
-        binding.homeTab.setOnClickListener {
-            it.findNavController().navigate(R.id.action_talkFragment_to_homeFragment)
-        }
-
-//        binding.tipTab.setOnClickListener {
-//            it.findNavController().navigate(R.id.action_talkFragment_to_tipFragment)
-//        }
-//
-//        binding.bookmarkTab.setOnClickListener {
-//            it.findNavController().navigate(R.id.action_talkFragment_to_bookmarkFragment)
-//        }
-
-        binding.storeTab.setOnClickListener {
-            it.findNavController().navigate(R.id.action_talkFragment_to_storeFragment)
-        }
 
         getFBBoardData()
 

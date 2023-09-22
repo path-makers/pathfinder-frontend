@@ -1,0 +1,15 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/baseline_home_24"
+        android:title="홈"/>
+    <item
+        android:id="@+id/talkFragment"
+        android:icon="@drawable/baseline_article_24"
+        android:title="게시판"/>
+    <item
+        android:id="@+id/storeFragment"
+        android:icon="@drawable/baseline_account_box_24"
+        android:title="프로필"/>
+
+</menu>

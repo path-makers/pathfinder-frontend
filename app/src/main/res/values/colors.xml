@@ -8,4 +8,5 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="mainColor">#3A4EB7</color>
+    <color name="transparent_ripple_color">#00000000</color>
 </resources>

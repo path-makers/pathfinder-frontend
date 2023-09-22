@@ -33,6 +33,11 @@ android {
         jvmTarget = '1.8'
     }
 
+    viewBinding {
+        enabled = true
+    }
+
+
     dataBinding {
         enabled true
     }
@@ -45,7 +50,7 @@ dependencies {
     implementation 'com.android.volley:volley:1.2.1'
     implementation 'androidx.core:core-ktx:1.10.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.8.0'
+//    implementation 'com.google.android.material:material:1.8.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
@@ -59,6 +64,8 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
     implementation 'com.github.yalantis:ucrop:2.2.6'
     implementation 'com.github.prolificinteractive:material-calendarview:1.6.0'
+    implementation("androidx.compose.material3:material3:1.1.2")
+    implementation("androidx.compose.material3:material3-window-size-class:1.1.2")
 
     // Import the Firebase BoM
     implementation platform('com.google.firebase:firebase-bom:31.3.0')

@@ -55,5 +55,5 @@
         android:id="@+id/chatFragment"
         android:name="com.example.pathfinder.fragments.AiFragment"
         android:label="fragment_chat"
-        tools:layout="@layout/fragment_chat" />
+        tools:layout="@layout/fragment_ai_chat" />
 </navigation>

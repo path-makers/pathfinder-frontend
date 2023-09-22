@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 선택된 탭의 색상 -->
+    <item android:color="@color/purple_500" android:state_checked="true" />
+    <!-- 선택 안 된  탭의 색상 -->
+    <item android:color="@color/mainColor" />
+</selector>

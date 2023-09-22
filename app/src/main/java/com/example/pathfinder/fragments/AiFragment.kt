@@ -38,7 +38,7 @@ class AiFragment : Fragment() {
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_chat, container, false)
+        val view = inflater.inflate(R.layout.fragment_ai_chat, container, false)
 
         sendBtn = view.findViewById(R.id.imageButton2)
         loadingBar = view.findViewById(R.id.loadingBar)
