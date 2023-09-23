@@ -1,4 +1,4 @@
-package com.example.pathfinder.models
+package com.example.pathfinder.fragments.AiFragment.models
 
 import com.stfalcon.chatkit.commons.models.IMessage
 import com.stfalcon.chatkit.commons.models.IUser

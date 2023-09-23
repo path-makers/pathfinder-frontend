@@ -52,6 +52,9 @@ class HomeFragment : Fragment() {
             }
         }
 
+        binding.chatButton.setOnClickListener {
+            it.findNavController().navigate(R.id.action_homeFragment_to_chatFragment)
+        }
 
 
         return binding.root

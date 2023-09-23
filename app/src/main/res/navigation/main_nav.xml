@@ -53,7 +53,7 @@
     </fragment>
     <fragment
         android:id="@+id/chatFragment"
-        android:name="com.example.pathfinder.fragments.AiFragment"
+        android:name="com.example.pathfinder.fragments.AiFragment.AiFragment"
         android:label="fragment_chat"
         tools:layout="@layout/fragment_ai_chat" />
 </navigation>

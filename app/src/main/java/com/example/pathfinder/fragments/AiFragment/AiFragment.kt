@@ -1,4 +1,4 @@
-package com.example.pathfinder.fragments
+package com.example.pathfinder.fragments.AiFragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,8 +14,6 @@ import com.android.volley.RetryPolicy
 import com.android.volley.VolleyError
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import com.example.pathfinder.models.Message
-import com.example.pathfinder.models.User
 import com.example.pathfinder.R
 import com.stfalcon.chatkit.commons.ImageLoader
 import com.stfalcon.chatkit.messages.MessagesList
@@ -25,6 +23,8 @@ import org.json.JSONObject
 import java.util.*
 import android.widget.ProgressBar
 import androidx.core.view.isVisible
+import com.example.pathfinder.fragments.AiFragment.models.Message
+import com.example.pathfinder.fragments.AiFragment.models.User
 
 class AiFragment : Fragment() {
 
@@ -99,7 +99,7 @@ class AiFragment : Fragment() {
             override fun getHeaders(): MutableMap<String, String> {
                 var map = HashMap<String, String>()
                 map.put("Content-Type", "application/json")
-                map.put("Authorization", "Bearer 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")
+                map.put("Authorization", "Bearer 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")
                 return map
             }
         }
