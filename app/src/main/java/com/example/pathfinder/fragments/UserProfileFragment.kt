@@ -14,11 +14,10 @@ import android.widget.Toast
 
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 
 import com.example.pathfinder.R
-import com.example.pathfinder.databinding.FragmentStoreBinding
+import com.example.pathfinder.databinding.FragmentUserProfileBinding
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.ktx.Firebase
@@ -29,7 +28,7 @@ import java.io.File
 
 
 class UserProfileFragment : Fragment() {
-    private lateinit var binding: FragmentStoreBinding
+    private lateinit var binding: FragmentUserProfileBinding
     private val GALLERY_REQUEST_CODE = 1
     private val UCROP_REQUEST_CODE = 2
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,7 +40,7 @@ class UserProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_store, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_user_profile, container, false)
 
         val user = Firebase.auth.currentUser
 

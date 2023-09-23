@@ -27,7 +27,7 @@
         android:id="@+id/storeFragment"
         android:name="com.example.pathfinder.fragments.UserProfileFragment"
         android:label="fragment_store"
-        tools:layout="@layout/fragment_store" >
+        tools:layout="@layout/fragment_user_profile" >
 
         <action
             android:id="@+id/action_storeFragment_to_talkFragment"
@@ -39,9 +39,9 @@
     </fragment>
     <fragment
         android:id="@+id/talkFragment"
-        android:name="com.example.pathfinder.fragments.TalkFragment"
+        android:name="com.example.pathfinder.fragments.BoardFragment"
         android:label="fragment_talk"
-        tools:layout="@layout/fragment_talk" >
+        tools:layout="@layout/fragment_board" >
 
         <action
             android:id="@+id/action_talkFragment_to_homeFragment"

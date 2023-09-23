@@ -12,7 +12,7 @@ import com.example.pathfinder.R
 import com.example.pathfinder.pages.board.BoardListLVAdapter
 import com.example.pathfinder.pages.board.Inside.BoardInsideView
 import com.example.pathfinder.pages.board.BoardModel
-import com.example.pathfinder.databinding.FragmentTalkBinding
+import com.example.pathfinder.databinding.FragmentBoardBinding
 import com.example.pathfinder.pages.board.write.BoardWriteView
 import com.example.pathfinder.utils.FBRef
 import com.google.firebase.database.DataSnapshot
@@ -20,13 +20,13 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 
 
-class TalkFragment : Fragment() {
-    private lateinit var binding: FragmentTalkBinding
+class BoardFragment : Fragment() {
+    private lateinit var binding: FragmentBoardBinding
 
     private val boardDataList = mutableListOf<BoardModel>()
     private val boardKeyList = mutableListOf<String>()
 
-    private val TAG = TalkFragment::class.java.simpleName
+    private val TAG = BoardFragment::class.java.simpleName
 
     private lateinit var boardRVAdapter: BoardListLVAdapter
 
@@ -40,7 +40,7 @@ class TalkFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_talk, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_board, container, false)
 
 
 
