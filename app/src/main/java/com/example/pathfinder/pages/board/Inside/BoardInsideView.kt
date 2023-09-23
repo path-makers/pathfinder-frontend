@@ -7,6 +7,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
+import com.bumptech.glide.Glide
 import com.example.pathfinder.R
 import com.example.pathfinder.databinding.ActivityBoardInsideBinding
 import com.example.pathfinder.pages.board.edit.BoardEditView
@@ -55,6 +56,17 @@ class BoardInsideView : AppCompatActivity() {
             commentDataList.clear()
             commentDataList.addAll(commentData)
             commentAdapter.notifyDataSetChanged()
+        }
+
+        controller.getImageData(key) { imageUrl ->
+            if (imageUrl != null) {
+                Glide.with(this)
+                    .load(imageUrl)
+                    .into(binding.getImageArea)
+                binding.getImageArea.isVisible = true
+            } else {
+                binding.getImageArea.isVisible = false
+            }
         }
 
         binding.commentBtn.setOnClickListener {

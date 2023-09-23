@@ -8,6 +8,8 @@ import com.example.pathfinder.utils.FBRef
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 
 class BoardInsideModel {
 
@@ -56,7 +58,16 @@ class BoardInsideModel {
     fun removeBoard(key: String) {
         FBRef.boardRef.child(key).removeValue()
     }
-
+    fun getImageData(key: String, onResult: (String?) -> Unit) {
+        val storageReference = Firebase.storage.reference.child(key + ".png")
+        storageReference.downloadUrl.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                onResult(task.result.toString())
+            } else {
+                onResult(null)
+            }
+        }
+    }
     companion object {
         private val TAG = BoardInsideModel::class.java.simpleName
     }

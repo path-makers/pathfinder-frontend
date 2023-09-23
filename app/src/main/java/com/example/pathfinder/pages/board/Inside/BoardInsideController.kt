@@ -22,6 +22,9 @@ class BoardInsideController(private val view: BoardInsideView) {
     fun removeBoard(key: String) {
         model.removeBoard(key)
     }
+    fun getImageData(key: String, onResult: (String?) -> Unit) {
+        model.getImageData(key, onResult)
+    }
 
 }
 
