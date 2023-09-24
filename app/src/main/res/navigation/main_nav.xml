@@ -12,48 +12,62 @@
         tools:layout="@layout/fragment_home" >
 
         <action
-            android:id="@+id/action_homeFragment_to_talkFragment"
-            app:destination="@id/talkFragment" />
+            android:id="@+id/action_homeFragment_to_boardFragment"
+            app:destination="@id/boardFragment" />
 
         <action
-            android:id="@+id/action_homeFragment_to_storeFragment"
-            app:destination="@id/storeFragment" />
+            android:id="@+id/action_homeFragment_to_userProfileFragment"
+            app:destination="@id/userProfileFragment" />
         <action
             android:id="@+id/action_homeFragment_to_chatFragment"
             app:destination="@id/chatFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_teamBuildingFragment"
+            app:destination="@id/teamBuildingFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/storeFragment"
+        android:id="@+id/userProfileFragment"
         android:name="com.example.pathfinder.fragments.UserProfileFragment"
-        android:label="fragment_store"
+        android:label="fragment_user_profile"
         tools:layout="@layout/fragment_user_profile" >
 
         <action
-            android:id="@+id/action_storeFragment_to_talkFragment"
-            app:destination="@id/talkFragment" />
+            android:id="@+id/action_userProfileFragment_to_boardFragment"
+            app:destination="@id/boardFragment" />
 
         <action
             android:id="@+id/action_storeFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_userProfileFragment_to_teamBuildingFragment"
+            app:destination="@id/teamBuildingFragment" />
     </fragment>
     <fragment
-        android:id="@+id/talkFragment"
+        android:id="@+id/boardFragment"
         android:name="com.example.pathfinder.fragments.BoardFragment"
-        android:label="fragment_talk"
+        android:label="fragment_board"
         tools:layout="@layout/fragment_board" >
 
         <action
-            android:id="@+id/action_talkFragment_to_homeFragment"
+            android:id="@+id/action_boardFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
 
         <action
-            android:id="@+id/action_talkFragment_to_storeFragment"
-            app:destination="@id/storeFragment" />
+            android:id="@+id/action_boardFragment_to_userProfileFragment"
+            app:destination="@id/userProfileFragment" />
+        <action
+            android:id="@+id/action_boardFragment_to_teamBuildingFragment"
+            app:destination="@id/teamBuildingFragment" />
     </fragment>
     <fragment
         android:id="@+id/chatFragment"
         android:name="com.example.pathfinder.fragments.AiFragment.AiFragment"
         android:label="fragment_chat"
         tools:layout="@layout/fragment_ai_chat" />
+    <fragment
+        android:id="@+id/teamBuildingFragment"
+        android:name="com.example.pathfinder.fragments.TeamBuildingFragment"
+        android:label="fragment_team_building"
+        tools:layout="@layout/fragment_team_building" />
 </navigation>
