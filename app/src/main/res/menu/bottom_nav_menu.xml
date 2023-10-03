@@ -1,20 +1,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/homeFragment"
-        android:icon="@drawable/baseline_home_24"
+        android:icon="@drawable/home_icon"
         android:title="홈"/>
     <item
         android:id="@+id/boardFragment"
-        android:icon="@drawable/baseline_article_24"
+        android:icon="@drawable/board_icon"
         android:title="게시판"/>
     <item
         android:id="@+id/teamBuildingFragment"
-        android:icon="@drawable/baseline_account_box_24"
+        android:icon="@drawable/team_icon"
         android:title="프로젝트"/>
 
     <item
         android:id="@+id/userProfileFragment"
-        android:icon="@drawable/baseline_account_box_24"
+        android:icon="@drawable/profile_icon"
         android:title="프로필"/>
 
 
