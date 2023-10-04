@@ -1,4 +1,4 @@
-package com.example.pathfinder.pages
+package com.example.pathfinder.pages.teamBuilding
 
 data class TeamModel  (
         val category : String="",

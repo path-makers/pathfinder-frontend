@@ -1,4 +1,4 @@
-package com.example.pathfinder.pages.board
+package com.example.pathfinder.pages.teamBuilding
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.databinding.DataBindingUtil
 import com.example.pathfinder.R
-import com.example.pathfinder.pages.TeamModel
 
 class TeamBuildingLVAdapter(val teamBuildingList : MutableList<TeamModel>): BaseAdapter(){
     override fun getCount(): Int {
@@ -27,6 +27,8 @@ class TeamBuildingLVAdapter(val teamBuildingList : MutableList<TeamModel>): Base
     override fun getView(position: Int, convertView: View?, parent : ViewGroup?): View {
 
 //        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_team_building, container, false)
+
+      
 
         var view = convertView
 
