@@ -1,6 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+<layout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".pages.teamBuilding.TeamBuildingWriteActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:text="팀원모집 작성"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textColor="@color/black" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/black" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp"
+            >
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="카테고리"
+                    android:textColor="@color/black" />
+
+                <Spinner
+                    android:id="@+id/categorySpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/rounded_border"
+                    android:entries="@array/category_array" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="제목"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="8dp" />
+
+                <EditText
+                    android:id="@+id/titleArea"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/rounded_border"
+                    android:hint="제목을 입력해주세요"
+                    android:paddingLeft="8dp"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="내용"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="8dp" />
+
+                <EditText
+                    android:id="@+id/contentArea"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/rounded_border"
+                    android:hint="내용을 입력해주세요"
+                    android:paddingLeft="8dp"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="지역"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="8dp" />
+
+                <EditText
+                    android:id="@+id/regionArea"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/rounded_border"
+                    android:hint="지역을 입력해주세요"
+                    android:paddingLeft="8dp"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="모집 마감"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="8dp" />
+
+                <EditText
+                    android:id="@+id/endDateEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="4dp"
+                    android:hint="모집 마감 날짜를 선택해주세요"
+                    android:focusable="false"
+                    android:clickable="true"
+                    android:background="@drawable/rounded_border"
+                    android:paddingLeft="8dp"
+                    />
+
+
+                <Button
+                    android:id="@+id/writeBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/background_radius_yellow"
+                    android:text="입력"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+</layout>

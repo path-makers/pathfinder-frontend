@@ -23,6 +23,8 @@
         <activity android:name=".pages.board.edit.BoardEditView"/>
         <activity android:name=".pages.board.Inside.BoardInsideView"/>
         <activity android:name=".pages.board.write.BoardWriteView"/>
+        <activity android:name=".pages.teamBuilding.TeamBuildingWriteActivity" />
+
 
         <activity
             android:name=".auth.JoinActivity"

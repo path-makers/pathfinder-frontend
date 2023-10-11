@@ -14,6 +14,7 @@ import com.example.pathfinder.pages.teamBuilding.TeamModel
 import com.example.pathfinder.pages.board.Inside.BoardInsideView
 import com.example.pathfinder.pages.teamBuilding.TeamBuildingLVAdapter
 import com.example.pathfinder.pages.board.write.BoardWriteView
+import com.example.pathfinder.pages.teamBuilding.TeamBuildingWriteActivity
 import com.example.pathfinder.utils.FBRef
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -47,7 +48,7 @@ class TeamBuildingFragment : Fragment() {
         //팀 빌딩 게시글 안으로 들어가기
 
         binding.teamWriteBtn.setOnClickListener {
-            val intent = Intent(context, BoardWriteView::class.java)
+            val intent = Intent(context, TeamBuildingWriteActivity::class.java)
             //확인하기
             startActivity(intent)
         }

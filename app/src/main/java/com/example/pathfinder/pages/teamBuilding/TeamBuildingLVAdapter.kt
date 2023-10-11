@@ -55,7 +55,7 @@ class TeamBuildingLVAdapter(val teamBuildingList : MutableList<TeamModel>): Base
         teamTitle!!.text = teamBuildingList[position].title
         teamContent!!.text = teamBuildingList[position].content
         teamRecruitTime!!.text = teamBuildingList[position].recruitTime
-        teamRegion!!.text = teamBuildingList[position].region
+        teamRegion!!.text = teamBuildingList[position].regionArea
         teamDisplayName!!.text = teamBuildingList[position].displayName
         teamUploadTime!!.text = teamBuildingList[position].uploadTime
         teamLikeCount!!.text = teamBuildingList[position].likeCount.toString()
