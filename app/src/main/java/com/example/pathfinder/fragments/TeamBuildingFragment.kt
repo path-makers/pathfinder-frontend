@@ -33,33 +33,32 @@ class TeamBuildingFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_team_building, container, false)
-        teamRVAdapter = TeamBuildingLVAdapter(teamDataList)
-        binding.teamBuildingListView.adapter = teamRVAdapter
-
-        binding.teamBuildingListView.setOnItemClickListener { parent, view, position, id ->
-
-            val intent = Intent(context, BoardInsideView::class.java)
-            //추가 확인하기
-            intent.putExtra("key", teamKeyList[position])
-            startActivity(intent)
-
-        }
-        //팀 빌딩 게시글 안으로 들어가기
-
-        binding.teamWriteBtn.setOnClickListener {
-            val intent = Intent(context, TeamBuildingWriteActivity::class.java)
-            //확인하기
-            startActivity(intent)
-        }
-
 
         getFBTeamData()
+        initTeamListView()
+        initWriteButton()
+
 
         return binding.root
 
+    }
+    private fun initTeamListView() {
+        teamRVAdapter = TeamBuildingLVAdapter(teamDataList)
+        binding.teamBuildingListView.adapter = teamRVAdapter
+        binding.teamBuildingListView.setOnItemClickListener { parent, view, position, id ->
+            val intent = Intent(context, BoardInsideView::class.java)
+            intent.putExtra("key", teamKeyList[position])
+            startActivity(intent)
+        }
+    }
 
-
+    private fun initWriteButton() {
+        binding.teamWriteBtn.setOnClickListener {
+            val intent = Intent(context, TeamBuildingWriteActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun getFBTeamData() {
@@ -80,7 +79,6 @@ class TeamBuildingFragment : Fragment() {
                 teamDataList.reverse()
                 teamRVAdapter.notifyDataSetChanged()
                 Log.d(TAG, teamDataList.toString())
-
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -90,7 +88,6 @@ class TeamBuildingFragment : Fragment() {
         FBRef.teamBuildingRef.addValueEventListener(postListener)
 
     }
-    //다시 확인하기
+
 }
 
-// 어째서 private아닌데 사용가능했는지 확인하기
