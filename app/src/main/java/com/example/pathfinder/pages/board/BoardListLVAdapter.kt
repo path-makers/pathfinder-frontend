@@ -24,32 +24,22 @@ class BoardListLVAdapter(val boardList : MutableList<BoardModel>): BaseAdapter()
     }
 
 
-    override fun getView(position: Int, convertView: View?, parent : ViewGroup?): View {
-
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         var view = convertView
-
-        //if(view==null){
-        view = LayoutInflater.from(parent?.context).inflate(R.layout.board_list_item,parent,false)
-        //}
+        view = LayoutInflater.from(parent?.context).inflate(R.layout.board_list_item, parent, false)
 
         val itemLinearLayoutView = view?.findViewById<LinearLayout>(R.id.itemView)
 
         val title = view?.findViewById<TextView>(R.id.titleArea)
         val content = view?.findViewById<TextView>(R.id.contentArea)
-        val time = view?.findViewById<TextView>(R.id.timeArea)
-        val userName = view?.findViewById<TextView>(R.id.userName)
+        val date = view?.findViewById<TextView>(R.id.timeArea)  // 이름을 time에서 date로 변경
+        val uid = view?.findViewById<TextView>(R.id.userName)    // 이름을 userName에서 uid로 변경
 
-
-        //게시글 누구인지 색으로 표시
-        if(boardList[position].uid.equals(FBAuth.getUid())){
-            //itemLinearLayoutView?.setBackgroundColor(Color.parseColor("#00aaff"))
-        }
 
         title!!.text = boardList[position].title
         content!!.text = boardList[position].content
-        time!!.text = boardList[position].time
-        userName!!.text = boardList[position].displayName
-
+        date!!.text = boardList[position].date
+        uid!!.text = boardList[position].uid
 
         return view!!
     }

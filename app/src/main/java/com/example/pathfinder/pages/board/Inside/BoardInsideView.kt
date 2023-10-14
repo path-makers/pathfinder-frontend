@@ -44,7 +44,7 @@ class BoardInsideView : AppCompatActivity() {
         controller.getBoardData(key) { boardModel ->
             binding.titleArea.text = boardModel?.title
             binding.textArea.text = boardModel?.content
-            binding.timeArea.text = boardModel?.time
+            binding.timeArea.text = boardModel?.date
 
             val myUid = FBAuth.getUid()
             val writeUid = boardModel?.uid

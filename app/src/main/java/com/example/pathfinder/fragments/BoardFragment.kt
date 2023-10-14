@@ -8,6 +8,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonArrayRequest
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
 import com.example.pathfinder.R
 import com.example.pathfinder.pages.board.BoardListLVAdapter
 import com.example.pathfinder.pages.board.Inside.BoardInsideView
@@ -18,6 +23,8 @@ import com.example.pathfinder.utils.FBRef
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import org.json.JSONArray
+import org.json.JSONObject
 
 
 class BoardFragment : Fragment() {
@@ -63,31 +70,55 @@ class BoardFragment : Fragment() {
     }
 
     private fun getFBBoardData() {
+        // URL 설정
+        val url = "http://138.2.114.130:8080/api/board/all"
 
-        val postListener = object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
+        val jsonObjectRequest = JsonObjectRequest(
+            Request.Method.GET, url, null,
+            Response.Listener<JSONObject> { response ->
+                val boardsArray = response.getJSONArray("boards")
+                Log.d(TAG, "Received data: $response")
 
-                boardDataList.clear()
+                for (i in 0 until boardsArray.length()) {
+                    val item = boardsArray.getJSONObject(i)
 
-                for (dataModel in snapshot.children) {
-                    Log.d(TAG, dataModel.toString())
-                    val item = dataModel.getValue(BoardModel::class.java)
-                    boardDataList.add(item!!)
-                    boardKeyList.add(dataModel.key.toString())
+                    val tagsArray = item.getJSONArray("tags")
+                    val tagsList = mutableListOf<String>()
+                    for (j in 0 until tagsArray.length()) {
+                        tagsList.add(tagsArray.getString(j))
+                    }
+
+                    val commentsArray = item.getJSONArray("comments")
+                    val commentsList = mutableListOf<String>()
+                    for (j in 0 until commentsArray.length()) {
+                        commentsList.add(commentsArray.getString(j))
+                    }
+
+                    val boardModel = BoardModel(
+                        title = item.getString("title"),
+                        content = item.getString("content"),
+                        uid = item.getString("uid"),
+                        date = item.optString("createdAt", "Unknown"),
+                        boardType = item.getString("boardType"),
+                        tags = tagsList,
+                        comments = commentsList
+                    )
+
+                    boardDataList.add(boardModel)
                 }
 
-                boardKeyList.reverse()
                 boardDataList.reverse()
                 boardRVAdapter.notifyDataSetChanged()
-                Log.d(TAG, boardDataList.toString())
-
+            },
+            Response.ErrorListener { error ->
+                Log.w(TAG, "Error: ${error.message}")
             }
+        )
 
-            override fun onCancelled(error: DatabaseError) {
-                Log.w(TAG, "LoadPost:onCanceled", error.toException())
-            }
-        }
-        FBRef.boardRef.addValueEventListener(postListener)
-
+        Volley.newRequestQueue(requireContext()).add(jsonObjectRequest)
     }
+
+
 }
+
+

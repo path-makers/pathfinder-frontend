@@ -35,7 +35,7 @@ class BoardWriteView : AppCompatActivity() {
             val userEmail = FBAuth.getEmail()
             val displayName = Firebase.auth.currentUser?.displayName
 
-            val board = BoardModel(title, content, uid, time, userEmail, displayName)
+            val board = BoardModel(title, content, uid, time)
             val key = FBRef.boardRef.push().key.toString()
 
             controller.saveBoardData(board, key)
