@@ -46,7 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:background="@drawable/rounded_gray_background"
+        android:background="@drawable/background_radius_gray"
         android:text="모집기간"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvContent" />
@@ -58,7 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginTop="12dp"
-        android:background="@drawable/rounded_gray_background"
+        android:background="@drawable/background_radius_gray"
         android:text="지역"
         app:layout_constraintStart_toEndOf="@id/tvPeriod"
         app:layout_constraintTop_toBottomOf="@id/tvContent" />

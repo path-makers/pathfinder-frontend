@@ -26,11 +26,7 @@ class BoardEditView : AppCompatActivity() {
             binding.contentArea.setText(boardModel?.content)
         }
 
-        controller.getImageData(key) { imageUrl ->
-            Glide.with(this)
-                .load(imageUrl)
-                .into(binding.imageArea)
-        }
+
 
         binding.editBtn.setOnClickListener {
             val title = binding.titleArea.text.toString()

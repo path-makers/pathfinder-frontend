@@ -64,13 +64,7 @@
                     android:layout_height="0.5dp"
                     android:background="@color/black" />
 
-                <ImageView
-                    android:layout_gravity="center"
-                    android:id="@+id/imageArea"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:layout_marginTop="20dp"
-                    android:src="@drawable/plusbtn" />
+
 
                 <Button
                     android:id="@+id/editBtn"
@@ -79,7 +73,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="30dp"
                     android:layout_marginRight="20dp"
-                    android:background="@drawable/background_radius_yellow"
+                    android:background="@drawable/background_radius_maincolor"
                     android:text="수정"
                     android:textColor="@color/white" />
             </androidx.appcompat.widget.LinearLayoutCompat>

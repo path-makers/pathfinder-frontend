@@ -103,7 +103,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_margin="20dp"
-                android:background="@drawable/background_radius_yellow"
+                android:background="@drawable/background_radius_maincolor"
                 android:text="가입 하기"
                 android:textColor="@color/white"
                 />

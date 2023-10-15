@@ -128,7 +128,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginTop="30dp"
-                    android:background="@drawable/background_radius_yellow"
+                    android:background="@drawable/background_radius_maincolor"
                     android:text="입력"
                     android:textColor="@color/white" />
             </LinearLayout>

@@ -65,20 +65,14 @@
                     android:hint="내용을 입력해주세요"
                     android:paddingLeft="8dp" />
 
-                <ImageView
-                    android:layout_gravity="center"
-                    android:id="@+id/imageArea"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:layout_marginTop="20dp"
-                    android:src="@drawable/plusbtn" />
+
 
                 <Button
                     android:id="@+id/writeBtn"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginTop="30dp"
-                    android:background="@drawable/background_radius_yellow"
+                    android:background="@drawable/background_radius_maincolor"
                     android:text="입력"
                     android:textColor="@color/white" />
 
