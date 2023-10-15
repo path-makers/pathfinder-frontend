@@ -14,27 +14,28 @@ import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.pathfinder.R
+import com.example.pathfinder.data.BoardRepository
 import com.example.pathfinder.pages.board.BoardListLVAdapter
 import com.example.pathfinder.pages.board.Inside.BoardInsideView
 import com.example.pathfinder.pages.board.BoardModel
 import com.example.pathfinder.databinding.FragmentBoardBinding
 import com.example.pathfinder.pages.board.write.BoardWriteView
+import com.example.pathfinder.pages.teamBuilding.TeamBuildingLVAdapter
+import com.example.pathfinder.pages.teamBuilding.TeamBuildingWriteActivity
 import com.example.pathfinder.utils.FBRef
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import org.json.JSONArray
 import org.json.JSONObject
+import java.io.Serializable
 
 
 class BoardFragment : Fragment() {
     private lateinit var binding: FragmentBoardBinding
-
+    private lateinit var boardRepository: BoardRepository
     private val boardDataList = mutableListOf<BoardModel>()
     private val boardKeyList = mutableListOf<String>()
-
-    private val TAG = BoardFragment::class.java.simpleName
-
     private lateinit var boardRVAdapter: BoardListLVAdapter
 
 
@@ -43,81 +44,47 @@ class BoardFragment : Fragment() {
     ): View? {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_board, container, false)
-
-        boardRVAdapter = BoardListLVAdapter(boardDataList)
-        binding.boardListView.adapter = boardRVAdapter
+        boardRepository = BoardRepository(requireContext())
 
 
-
-        binding.boardListView.setOnItemClickListener { parent, view, position, id ->
-
-            val intent = Intent(context, BoardInsideView::class.java)
-            intent.putExtra("key", boardKeyList[position])
-            startActivity(intent)
-
-        }
-
-
-        binding.writeBtn.setOnClickListener {
-            val intent = Intent(context, BoardWriteView::class.java)
-            startActivity(intent)
-        }
-
-
+        initBoardListView()
+        initWriteButton()
         getFBBoardData()
 
         return binding.root
     }
 
-    private fun getFBBoardData() {
-        // URL 설정
-        val url = "http://138.2.114.130:8080/api/board/all"
+    private fun initBoardListView() {
+        boardRVAdapter = BoardListLVAdapter(boardDataList)
+        binding.boardListView.adapter = boardRVAdapter
 
-        val jsonObjectRequest = JsonObjectRequest(
-            Request.Method.GET, url, null,
-            Response.Listener<JSONObject> { response ->
-                val boardsArray = response.getJSONArray("boards")
-                Log.d(TAG, "Received data: $response")
+        binding.boardListView.setOnItemClickListener { parent, view, position, id ->
 
-                for (i in 0 until boardsArray.length()) {
-                    val item = boardsArray.getJSONObject(i)
+            val intent = Intent(context, BoardInsideView::class.java)
+            val boardData = boardDataList[position] // boardList는 BoardModel 객체의 리스트입니다.
+            intent.putExtra("boardData", boardData as Serializable)
+            startActivity(intent)
 
-                    val tagsArray = item.getJSONArray("tags")
-                    val tagsList = mutableListOf<String>()
-                    for (j in 0 until tagsArray.length()) {
-                        tagsList.add(tagsArray.getString(j))
-                    }
-
-                    val commentsArray = item.getJSONArray("comments")
-                    val commentsList = mutableListOf<String>()
-                    for (j in 0 until commentsArray.length()) {
-                        commentsList.add(commentsArray.getString(j))
-                    }
-
-                    val boardModel = BoardModel(
-                        title = item.getString("title"),
-                        content = item.getString("content"),
-                        uid = item.getString("uid"),
-                        date = item.optString("createdAt", "Unknown"),
-                        boardType = item.getString("boardType"),
-                        tags = tagsList,
-                        comments = commentsList
-                    )
-
-                    boardDataList.add(boardModel)
-                }
-
-                boardDataList.reverse()
-                boardRVAdapter.notifyDataSetChanged()
-            },
-            Response.ErrorListener { error ->
-                Log.w(TAG, "Error: ${error.message}")
-            }
-        )
-
-        Volley.newRequestQueue(requireContext()).add(jsonObjectRequest)
+        }
     }
 
+    private fun initWriteButton() {
+        binding.writeBtn.setOnClickListener {
+            val intent = Intent(context, BoardWriteView::class.java)
+            startActivity(intent)
+        }
+    }
+
+
+    private fun getFBBoardData() {
+        boardRepository.getFBBoardData({ boardDataList ->
+            this.boardDataList.addAll(boardDataList)
+            this.boardDataList.reverse()
+            boardRVAdapter.notifyDataSetChanged()
+        }, { errorMessage ->
+            // 에러 처리
+        })
+    }
 
 }
 

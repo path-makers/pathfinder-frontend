@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.example.pathfinder.R
 import com.example.pathfinder.databinding.ActivityBoardInsideBinding
+import com.example.pathfinder.pages.board.BoardModel
 import com.example.pathfinder.pages.board.edit.BoardEditView
 
 import com.example.pathfinder.pages.board.CommentLVAdapter
@@ -38,36 +39,23 @@ class BoardInsideView : AppCompatActivity() {
         binding.boardSettingIcon.setOnClickListener {
             showDialog()
         }
+        val boardData = intent.getSerializableExtra("boardData") as? BoardModel
 
-        key = intent.getStringExtra("key").toString()
-
-        controller.getBoardData(key) { boardModel ->
-            binding.titleArea.text = boardModel?.title
-            binding.textArea.text = boardModel?.content
-            binding.timeArea.text = boardModel?.date
+        if (boardData != null) {
+            binding.titleArea.text = boardData.title
+            binding.textArea.text = boardData.content
+            binding.timeArea.text = boardData.date
 
             val myUid = FBAuth.getUid()
-            val writeUid = boardModel?.uid
-
+            val writeUid = boardData.uid
             binding.boardSettingIcon.isVisible = myUid == writeUid
         }
 
-        controller.getCommentData(key) { commentData ->
-            commentDataList.clear()
-            commentDataList.addAll(commentData)
-            commentAdapter.notifyDataSetChanged()
-        }
 
-        controller.getImageData(key) { imageUrl ->
-            if (imageUrl != null) {
-                Glide.with(this)
-                    .load(imageUrl)
-                    .into(binding.getImageArea)
-                binding.getImageArea.isVisible = true
-            } else {
-                binding.getImageArea.isVisible = false
-            }
-        }
+
+
+
+
 
         binding.commentBtn.setOnClickListener {
             val displayName = Firebase.auth.currentUser?.displayName ?: "Anonymous"
