@@ -27,37 +27,30 @@ class BoardWriteView : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_board_write)
         controller = BoardWriteController()
 
+        initBoardWriteButton()
+
+
+    }
+
+    private fun initBoardWriteButton() {
         binding.writeBtn.setOnClickListener {
             val title = binding.titleArea.text.toString()
             val content = binding.contentArea.text.toString()
             val uid = FBAuth.getUid()
-            val time = FBAuth.getTime()
-            val userEmail = FBAuth.getEmail()
-            val displayName = Firebase.auth.currentUser?.displayName
 
-            val board = BoardModel(title, content, uid, time)
-            val key = FBRef.boardRef.push().key.toString()
+            val boardType = "MENTEE"
+            val tags = listOf("IT", "TEST") //  우선 2개는 임시로 넣어놓음
 
-            controller.saveBoardData(board, key)
 
-            if (isImageUpload) {
-                controller.uploadImageData(key, binding.imageArea)
-            }
+            val board = BoardModel(title, content, uid, "", boardType, tags)
+
+            controller.sendBoardData(board, this)
+
+
             finish()
-        }
 
-        binding.imageArea.setOnClickListener {
-            val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
-            startActivityForResult(gallery, 100)
-            isImageUpload = true
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
 
-        if (resultCode == RESULT_OK && requestCode == 100) {
-            binding.imageArea.setImageURI(data?.data)
-        }
-    }
 }
