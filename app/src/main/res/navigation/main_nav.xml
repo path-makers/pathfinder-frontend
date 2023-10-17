@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.pathfinder.fragments.HomeFragment"
+        android:name="com.example.pathfinder.ui.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
 
@@ -28,7 +28,7 @@
 
     <fragment
         android:id="@+id/userProfileFragment"
-        android:name="com.example.pathfinder.fragments.UserProfileFragment"
+        android:name="com.example.pathfinder.ui.userProfile.UserProfileFragment"
         android:label="fragment_user_profile"
         tools:layout="@layout/fragment_user_profile" >
 
@@ -45,7 +45,7 @@
     </fragment>
     <fragment
         android:id="@+id/boardFragment"
-        android:name="com.example.pathfinder.fragments.BoardFragment"
+        android:name="com.example.pathfinder.ui.board.view.BoardFragment"
         android:label="fragment_board"
         tools:layout="@layout/fragment_board" >
 
@@ -62,12 +62,12 @@
     </fragment>
     <fragment
         android:id="@+id/chatFragment"
-        android:name="com.example.pathfinder.fragments.AiFragment.AiFragment"
+        android:name="com.example.pathfinder.ui.aiChatBot.AiFragment"
         android:label="fragment_chat"
         tools:layout="@layout/fragment_ai_chat" />
     <fragment
         android:id="@+id/teamBuildingFragment"
-        android:name="com.example.pathfinder.fragments.TeamBuildingFragment"
+        android:name="com.example.pathfinder.ui.teamBuilding.TeamBuildingFragment"
         android:label="fragment_team_building"
         tools:layout="@layout/fragment_team_building" />
 </navigation>

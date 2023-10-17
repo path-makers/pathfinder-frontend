@@ -15,23 +15,23 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".pages.setting.SettingActivity"
+            android:name=".ui.setting.SettingActivity"
             android:exported="false" />
 <!--        <activity-->
 <!--            android:name=".pages.board.edit.BoardEditActivity"-->
 <!--            android:exported="false" />-->
-        <activity android:name=".pages.board.edit.BoardEditView"/>
-        <activity android:name=".pages.board.Inside.BoardInsideView"/>
-        <activity android:name=".pages.board.write.BoardWriteView"/>
-        <activity android:name=".pages.teamBuilding.TeamBuildingWriteActivity" />
+        <activity android:name=".ui.board.view.BoardEditActivity"/>
+        <activity android:name=".ui.board.view.BoardInsideActivity"/>
+        <activity android:name=".ui.board.view.BoardWriteActivity"/>
+        <activity android:name=".ui.teamBuilding.TeamBuildingWriteActivity" />
 
 
 
         <activity
-            android:name=".auth.JoinActivity"
+            android:name=".ui.auth.JoinActivity"
             android:exported="false" />
         <activity
-            android:name=".auth.LoginActivity"
+            android:name=".ui.auth.LoginActivity"
             android:exported="false" />
 
         <activity
@@ -48,7 +48,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".auth.IntroActivity"
+            android:name=".ui.auth.IntroActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
