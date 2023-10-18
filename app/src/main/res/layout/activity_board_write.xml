@@ -13,7 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:gravity="center"
-            android:text="글쓰기 페이지"
+            android:text="멘토 페이지"
             android:textStyle="bold"
             android:textColor="@color/black" />
 
@@ -22,10 +22,41 @@
             android:layout_height="0.5dp"
             android:background="@color/black" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="태그를 추가해주세요."
+            android:paddingLeft="16dp"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="12dp"
+            >
+
+            <!-- 태그들 여기에 추가 -->
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/baseline_add_24"
+                android:background="@color/white"
+
+
+
+                />
+
+        </LinearLayout>
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="16dp"
+            android:paddingHorizontal="16dp"
             >
 
             <LinearLayout
@@ -59,10 +90,11 @@
                 <EditText
                     android:id="@+id/contentArea"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="300dp"
                     android:layout_marginTop="4dp"
                     android:background="@drawable/rounded_border"
                     android:hint="내용을 입력해주세요"
+
                     android:paddingLeft="8dp" />
 
 
