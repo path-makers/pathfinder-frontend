@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bottom_sheet_background"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="태그를 선택해주세요."
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        />
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:padding="8dp"
+        >
+
+        <!-- Example Tag Button -->
+        <Button
+            android:id="@+id/tagItem1"
+            style="@style/TagButton"
+            android:backgroundTint="@color/mainColor"
+            android:text="태그1" />
+
+        <Button
+            android:id="@+id/tagItem2"
+            style="@style/TagButton"
+            android:text="태그2" />
+
+        <Button
+            android:id="@+id/tagItem3"
+            style="@style/TagButton"
+            android:text="태그3" />
+
+        <Button
+            android:id="@+id/tagItem4"
+            style="@style/TagButton"
+            android:text="태그4" />
+
+        <!-- You can add other tag buttons in a similar way -->
+    </GridLayout>
+
+    <Button
+        android:id="@+id/btnConfirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="확인"
+        android:layout_marginTop="16dp"/>
+
+</LinearLayout>

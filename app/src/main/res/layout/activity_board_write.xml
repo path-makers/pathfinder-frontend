@@ -42,6 +42,7 @@
             <!-- 태그들 여기에 추가 -->
 
             <ImageButton
+                android:id="@+id/addButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/baseline_add_24"
