@@ -23,10 +23,12 @@ import org.json.JSONObject
 import java.util.*
 import android.widget.ProgressBar
 import androidx.core.view.isVisible
+import androidx.databinding.DataBindingUtil
 import com.example.pathfinder.data.models.Message
 import com.example.pathfinder.data.models.User
+import com.example.pathfinder.databinding.FragmentAiChatBinding
 
-class AiFragment : Fragment() {
+class AiChatFragment : Fragment() {
 
     lateinit var sendBtn: ImageButton
     lateinit var editText: EditText
@@ -35,15 +37,17 @@ class AiFragment : Fragment() {
     lateinit var chatgpt: User
     lateinit var adapter: MessagesListAdapter<Message>
     lateinit var loadingBar: ProgressBar
+    private lateinit var binding: FragmentAiChatBinding
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_ai_chat, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_ai_chat, container, false)
 
-        sendBtn = view.findViewById(R.id.imageButton2)
-        loadingBar = view.findViewById(R.id.loadingBar)
-        editText = view.findViewById(R.id.editTextTextPersonName2)
-        messagesList = view.findViewById(R.id.messagesList2)
+
+        sendBtn = binding.imageButton2
+        loadingBar = binding.loadingBar
+        editText = binding.editTextTextPersonName2
+        messagesList = binding.messagesList2
 
         var imageLoader: ImageLoader = object : ImageLoader {
             override fun loadImage(imageView: ImageView?, url: String?, payload: Any?) {
@@ -62,7 +66,7 @@ class AiFragment : Fragment() {
             editText.text.clear()
         }
 
-        return view
+        return binding.root
     }
 
     fun performAction(input: String) {
@@ -99,7 +103,7 @@ class AiFragment : Fragment() {
             override fun getHeaders(): MutableMap<String, String> {
                 var map = HashMap<String, String>()
                 map.put("Content-Type", "application/json")
-                map.put("Authorization", "Bearer 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")
+                map.put("Authorization", "Bearer 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")
                 return map
             }
         }
