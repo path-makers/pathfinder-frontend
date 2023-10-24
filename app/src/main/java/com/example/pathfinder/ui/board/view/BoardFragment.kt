@@ -7,18 +7,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import com.example.pathfinder.R
 import com.example.pathfinder.data.repository.BoardRepository
 import com.example.pathfinder.data.models.Board
 import com.example.pathfinder.databinding.FragmentBoardBinding
+import com.example.pathfinder.ui.board.view.viewModel.BoardViewModelFactory
+import com.example.pathfinder.ui.board.view.viewModel.BoardViewModel
 import java.io.Serializable
 
 
 class BoardFragment : Fragment() {
+    private lateinit var viewModel: BoardViewModel
     private lateinit var binding: FragmentBoardBinding
-    private lateinit var boardRepository: BoardRepository
+
     private val boardDataList = mutableListOf<Board>()
-    private val boardKeyList = mutableListOf<String>()
     private lateinit var boardRVAdapter: BoardListLVAdapter
 
 
@@ -27,7 +30,11 @@ class BoardFragment : Fragment() {
     ): View? {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_board, container, false)
-        boardRepository = BoardRepository(requireContext())
+
+        val boardRepository = BoardRepository(requireContext())
+        val viewModelFactory = BoardViewModelFactory(boardRepository)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(BoardViewModel::class.java)
+
 
 
         initBoardListView()
@@ -44,7 +51,7 @@ class BoardFragment : Fragment() {
         binding.boardListView.setOnItemClickListener { parent, view, position, id ->
 
             val intent = Intent(context, BoardInsideActivity::class.java)
-            val boardData = boardDataList[position] // boardList는 BoardModel 객체의 리스트입니다.
+            val boardData = boardDataList[position] // boardList는 BoardModel 객체의 리스트
             intent.putExtra("boardData", boardData as Serializable)
             startActivity(intent)
 
@@ -60,13 +67,16 @@ class BoardFragment : Fragment() {
 
 
     private fun getFBBoardData() {
-        boardRepository.getFBBoardData({ boardDataList ->
+        viewModel.getBoardData()
+        viewModel.boardDataList.observe(viewLifecycleOwner) { boardDataList ->
             this.boardDataList.addAll(boardDataList)
             this.boardDataList.reverse()
             boardRVAdapter.notifyDataSetChanged()
-        }, { errorMessage ->
+        }
+
+        viewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
             // 에러 처리
-        })
+        }
     }
 
 }

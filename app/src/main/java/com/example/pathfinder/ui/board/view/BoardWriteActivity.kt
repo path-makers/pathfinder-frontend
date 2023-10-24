@@ -3,22 +3,29 @@ package com.example.pathfinder.ui.board.view
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import com.example.pathfinder.R
 import com.example.pathfinder.databinding.ActivityBoardWriteBinding
 import com.example.pathfinder.data.models.Board
 import com.example.pathfinder.data.repository.BoardRepository
+import com.example.pathfinder.ui.board.view.viewModel.BoardViewModel
+import com.example.pathfinder.ui.board.view.viewModel.BoardViewModelFactory
 import com.example.pathfinder.ui.components.BottomSheetTagFragment
 import com.example.pathfinder.utils.FBAuth
 
 class BoardWriteActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityBoardWriteBinding
-    private val repository = BoardRepository(this)
     private val selectedTags = mutableListOf<String>()
+    private lateinit var viewModel: BoardViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_board_write)
+
+        val boardRepository = BoardRepository(this)
+        val viewModelFactory = BoardViewModelFactory(boardRepository)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(BoardViewModel::class.java)
 
         initBoardWriteButton()
         initTagButton()
@@ -43,8 +50,8 @@ class BoardWriteActivity : AppCompatActivity() {
             val boardType = "MENTEE"
 
 
-            val board = Board(title, content, uid, "", boardType, selectedTags)
-            repository.sendBoardData(board)
+            viewModel.addBoard(title, content, uid, boardType, selectedTags)
+
 
             finish()
         }
