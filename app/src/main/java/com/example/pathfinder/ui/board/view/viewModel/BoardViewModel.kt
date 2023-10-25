@@ -10,14 +10,13 @@ class BoardViewModel(private val boardRepository: BoardRepository) : ViewModel()
     val boardDataList: MutableLiveData<List<Board>> = MutableLiveData()
     val errorMessage: MutableLiveData<String> = MutableLiveData()
 
-    fun getBoardData() {
-        boardRepository.getFBBoardData({
+    fun getBoardData(boardType: String) {
+        boardRepository.getFBBoardData(boardType, {
             boardDataList.value = it.reversed()
         }, { err ->
             errorMessage.value = err
         })
     }
-
     fun addBoard(title: String, content: String, uid: String, boardType: String, tags: List<String>) {
         val board = Board(
             title = title,

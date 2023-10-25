@@ -8,6 +8,9 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.example.pathfinder.R
 import com.example.pathfinder.data.models.Board
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class BoardListLVAdapter(val boardList : MutableList<Board>): BaseAdapter(){
     override fun getCount(): Int {
@@ -38,10 +41,16 @@ class BoardListLVAdapter(val boardList : MutableList<Board>): BaseAdapter(){
 
         title!!.text = boardList[position].title
         content!!.text = boardList[position].content
-        date!!.text = boardList[position].date
+        date!!.text = formatDate(boardList[position].date.toLong())
         uid!!.text = boardList[position].uid
 
         return view!!
+    }
+
+    private fun formatDate(timeStamp: Long): String {
+        val date = Date(timeStamp)
+        val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault())
+        return sdf.format(date)
     }
 
 }

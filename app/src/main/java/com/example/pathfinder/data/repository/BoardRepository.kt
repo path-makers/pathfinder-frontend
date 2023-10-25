@@ -14,8 +14,8 @@ import org.json.JSONObject
 
 class BoardRepository(private val context: Context) { // Context 추가
 
-    fun getFBBoardData(success: (List<Board>) -> Unit, error: (String) -> Unit) {
-        val url = "http://138.2.114.130:8080/api/board/all"
+    fun getFBBoardData(boardType: String, success: (List<Board>) -> Unit, error: (String) -> Unit) {
+        val url = "http://138.2.114.130:8080/api/board/all?boardType=$boardType"
 
         val jsonObjectRequest = JsonObjectRequest(
             Request.Method.GET, url, null,
@@ -53,15 +53,15 @@ class BoardRepository(private val context: Context) { // Context 추가
                     boardDataList.add(board)
                 }
 
-                success(boardDataList) // 콜백 호출
+                success(boardDataList)
             },
             Response.ErrorListener { err ->
                 Log.w(TAG, "Error: ${err.message}")
-                error(err.message ?: "Unknown error") // 에러 콜백 호출
+                error(err.message ?: "Unknown error")
             }
         )
 
-        Volley.newRequestQueue(context).add(jsonObjectRequest) // Context 사용
+        Volley.newRequestQueue(context).add(jsonObjectRequest)
     }
 
 

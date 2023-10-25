@@ -3,30 +3,56 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-        <!-- TODO: Update blank fragment layout -->
-        <androidx.constraintlayout.widget.ConstraintLayout
+    <!-- TODO: Update blank fragment layout -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ToggleButton
+            android:id="@+id/mentorBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:textOff="멘토"
+            android:textOn="멘토"
+            android:padding="8dp"
+            android:background="@android:color/transparent"
+            android:textColor="@color/tab_colors"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ToggleButton
+            android:id="@+id/menteeBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:textOff="멘티"
+            android:textOn="멘티"
+            android:padding="8dp"
+            android:background="@android:color/transparent"
+            android:textColor="@color/tab_colors"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/mentorBtn" />
+
+        <ListView
+            android:id="@+id/boardListView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mentorBtn" />
 
-            <ListView
-                android:id="@+id/boardListView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_constraintBottom_toBottomOf="parent" />
+        <ImageView
+            android:id="@+id/writeBtn"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/writebtn"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="30dp"
+            android:layout_marginEnd="10dp" />
 
-
-            <ImageView
-                android:id="@+id/writeBtn"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:src="@drawable/writebtn"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginBottom="30dp"
-                android:layout_marginRight="10dp"/>
-
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

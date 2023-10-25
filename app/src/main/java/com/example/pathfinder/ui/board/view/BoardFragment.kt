@@ -28,7 +28,7 @@ class BoardFragment : Fragment() {
 
     private val startWriteActivityForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
-            getFBBoardData()
+            getFBBoardData("MENTOR")
         }
     }
 
@@ -38,7 +38,7 @@ class BoardFragment : Fragment() {
     ): View? {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_board, container, false)
-
+        binding.mentorBtn.isChecked = true
         val boardRepository = BoardRepository(requireContext())
         val viewModelFactory = BoardViewModelFactory(boardRepository)
         viewModel = ViewModelProvider(this, viewModelFactory).get(BoardViewModel::class.java)
@@ -47,7 +47,7 @@ class BoardFragment : Fragment() {
 
         initBoardListView()
         initWriteButton()
-        getFBBoardData()
+        getFBBoardData("MENTOR")
 
         return binding.root
     }
@@ -55,6 +55,24 @@ class BoardFragment : Fragment() {
     private fun initBoardListView() {
         boardRVAdapter = BoardListLVAdapter(boardDataList)
         binding.boardListView.adapter = boardRVAdapter
+
+
+
+        binding.mentorBtn.setOnClickListener {
+            if (!binding.mentorBtn.isChecked) {
+                binding.mentorBtn.isChecked = true
+                binding.menteeBtn.isChecked = false
+                getFBBoardData("MENTOR")
+            }
+        }
+
+        binding.menteeBtn.setOnClickListener {
+            if (!binding.menteeBtn.isChecked) {
+                binding.menteeBtn.isChecked = true
+                binding.mentorBtn.isChecked = false
+                getFBBoardData("MENTEE")
+            }
+        }
 
         binding.boardListView.setOnItemClickListener { parent, view, position, id ->
 
@@ -75,8 +93,8 @@ class BoardFragment : Fragment() {
 
 
 
-    private fun getFBBoardData() {
-        viewModel.getBoardData()
+    private fun getFBBoardData(boardType: String) {
+        viewModel.getBoardData(boardType)
         viewModel.boardDataList.observe(viewLifecycleOwner) { boardDataList ->
             this.boardDataList.clear()
             this.boardDataList.addAll(boardDataList)
