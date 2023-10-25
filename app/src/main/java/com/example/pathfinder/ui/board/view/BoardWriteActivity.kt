@@ -1,5 +1,6 @@
 package com.example.pathfinder.ui.board.view
 
+import android.app.Activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -52,7 +53,7 @@ class BoardWriteActivity : AppCompatActivity() {
 
             viewModel.addBoard(title, content, uid, boardType, selectedTags)
 
-
+            setResult(Activity.RESULT_OK)
             finish()
         }
     }

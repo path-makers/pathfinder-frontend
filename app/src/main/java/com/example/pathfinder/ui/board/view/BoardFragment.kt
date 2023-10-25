@@ -1,11 +1,13 @@
 package com.example.pathfinder.ui.board.view
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.pathfinder.R
@@ -23,6 +25,12 @@ class BoardFragment : Fragment() {
 
     private val boardDataList = mutableListOf<Board>()
     private lateinit var boardRVAdapter: BoardListLVAdapter
+
+    private val startWriteActivityForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            getFBBoardData()
+        }
+    }
 
 
     override fun onCreateView(
@@ -61,14 +69,16 @@ class BoardFragment : Fragment() {
     private fun initWriteButton() {
         binding.writeBtn.setOnClickListener {
             val intent = Intent(context, BoardWriteActivity::class.java)
-            startActivity(intent)
+            startWriteActivityForResult.launch(intent)
         }
     }
+
 
 
     private fun getFBBoardData() {
         viewModel.getBoardData()
         viewModel.boardDataList.observe(viewLifecycleOwner) { boardDataList ->
+            this.boardDataList.clear()
             this.boardDataList.addAll(boardDataList)
             this.boardDataList.reverse()
             boardRVAdapter.notifyDataSetChanged()
