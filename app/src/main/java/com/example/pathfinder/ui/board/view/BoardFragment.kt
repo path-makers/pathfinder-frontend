@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.pathfinder.R
@@ -56,31 +57,33 @@ class BoardFragment : Fragment() {
         boardRVAdapter = BoardListLVAdapter(boardDataList)
         binding.boardListView.adapter = boardRVAdapter
 
-
-
         binding.mentorBtn.setOnClickListener {
-            if (!binding.mentorBtn.isChecked) {
-                binding.mentorBtn.isChecked = true
-                binding.menteeBtn.isChecked = false
-                getFBBoardData("MENTOR")
-            }
+          
+            binding.mentorBtn.isChecked = true
+            binding.menteeBtn.isChecked = false
+
+            binding.mentorBtn.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+            binding.menteeBtn.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray))
+
+            getFBBoardData("MENTOR")
         }
 
         binding.menteeBtn.setOnClickListener {
-            if (!binding.menteeBtn.isChecked) {
-                binding.menteeBtn.isChecked = true
-                binding.mentorBtn.isChecked = false
-                getFBBoardData("MENTEE")
-            }
+
+            binding.menteeBtn.isChecked = true
+            binding.mentorBtn.isChecked = false
+
+            binding.menteeBtn.setTextColor(ContextCompat.getColor(requireContext(),  R.color.black))
+            binding.mentorBtn.setTextColor(ContextCompat.getColor(requireContext(),  R.color.gray))
+
+            getFBBoardData("MENTEE")
         }
 
         binding.boardListView.setOnItemClickListener { parent, view, position, id ->
-
             val intent = Intent(context, BoardInsideActivity::class.java)
             val boardData = boardDataList[position] // boardList는 BoardModel 객체의 리스트
             intent.putExtra("boardData", boardData as Serializable)
             startActivity(intent)
-
         }
     }
 

@@ -9,4 +9,7 @@
     <color name="mainColor">#2A9D8F</color>
     <color name="mainGray">#DDDDDD</color>
     <color name="transparent_ripple_color">#00000000</color>
+    <color name="black">#000000</color>
+    <color name="gray">#AFB2B6</color>
+
 </resources>
