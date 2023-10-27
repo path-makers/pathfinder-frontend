@@ -77,9 +77,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginTop="4dp"
-                    android:background="@drawable/rounded_border"
+                    android:background="@drawable/rounded_border"/>
+                <!--android:entries="@array/spinner_items"-->
 
-                    />
+
 
                 <TextView
                     android:layout_width="match_parent"
