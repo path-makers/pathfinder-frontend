@@ -32,6 +32,7 @@
             android:textSize="14sp" />
 
         <LinearLayout
+            android:id="@+id/tagsLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"

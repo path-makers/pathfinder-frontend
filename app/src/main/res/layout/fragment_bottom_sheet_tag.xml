@@ -28,22 +28,22 @@
             android:id="@+id/tagItem1"
             style="@style/TagButton"
             android:backgroundTint="@color/mainColor"
-            android:text="태그1" />
+            android:text="영상영화" />
 
         <Button
             android:id="@+id/tagItem2"
             style="@style/TagButton"
-            android:text="태그2" />
+            android:text="교육" />
 
         <Button
             android:id="@+id/tagItem3"
             style="@style/TagButton"
-            android:text="태그3" />
+            android:text="디자인" />
 
         <Button
             android:id="@+id/tagItem4"
             style="@style/TagButton"
-            android:text="태그4" />
+            android:text="경제" />
 
         <!-- You can add other tag buttons in a similar way -->
     </GridLayout>
