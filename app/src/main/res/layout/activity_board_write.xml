@@ -13,21 +13,22 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:gravity="center"
-            android:text="멘토 페이지"
-            android:textStyle="bold"
-            android:textColor="@color/black" />
+            android:text="글쓰기"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:background="@color/black" />
 
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="태그를 추가해주세요."
             android:paddingLeft="16dp"
+            android:text="태그를 추가해주세요."
             android:textSize="14sp" />
 
         <LinearLayout
@@ -36,8 +37,7 @@
             android:layout_marginTop="4dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:paddingLeft="12dp"
-            >
+            android:paddingLeft="12dp">
 
             <!-- 태그들 여기에 추가 -->
 
@@ -45,9 +45,8 @@
                 android:id="@+id/addButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/baseline_add_24"
                 android:background="@color/white"
-
+                android:src="@drawable/baseline_add_24"
 
 
                 />
@@ -57,8 +56,7 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingHorizontal="16dp"
-            >
+            android:paddingHorizontal="16dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -68,9 +66,26 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="제목"
+                    android:layout_marginTop="8dp"
+                    android:text="게시판을 선택해주세요"
                     android:textColor="@color/black"
-                    android:layout_marginTop="8dp" />
+                    />
+
+                <Spinner
+                    android:id="@+id/boardType"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/rounded_border"
+
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="제목"
+                    android:textColor="@color/black" />
 
                 <EditText
                     android:id="@+id/titleArea"
@@ -84,9 +99,9 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:text="내용"
-                    android:textColor="@color/black"
-                    android:layout_marginTop="8dp" />
+                    android:textColor="@color/black" />
 
                 <EditText
                     android:id="@+id/contentArea"
@@ -97,7 +112,6 @@
                     android:hint="내용을 입력해주세요"
 
                     android:paddingLeft="8dp" />
-
 
 
                 <Button

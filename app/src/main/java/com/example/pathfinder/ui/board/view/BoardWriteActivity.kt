@@ -2,6 +2,9 @@ package com.example.pathfinder.ui.board.view
 
 import android.app.Activity
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -28,8 +31,23 @@ class BoardWriteActivity : AppCompatActivity() {
         val viewModelFactory = BoardViewModelFactory(boardRepository)
         viewModel = ViewModelProvider(this, viewModelFactory).get(BoardViewModel::class.java)
 
+        initSpinner()
         initBoardWriteButton()
         initTagButton()
+    }
+
+
+    private fun initSpinner() {
+        //todo: 스피너 어댑터 설정 추가 공부
+        ArrayAdapter.createFromResource(
+            this,
+            R.array.spinner_items,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            binding.boardType.adapter = adapter
+        }
+
     }
 
 
@@ -48,7 +66,9 @@ class BoardWriteActivity : AppCompatActivity() {
             val title = binding.titleArea.text.toString()
             val content = binding.contentArea.text.toString()
             val uid = FBAuth.getUid()
-            val boardType = "MENTEE"
+            val boardType = when (binding.boardType.selectedItem.toString()) {
+                "멘토" -> "MENTOR"
+                else -> "MENTEE"}
 
 
             viewModel.addBoard(title, content, uid, boardType, selectedTags)
