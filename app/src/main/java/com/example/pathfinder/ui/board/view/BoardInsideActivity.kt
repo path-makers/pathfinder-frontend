@@ -13,6 +13,9 @@ import com.example.pathfinder.data.models.Board
 
 import com.example.pathfinder.data.models.Comment
 import com.example.pathfinder.utils.FBAuth
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class BoardInsideActivity : AppCompatActivity() {
 
@@ -37,7 +40,7 @@ class BoardInsideActivity : AppCompatActivity() {
         if (boardData != null) {
             binding.titleArea.text = boardData.title
             binding.textArea.text = boardData.content
-            binding.timeArea.text = boardData.date
+            binding.timeArea.text = formatDate(boardData.date.toLong())
 
             val myUid = FBAuth.getUid()
             val writeUid = boardData.uid
@@ -74,6 +77,12 @@ class BoardInsideActivity : AppCompatActivity() {
             finish()
         }
 
+    }
+
+    private fun formatDate(timeStamp: Long): String {
+        val date = Date(timeStamp)
+        val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault())
+        return sdf.format(date)
     }
 
 }
