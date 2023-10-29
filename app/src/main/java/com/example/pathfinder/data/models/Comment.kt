@@ -1,7 +1,9 @@
 package com.example.pathfinder.data.models
 
+import java.io.Serializable
+
 class Comment (
-    val commentTitle : String = "",
-    val commentCreatedTime : String = "",
-    val commentAuthor : String = ""
-        )
+    val content : String = "",
+    val uid : String = "",
+    val createdAt : String = "",
+        ): Serializable

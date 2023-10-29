@@ -9,6 +9,7 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.pathfinder.data.models.Board
+import com.example.pathfinder.data.models.Comment
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -33,14 +34,20 @@ class BoardRepository(private val context: Context) { // Context 추가
                         }
                     }
 
-                    val commentsList = mutableListOf<String>()
+                    val commentsList = mutableListOf<Comment>()
                     item.getJSONArray("comments").let {
                         for (j in 0 until it.length()) {
-                            commentsList.add(it.getString(j))
+                            val commentItem = it.getJSONObject(j)
+                            val content = commentItem.getString("content")
+                            val uid = commentItem.getString("uid")
+                            val createdAt = commentItem.optString("createdAt", "Unknown")
+
+                            commentsList.add(Comment(content, uid, createdAt))
                         }
                     }
 
                     val board = Board(
+                        id = item.getString("id"),
                         title = item.getString("title"),
                         content = item.getString("content"),
                         uid = item.getString("uid"),
@@ -97,4 +104,43 @@ class BoardRepository(private val context: Context) { // Context 추가
 
         Volley.newRequestQueue(context).add(stringRequest)
     }
+
+
+
+
+    fun sendCommentData(comment: Comment, boardId: String) {
+
+        val url = "http://138.2.114.130:8080/api/board/comment/$boardId"
+        Log.d("sendCommentData", "url: $url")
+
+
+        val jsonBody = JSONObject().apply {
+            put("uid", comment.uid)
+            put("content", comment.content)
+        }
+        val requestBody = jsonBody.toString()
+
+
+        val stringRequest = object : StringRequest(
+            Request.Method.POST, url,
+            Response.Listener<String> {
+
+            },
+            Response.ErrorListener {
+                
+            }
+        ) {
+            override fun getHeaders(): MutableMap<String, String> {
+                return hashMapOf("Content-Type" to "application/json; charset=utf-8")
+            }
+
+            override fun getBody(): ByteArray {
+                return requestBody.toByteArray(Charsets.UTF_8)
+            }
+        }
+
+        Volley.newRequestQueue(context).add(stringRequest)
+    }
+
+
 }
