@@ -108,7 +108,7 @@ class BoardRepository(private val context: Context) { // Context 추가
 
 
 
-    fun sendCommentData(comment: Comment, boardId: String) {
+    fun sendCommentData(comment: Comment, boardId: String, callback: (Boolean) -> Unit) {
 
         val url = "http://138.2.114.130:8080/api/board/comment/$boardId"
         Log.d("sendCommentData", "url: $url")
@@ -124,10 +124,10 @@ class BoardRepository(private val context: Context) { // Context 추가
         val stringRequest = object : StringRequest(
             Request.Method.POST, url,
             Response.Listener<String> {
-
+                callback(true)
             },
             Response.ErrorListener {
-                
+                callback(false)
             }
         ) {
             override fun getHeaders(): MutableMap<String, String> {

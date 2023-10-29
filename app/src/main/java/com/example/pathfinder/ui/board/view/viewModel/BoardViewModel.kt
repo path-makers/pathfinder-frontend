@@ -11,6 +11,7 @@ class BoardViewModel(private val boardRepository: BoardRepository) : ViewModel()
 
     val boardDataList: MutableLiveData<List<Board>> = MutableLiveData()
     val errorMessage: MutableLiveData<String> = MutableLiveData()
+    val commentsData: MutableLiveData<List<Comment>> = MutableLiveData()
 
     fun getBoardData(boardType: String) {
         boardRepository.getFBBoardData(boardType, {
@@ -39,5 +40,12 @@ class BoardViewModel(private val boardRepository: BoardRepository) : ViewModel()
         )
         Log.d("BoardViewModel", "addComment: $boardId")
         boardRepository.sendCommentData(comment, boardId)
+        { success ->
+            if (success) {
+
+                val updatedComments = commentsData.value.orEmpty() + comment
+                commentsData.postValue(updatedComments)
+            }
+        }
     }
 }

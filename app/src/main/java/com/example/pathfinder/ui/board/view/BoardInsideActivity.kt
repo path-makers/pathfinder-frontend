@@ -10,6 +10,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.pathfinder.R
 import com.example.pathfinder.databinding.ActivityBoardInsideBinding
@@ -45,6 +46,12 @@ class BoardInsideActivity : AppCompatActivity() {
         val viewModelFactory = BoardViewModelFactory(boardRepository)
         viewModel = ViewModelProvider(this, viewModelFactory).get(BoardViewModel::class.java)
 
+        viewModel.commentsData.observe(this, Observer { comments ->
+            // 댓글 목록이 업데이트 되었을 때 UI를 갱신
+            commentAdapter.commentList.clear()
+            commentAdapter.commentList.addAll(comments)
+            commentAdapter.notifyDataSetChanged()
+        })
 
         binding.boardSettingIcon.setOnClickListener {
             showDialog()
@@ -56,10 +63,12 @@ class BoardInsideActivity : AppCompatActivity() {
         commentAdapter = CommentLVAdapter(commentDataList)
         binding.commentLV.adapter = commentAdapter
 
+
         if (boardData != null) {
             binding.titleArea.text = boardData.title
             binding.textArea.text = boardData.content
             binding.timeArea.text = formatDate(boardData.date.toLong())
+            viewModel.commentsData.value = boardData.comments
 
             val myUid = FBAuth.getUid()
             val writeUid = boardData.uid
