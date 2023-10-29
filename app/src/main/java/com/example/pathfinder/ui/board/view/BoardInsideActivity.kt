@@ -1,8 +1,10 @@
 package com.example.pathfinder.ui.board.view
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -74,10 +76,18 @@ class BoardInsideActivity : AppCompatActivity() {
 
             Log.d("BoardActivity", "addComment: $boardId")
             viewModel.addComment(uid, content,boardId)
+
+            binding.commentArea.text.clear()
+            hideKeyboard()
         }
 
 
 
+    }
+
+    private fun hideKeyboard() {
+        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(binding.commentArea.windowToken, 0)
     }
 
     private fun showDialog() {
