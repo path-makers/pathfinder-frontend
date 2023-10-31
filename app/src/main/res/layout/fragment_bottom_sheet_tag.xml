@@ -3,56 +3,95 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:background="@drawable/bottom_sheet_background"
+    android:orientation="vertical"
     android:padding="16dp">
 
+
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="태그를 선택해주세요."
-        android:textSize="16sp"
-        android:textStyle="bold"
         android:layout_gravity="center_horizontal"
-        />
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="태그를 선택해주세요."
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
 
     <GridLayout
+        android:useDefaultMargins="true"
+        android:alignmentMode="alignMargins"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:columnCount="2"
-        android:padding="8dp"
-        >
+        android:padding="8dp">
 
         <!-- Example Tag Button -->
         <Button
             android:id="@+id/tagItem1"
             style="@style/TagButton"
-            android:backgroundTint="@color/mainColor"
+            android:layout_columnWeight="1"
             android:text="영상영화" />
 
         <Button
             android:id="@+id/tagItem2"
             style="@style/TagButton"
+            android:layout_columnWeight="1"
             android:text="교육" />
 
         <Button
             android:id="@+id/tagItem3"
             style="@style/TagButton"
+            android:layout_columnWeight="1"
             android:text="디자인" />
 
         <Button
             android:id="@+id/tagItem4"
             style="@style/TagButton"
+            android:layout_columnWeight="1"
             android:text="경제" />
+        <Button
+            android:id="@+id/tagItem5"
+            style="@style/TagButton"
+            android:layout_columnWeight="1"
+            android:text="개발" />
+        <Button
+            android:id="@+id/tagItem6"
+            style="@style/TagButton"
+            android:layout_columnWeight="1"
+            android:text="경영" />
+        <Button
+            android:id="@+id/tagItem7"
+            style="@style/TagButton"
+            android:layout_columnWeight="1"
+            android:text="게임" />
+        <Button
+            android:id="@+id/tagItem8"
+            style="@style/TagButton"
+            android:layout_columnWeight="1"
+            android:text="건축" />
+        <Button
+            android:id="@+id/tagItem9"
+            style="@style/TagButton"
+            android:layout_columnWeight="1"
+            android:text="바이오" />
+        <Button
+            android:id="@+id/tagItem10"
+            style="@style/TagButton"
+            android:layout_columnWeight="1"
+            android:text="법" />
 
         <!-- You can add other tag buttons in a similar way -->
     </GridLayout>
 
     <Button
         android:id="@+id/btnConfirm"
+        style="@style/TagButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="확인"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="16dp"
+        android:text="확인" />
 
 </LinearLayout>

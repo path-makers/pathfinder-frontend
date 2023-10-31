@@ -11,5 +11,6 @@
     <color name="transparent_ripple_color">#00000000</color>
     <color name="black">#000000</color>
     <color name="gray">#AFB2B6</color>
+    <color name="light_gray">#FAFBFC</color>
 
 </resources>
