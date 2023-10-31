@@ -117,7 +117,7 @@
 
             <ImageView
                 android:id="@+id/commentBtn"
-                android:src="@drawable/writebtn"
+                android:src="@drawable/ic_writebtn"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 app:layout_constraintEnd_toEndOf="parent"

@@ -40,6 +40,28 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@id/mentorBtn" />
 
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/ic_search"
+            app:layout_constraintEnd_toStartOf="@id/button2"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="20dp" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/ic_setting"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="20dp" />
+
+
         <ListView
             android:id="@+id/boardListView"
             android:layout_width="match_parent"
@@ -51,11 +73,13 @@
             android:id="@+id/writeBtn"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@drawable/writebtn"
+            android:src="@drawable/ic_writebtn"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginBottom="30dp"
             android:layout_marginEnd="10dp" />
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

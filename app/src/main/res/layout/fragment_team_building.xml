@@ -19,7 +19,7 @@
             android:id="@+id/teamWriteBtn"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@drawable/writebtn"
+            android:src="@drawable/ic_writebtn"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginBottom="30dp"
