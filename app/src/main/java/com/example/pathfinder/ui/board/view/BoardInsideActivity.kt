@@ -1,4 +1,5 @@
 package com.example.pathfinder.ui.board.view
+
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -6,6 +7,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
@@ -31,17 +34,57 @@ class BoardInsideActivity : AppCompatActivity() {
     private val commentDataList = mutableListOf<Comment>()
     private lateinit var commentAdapter: CommentLVAdapter
     private lateinit var viewModel: BoardViewModel
-
     private lateinit var boardId: String
-    private lateinit var key: String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_board_inside)
+        val boardData = intent.getSerializableExtra("boardData") as? Board//게시글 데이터 받아오기
+
+        setupViewModel()//뷰모델 설정
+        setupCommentListView()//댓글 리스트뷰 설정
 
 
+        if (boardData != null) {
+            binding.typeArea.text = boardData.boardType
+            binding.titleArea.text = boardData.title
+            binding.tagsLayout.isVisible = boardData.tags.isNotEmpty()
+            binding.textArea.text = boardData.content
+            binding.timeArea.text = formatDate(boardData.date.toLong())
+            viewModel.commentsData.value = boardData.comments
+
+
+
+            displayTags(binding.tagsLayout, boardData.tags)
+            val myUid = FBAuth.getUid()
+            val writeUid = boardData.uid
+            boardId = boardData.id
+            commentDataList.addAll(boardData.comments)
+            binding.boardSettingIcon.isVisible = myUid == writeUid
+        }//게시글 데이터가 있으면 게시글 데이터를 뷰에 표시
+
+
+        binding.commentBtn.setOnClickListener {
+            viewModel.addComment(FBAuth.getUid(), binding.commentArea.text.toString(), boardId)
+            binding.commentArea.text.clear()
+            hideKeyboard()
+        }//댓글 작성 버튼을 누르면 댓글을 추가하고 키보드를 숨김
+
+        binding.backButton.setOnClickListener {
+            finish()
+        }
+        binding.boardSettingIcon.setOnClickListener {
+//            showDialog()
+        }
+
+    }
+
+
+
+
+    private fun setupViewModel() {
         val boardRepository = BoardRepository(this)
         val viewModelFactory = BoardViewModelFactory(boardRepository)
         viewModel = ViewModelProvider(this, viewModelFactory).get(BoardViewModel::class.java)
@@ -52,51 +95,28 @@ class BoardInsideActivity : AppCompatActivity() {
             commentAdapter.commentList.addAll(comments)
             commentAdapter.notifyDataSetChanged()
         })
-
-        binding.boardSettingIcon.setOnClickListener {
-            showDialog()
-        }
-        val boardData = intent.getSerializableExtra("boardData") as? Board
-
-
-
+    }
+    private fun setupCommentListView() {
         commentAdapter = CommentLVAdapter(commentDataList)
         binding.commentLV.adapter = commentAdapter
-
-
-        if (boardData != null) {
-            binding.titleArea.text = boardData.title
-            binding.textArea.text = boardData.content
-            binding.timeArea.text = formatDate(boardData.date.toLong())
-            viewModel.commentsData.value = boardData.comments
-
-            val myUid = FBAuth.getUid()
-            val writeUid = boardData.uid
-            boardId = boardData.id
-            commentDataList.addAll(boardData.comments)
-            binding.boardSettingIcon.isVisible = myUid == writeUid
-        }
-
-
-        binding.commentBtn.setOnClickListener {
-
-           val content = binding.commentArea.text.toString()
-           val uid = FBAuth.getUid()
-
-            Log.d("BoardActivity", "addComment: $boardId")
-            viewModel.addComment(uid, content,boardId)
-
-            binding.commentArea.text.clear()
-            hideKeyboard()
-        }
-
-
-
     }
 
     private fun hideKeyboard() {
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(binding.commentArea.windowToken, 0)
+    }
+
+    private fun displayTags(tagsLayout: LinearLayout, tags: List<String>) {
+        tagsLayout.removeAllViews() // 기존에 추가된 모든 뷰를 제거
+        for (tag in tags) {
+            // inflate 메서드로 뷰를 생성
+            val tagViewLayout = LayoutInflater.from(tagsLayout.context)
+                .inflate(R.layout.item_tag, tagsLayout, false)
+            // tagName ID를 가진 TextView를 찾음
+            val tagTextView = tagViewLayout.findViewById<TextView>(R.id.tagName)
+            tagTextView.text = tag // TextView에 태그 텍스트를 설정
+            tagsLayout.addView(tagViewLayout) // LinearLayout에 루트 레이아웃을 추가
+        }
     }
 
     private fun showDialog() {
@@ -110,7 +130,7 @@ class BoardInsideActivity : AppCompatActivity() {
         alertDialog.findViewById<Button>(R.id.editBtn)?.setOnClickListener {
 
             val intent = Intent(this, BoardEditActivity::class.java)
-            intent.putExtra("key", key)
+
             startActivity(intent)
 
         }
