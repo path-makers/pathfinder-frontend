@@ -10,6 +10,7 @@ import com.example.pathfinder.data.repository.BoardRepository
 class BoardViewModel(private val boardRepository: BoardRepository) : ViewModel() {
 
     val boardDataList: MutableLiveData<List<Board>> = MutableLiveData()
+    val singleBoardData: MutableLiveData<Board> = MutableLiveData()
     val errorMessage: MutableLiveData<String> = MutableLiveData()
     val commentsData: MutableLiveData<List<Comment>> = MutableLiveData()
 
@@ -20,6 +21,16 @@ class BoardViewModel(private val boardRepository: BoardRepository) : ViewModel()
             errorMessage.value = err
         })
     }
+
+
+    fun getBoardDataById(boardId: String) {
+        boardRepository.getFBBoardDataById(boardId, {board->
+            singleBoardData.value = board
+        }, { err ->
+            errorMessage.value = err
+        })
+    }
+
     fun addBoard(title: String, content: String, uid: String, boardType: String, tags: List<String>) {
         val board = Board(
             title = title,
@@ -38,13 +49,10 @@ class BoardViewModel(private val boardRepository: BoardRepository) : ViewModel()
             content = content,
 
         )
-        Log.d("BoardViewModel", "addComment: $boardId")
         boardRepository.sendCommentData(comment, boardId)
         { success ->
             if (success) {
-
-                val updatedComments = commentsData.value.orEmpty() + comment
-                commentsData.postValue(updatedComments)
+                getBoardDataById(boardId)
             }
         }
     }

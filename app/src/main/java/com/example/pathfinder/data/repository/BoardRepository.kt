@@ -72,6 +72,60 @@ class BoardRepository(private val context: Context) { // Context 추가
     }
 
 
+    fun getFBBoardDataById(boardId: String, success: (Board) -> Unit, error: (String) -> Unit) {
+        val url = "http://138.2.114.130:8080/api/board/single/$boardId"
+
+        val jsonObjectRequest = JsonObjectRequest(
+            Request.Method.GET, url, null,
+            Response.Listener<JSONObject> { response ->
+                Log.d(TAG, "Received data: $response")
+                val boardJson = response.getJSONObject("board")
+
+                // Directly parse the board details from the response
+                val tagsList = mutableListOf<String>()
+                val tagsArray = boardJson.optJSONArray("tags")
+                if (tagsArray != null) {
+                    for (j in 0 until tagsArray.length()) {
+                        tagsList.add(tagsArray.getString(j))
+                    }
+                }
+
+                val commentsList = mutableListOf<Comment>()
+                val commentsArray = boardJson.optJSONArray("comments")
+                if (commentsArray != null) { // commentsArray가 null이 아닐 때만 반복문 실행
+                    for (j in 0 until commentsArray.length()) {
+                        val commentItem = commentsArray.getJSONObject(j)
+                        val content = commentItem.getString("content")
+                        val uid = commentItem.getString("uid")
+                        val createdAt = commentItem.optString("createdAt", "Unknown")
+
+                        commentsList.add(Comment(content, uid, createdAt))
+                    }
+                }
+
+                val board = Board(
+                    id = boardJson.getString("id"),
+                    title = boardJson.getString("title"),
+                    content = boardJson.getString("content"),
+                    uid = boardJson.getString("uid"),
+                    date = boardJson.optString("createdAt", "Unknown"),
+                    boardType = boardJson.getString("boardType"),
+                    tags = tagsList,
+                    comments = commentsList
+                )
+
+                success(board) // Invoke success callback with a single Board object
+            },
+            Response.ErrorListener { err ->
+                Log.w(TAG, "Error: ${err.message}")
+                error(err.message ?: "Unknown error")
+            }
+        )
+
+        Volley.newRequestQueue(context).add(jsonObjectRequest)
+    }
+
+
     fun sendBoardData(board: Board) {
         val url = "http://138.2.114.130:8080/api/board"
 

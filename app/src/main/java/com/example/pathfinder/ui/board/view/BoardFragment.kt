@@ -79,10 +79,10 @@ class BoardFragment : Fragment() {
             getFBBoardData("MENTEE")
         }
 
-        binding.boardListView.setOnItemClickListener { parent, view, position, id ->
+        binding.boardListView.setOnItemClickListener { _, _, position, _ ->
             val intent = Intent(context, BoardInsideActivity::class.java)
-            val boardData = boardDataList[position] // boardList는 BoardModel 객체의 리스트
-            intent.putExtra("boardData", boardData as Serializable)
+            val boardId = boardDataList[position].id // boardList는 BoardModel 객체의 리스트
+            intent.putExtra("boardId", boardId)
             startActivity(intent)
         }
     }

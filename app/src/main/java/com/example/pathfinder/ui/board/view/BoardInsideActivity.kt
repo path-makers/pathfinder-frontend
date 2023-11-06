@@ -41,35 +41,18 @@ class BoardInsideActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_board_inside)
-        val boardData = intent.getSerializableExtra("boardData") as? Board//게시글 데이터 받아오기
+        boardId = intent.extras?.get("boardId").toString()
 
         setupViewModel()//뷰모델 설정
         setupCommentListView()//댓글 리스트뷰 설정
-
-
-        if (boardData != null) {
-            binding.typeArea.text = boardData.boardType
-            binding.titleArea.text = boardData.title
-            binding.tagsLayout.isVisible = boardData.tags.isNotEmpty()
-            binding.textArea.text = boardData.content
-            binding.timeArea.text = formatDate(boardData.date.toLong())
-            viewModel.commentsData.value = boardData.comments
-
-
-
-            displayTags(binding.tagsLayout, boardData.tags)
-            val myUid = FBAuth.getUid()
-            val writeUid = boardData.uid
-            boardId = boardData.id
-            commentDataList.addAll(boardData.comments)
-            binding.boardSettingIcon.isVisible = myUid == writeUid
-        }//게시글 데이터가 있으면 게시글 데이터를 뷰에 표시
+        getFBBoardDataById(boardId)//보드 아이디로 내부정보 받아옴
 
 
         binding.commentBtn.setOnClickListener {
             viewModel.addComment(FBAuth.getUid(), binding.commentArea.text.toString(), boardId)
             binding.commentArea.text.clear()
             hideKeyboard()
+
         }//댓글 작성 버튼을 누르면 댓글을 추가하고 키보드를 숨김
 
         binding.backButton.setOnClickListener {
@@ -83,18 +66,48 @@ class BoardInsideActivity : AppCompatActivity() {
 
 
 
+    private fun getFBBoardDataById(boardId: String) {
+        viewModel.getBoardDataById(boardId)
+        viewModel.singleBoardData.observe(this) { board ->
+
+            board?.let {
+            binding.typeArea.text = board.boardType
+            binding.titleArea.text = board.title
+            binding.tagsLayout.isVisible = board.tags.isNotEmpty()
+            binding.textArea.text = board.content
+            binding.timeArea.text = formatDate(board.date.toLong())
+            viewModel.commentsData.value = board.comments
+
+
+
+            displayTags(binding.tagsLayout, board.tags)
+            val myUid = FBAuth.getUid()
+            val writeUid = board.uid
+
+//            commentDataList.addAll(board.comments)
+            binding.boardSettingIcon.isVisible = myUid == writeUid
+            }
+        }
+
+        viewModel.errorMessage.observe(this) { errorMessage ->
+
+        }
+    }
+
 
     private fun setupViewModel() {
         val boardRepository = BoardRepository(this)
         val viewModelFactory = BoardViewModelFactory(boardRepository)
         viewModel = ViewModelProvider(this, viewModelFactory).get(BoardViewModel::class.java)
 
+
         viewModel.commentsData.observe(this, Observer { comments ->
-            // 댓글 목록이 업데이트 되었을 때 UI를 갱신
             commentAdapter.commentList.clear()
             commentAdapter.commentList.addAll(comments)
             commentAdapter.notifyDataSetChanged()
         })
+
+
     }
     private fun setupCommentListView() {
         commentAdapter = CommentLVAdapter(commentDataList)

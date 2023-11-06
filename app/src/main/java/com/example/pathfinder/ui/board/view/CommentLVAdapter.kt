@@ -38,7 +38,7 @@ class CommentLVAdapter(val commentList : MutableList<Comment>):BaseAdapter() {
 
         title!!.text = commentList[position].content
         userName!!.text = commentList[position].uid
-//        time!!.text = formatDate(commentList[position].createdAt.toLong())
+        time!!.text = formatDate(commentList[position].createdAt.toLong())
 
         return view!!
     }
