@@ -15,11 +15,12 @@ import com.example.pathfinder.utils.FBRef
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import java.util.*
+import com.google.firebase.firestore.FirebaseFirestore;
 
 class TeamBuildingWriteActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityTeamBuildingWriteBinding
-
+    private val db = FirebaseFirestore.getInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -41,12 +42,15 @@ class TeamBuildingWriteActivity : AppCompatActivity() {
             val uploadTime = FBAuth.getTime()
             val displayName = Firebase.auth.currentUser?.displayName
 
-            val key = FBRef.boardRef.push().key.toString()
+            val team = Team(category, title, content, regionArea, recruitTime, displayName, uploadTime)
 
-            FBRef.teamBuildingRef
-                .child(key)
-                .setValue(Team(category, title, content, regionArea, recruitTime, displayName, uploadTime))
-
+            db.collection("teamBuilding")
+                .add(team)
+                .addOnSuccessListener { documentReference ->
+                    finish()
+                }
+                .addOnFailureListener { e ->
+                }
             finish()
         }
     }
