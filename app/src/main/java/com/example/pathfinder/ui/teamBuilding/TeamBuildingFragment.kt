@@ -49,7 +49,7 @@ class TeamBuildingFragment : Fragment() {
         teamRVAdapter = TeamBuildingLVAdapter(teamDataList)
         binding.teamBuildingListView.adapter = teamRVAdapter
         binding.teamBuildingListView.setOnItemClickListener { parent, view, position, id ->
-            val intent = Intent(context, BoardInsideActivity::class.java)
+            val intent = Intent(context, TeamBuildingInsideActivity::class.java)
             intent.putExtra("key", teamKeyList[position])
             startActivity(intent)
         }
