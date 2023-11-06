@@ -47,6 +47,7 @@ class BoardRepository(private val context: Context) { // Context 추가
                     }
 
                     val board = Board(
+                        author = item.getString("author"),
                         id = item.getString("id"),
                         title = item.getString("title"),
                         content = item.getString("content"),
@@ -56,6 +57,7 @@ class BoardRepository(private val context: Context) { // Context 추가
                         tags = tagsList,
                         comments = commentsList
                     )
+                    Log.d(TAG, "Parsed data: $board")
 
                     boardDataList.add(board)
                 }
@@ -95,15 +97,17 @@ class BoardRepository(private val context: Context) { // Context 추가
                 if (commentsArray != null) { // commentsArray가 null이 아닐 때만 반복문 실행
                     for (j in 0 until commentsArray.length()) {
                         val commentItem = commentsArray.getJSONObject(j)
+                        val author = commentItem.getString("author")
                         val content = commentItem.getString("content")
                         val uid = commentItem.getString("uid")
                         val createdAt = commentItem.optString("createdAt", "Unknown")
 
-                        commentsList.add(Comment(content, uid, createdAt))
+                        commentsList.add(Comment(author,content, uid, createdAt))
                     }
                 }
 
                 val board = Board(
+                    author = boardJson.getString("author"),
                     id = boardJson.getString("id"),
                     title = boardJson.getString("title"),
                     content = boardJson.getString("content"),

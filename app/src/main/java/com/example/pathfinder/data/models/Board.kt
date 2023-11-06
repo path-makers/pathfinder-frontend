@@ -3,7 +3,7 @@ package com.example.pathfinder.data.models
 import java.io.Serializable
 
 data class Board(
-
+    val author:String="",
     val id: String = "",
     val title: String = "",
     val content: String = "",

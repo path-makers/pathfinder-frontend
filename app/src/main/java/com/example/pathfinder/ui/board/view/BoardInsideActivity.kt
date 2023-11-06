@@ -71,11 +71,14 @@ class BoardInsideActivity : AppCompatActivity() {
         viewModel.singleBoardData.observe(this) { board ->
 
             board?.let {
+
+
             binding.typeArea.text = board.boardType
             binding.titleArea.text = board.title
             binding.tagsLayout.isVisible = board.tags.isNotEmpty()
             binding.textArea.text = board.content
             binding.timeArea.text = formatDate(board.date.toLong())
+                binding.userNameArea.text = board.author
             viewModel.commentsData.value = board.comments
 
 

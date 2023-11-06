@@ -31,13 +31,13 @@ class CommentLVAdapter(val commentList : MutableList<Comment>):BaseAdapter() {
             view = LayoutInflater.from(parent?.context).inflate(R.layout.comment_list_item,parent,false)
         }
 
-
+        val author = view?.findViewById<TextView>(R.id.userNameArea)
         val title = view?.findViewById<TextView>(R.id.commentArea)
         val time = view?.findViewById<TextView>(R.id.timeArea)
-        val userName = view?.findViewById<TextView>(R.id.userNameArea)
 
+
+        author!!.text = commentList[position].author
         title!!.text = commentList[position].content
-        userName!!.text = commentList[position].uid
         time!!.text = formatDate(commentList[position].createdAt.toLong())
 
         return view!!
