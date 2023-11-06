@@ -18,6 +18,7 @@ import com.example.pathfinder.ui.board.view.viewModel.BoardViewModel
 import com.example.pathfinder.ui.board.view.viewModel.BoardViewModelFactory
 import com.example.pathfinder.ui.components.BottomSheetTagFragment
 import com.example.pathfinder.utils.FBAuth
+import com.hjq.toast.Toaster
 
 class BoardWriteActivity : AppCompatActivity() {
 
@@ -33,6 +34,7 @@ class BoardWriteActivity : AppCompatActivity() {
         val viewModelFactory = BoardViewModelFactory(boardRepository)
         viewModel = ViewModelProvider(this, viewModelFactory).get(BoardViewModel::class.java)
 
+        Toaster.init(application)
         initSpinner()
         initBoardWriteButton()
         initTagButton()
@@ -58,7 +60,6 @@ class BoardWriteActivity : AppCompatActivity() {
             val bottomSheet = BottomSheetTagFragment { tags ->
                 selectedTags.clear()
                 selectedTags.addAll(tags)
-                // TODO: 태그들 화면에 보이게 추가해야함
                 displaySelectedTags()
             }
             bottomSheet.show(supportFragmentManager, bottomSheet.tag)
@@ -89,12 +90,16 @@ class BoardWriteActivity : AppCompatActivity() {
             val boardType = when (binding.boardType.selectedItem.toString()) {
                 "멘토" -> "MENTOR"
                 else -> "MENTEE"}
+            val errorMessage = "모든 사항을 입력해주세요."
 
-
-            viewModel.addBoard(title, content, uid, boardType, selectedTags)
-
-            setResult(Activity.RESULT_OK)
-            finish()
+            if (title.isEmpty() || content.isEmpty()) {
+                // Show a Toast message to fill all details
+                Toaster.show(errorMessage)
+            } else {
+                viewModel.addBoard(title, content, uid, boardType, selectedTags)
+                setResult(Activity.RESULT_OK)
+                finish()
+            }
         }
     }
 }

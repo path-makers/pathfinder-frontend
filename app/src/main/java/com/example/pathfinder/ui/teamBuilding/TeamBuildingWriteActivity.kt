@@ -16,6 +16,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import java.util.*
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.hjq.toast.Toaster
 
 class TeamBuildingWriteActivity : AppCompatActivity() {
 
@@ -23,6 +24,7 @@ class TeamBuildingWriteActivity : AppCompatActivity() {
     private val db = FirebaseFirestore.getInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Toaster.init(application);
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_team_building_write)
 
@@ -41,17 +43,22 @@ class TeamBuildingWriteActivity : AppCompatActivity() {
             val recruitTime = binding.endDateEditText.text.toString()+"까지"
             val uploadTime = FBAuth.getTime()
             val displayName = Firebase.auth.currentUser?.displayName
+            val errorMessage = "모든 사항을 입력해주세요."
 
             val team = Team(category, title, content, regionArea, recruitTime, displayName, uploadTime)
-
-            db.collection("teamBuilding")
-                .add(team)
-                .addOnSuccessListener { documentReference ->
-                    finish()
-                }
-                .addOnFailureListener { e ->
-                }
-            finish()
+            if (title.isEmpty() || content.isEmpty() || regionArea.isEmpty() || recruitTime.isEmpty()) {
+                // Show a Toast message to fill all details
+                Toaster.show(errorMessage)
+            } else {
+                db.collection("teamBuilding")
+                    .add(team)
+                    .addOnSuccessListener { documentReference ->
+                        finish()
+                    }
+                    .addOnFailureListener { e ->
+                    }
+                finish()
+            }
         }
     }
 
