@@ -58,6 +58,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:tint="@color/white"
+                android:alpha="0.0"
                 />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
