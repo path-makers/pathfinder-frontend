@@ -1,0 +1,28 @@
+<layout>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.aiService.AiIntroFragment">
+
+    <TextView
+        android:id="@+id/tv_intro_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:padding="16dp"
+        android:text="안녕하세요! AI 진로상담 '파인'입니다. 체크리스트를 선택해 내게 적절한 상담 결과를 알아볼까요?"
+        android:textAlignment="center" />
+
+    <ImageButton
+        android:id="@+id/btn_start_chat"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@id/tv_intro_text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/ic_robot"
+        />
+
+</RelativeLayout>
+</layout>

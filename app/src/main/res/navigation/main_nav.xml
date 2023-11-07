@@ -19,8 +19,8 @@
             android:id="@+id/action_homeFragment_to_userProfileFragment"
             app:destination="@id/userProfileFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_chatFragment"
-            app:destination="@id/chatFragment" />
+            android:id="@+id/action_homeFragment_to_aiIntroFragment"
+            app:destination="@id/aiIntroFragment" />
         <action
             android:id="@+id/action_homeFragment_to_teamBuildingFragment"
             app:destination="@id/teamBuildingFragment" />
@@ -70,4 +70,25 @@
         android:name="com.example.pathfinder.ui.teamBuilding.TeamBuildingFragment"
         android:label="fragment_team_building"
         tools:layout="@layout/fragment_team_building" />
+    <fragment
+        android:id="@+id/aiIntroFragment"
+        android:name="com.example.pathfinder.ui.aiService.AiIntroFragment"
+        android:label="fragment_ai_intro"
+        tools:layout="@layout/fragment_ai_intro" >
+        <action
+            android:id="@+id/action_aiIntroFragment_to_aiQuestionFragment"
+            app:destination="@id/aiQuestionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/aiQuestionFragment"
+        android:name="com.example.pathfinder.ui.aiService.AiQuestionFragment"
+        android:label="fragment_ai_intro"
+        tools:layout="@layout/fragment_ai_intro">
+
+    <action
+        android:id="@+id/action_aiQuestionFragment_to_chatFragment"
+        app:destination="@id/chatFragment" />
+
+        />
+    </fragment>
 </navigation>

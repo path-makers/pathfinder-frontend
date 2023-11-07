@@ -53,7 +53,7 @@ class HomeFragment : Fragment() {
         }
 
         binding.chatButton.setOnClickListener {
-            it.findNavController().navigate(R.id.action_homeFragment_to_chatFragment)
+            it.findNavController().navigate(R.id.action_homeFragment_to_aiIntroFragment)
         }
 
 
