@@ -9,12 +9,14 @@
     <color name="mainColor">#08AD5E</color>
     <color name="mainGray">#DDDDDD</color>
     <color name="transparent_ripple_color">#00000000</color>
-    <color name="black">#000000</color>
+    <color name="black">#131415</color>
     <color name="gray">#AFB2B6</color>
     <color name="light_gray">#FAFBFC</color>
 
+    <color name="Gray_300">#D9DCDF</color>
     <color name="Gray_700">#6E7377</color>
     <color name="Green_500">#2A9D8F</color>
+    <color name="Green_100">#C2DECF</color>
     <color name="Blue_500">#464AB2</color>
 <!--    2A9D8F-->
 </resources>
