@@ -4,15 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/teamItemView"
-    android:padding="16dp">
-
+    android:id="@+id/teamItemView">
 
     <TextView
         android:id="@+id/tvCategory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="14dp"
         android:text="공모전"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:textColor="@color/Gray_700"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -21,9 +25,13 @@
         android:id="@+id/tvTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="26dp"
+        android:layout_marginEnd="24dp"
         android:layout_marginTop="4dp"
         android:text="제목"
+        android:textSize="16dp"
         android:textStyle="bold"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvCategory" />
@@ -32,10 +40,14 @@
         android:id="@+id/tvContent"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="4dp"
         android:ellipsize="end"
         android:maxLines="2"
         android:text="내용"
+        android:textSize="12dp"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvTitle" />
@@ -45,9 +57,12 @@
         android:id="@+id/tvPeriod"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="22dp"
         android:layout_marginTop="12dp"
         android:background="@drawable/background_radius_gray"
         android:text="모집기간"
+        android:textSize="12dp"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvContent" />
 
@@ -56,21 +71,26 @@
         android:id="@+id/tvRegion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="24dp"
         android:layout_marginTop="12dp"
         android:background="@drawable/background_radius_gray"
         android:text="지역"
+        android:textSize="12dp"
+        android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@id/tvPeriod"
         app:layout_constraintTop_toBottomOf="@id/tvContent" />
-    />
 
 
     <TextView
         android:id="@+id/tvUserName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="8dp"
         android:text="사용자 이름"
+        android:textColor="@color/Gray_700"
+        android:textSize="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvPeriod" />
 
@@ -79,9 +99,12 @@
         android:id="@+id/tvPostTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="8dp"
         android:text="게시글 올린 시간"
+        android:textColor="@color/Gray_700"
+        android:textSize="10dp"
         app:layout_constraintStart_toEndOf="@id/tvUserName"
         app:layout_constraintTop_toBottomOf="@id/tvRegion" />
 
@@ -90,18 +113,21 @@
         android:id="@+id/grayDivider"
         android:layout_width="0dp"
         android:layout_height="1dp"
-        android:layout_marginTop="12dp"
-        android:background="#DDDDDD"
+        android:layout_marginTop="4dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:background="@color/Gray_300"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvPostTime"
-
-        />
+        app:layout_constraintTop_toBottomOf="@id/tvPostTime" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ivImg"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/grayDivider">
@@ -111,17 +137,16 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:src="@drawable/ic_heart"
-
-            />
+            android:layout_marginStart="4dp"
+            app:layout_constraintStart_toStartOf="parent"/>
 
 
         <TextView
             android:id="@+id/tvHeartCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
+            android:layout_marginStart="4dp"
             android:text="0"
-
             app:layout_constraintStart_toEndOf="@id/ivHeart" />
 
 <!--        <ImageView-->
@@ -152,9 +177,15 @@
             android:layout_height="20dp"
             android:layout_marginEnd="4dp"
             android:src="@drawable/ic_bookmark"
-
             app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_marginTop="12dp"
+        android:background="@color/light_gray"
+        app:layout_constraintTop_toBottomOf="@+id/ivImg"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

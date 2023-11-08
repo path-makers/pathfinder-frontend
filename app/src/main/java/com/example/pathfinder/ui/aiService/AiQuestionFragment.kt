@@ -23,6 +23,7 @@ import com.android.volley.toolbox.JsonObjectRequest
 import java.util.*
 import android.widget.ProgressBar
 import androidx.core.view.isVisible
+import androidx.fragment.app.FragmentManager
 import com.android.volley.DefaultRetryPolicy
 import com.android.volley.RetryPolicy
 import com.hadi.emojiratingbar.EmojiRatingBar
@@ -43,6 +44,13 @@ class AiQuestionFragment : Fragment() {
 
         binding.btnShowResults.setOnClickListener {
             collectResponsesAndShowResults()
+        }
+
+        // 뒤로가기
+        val fragmentManager: FragmentManager = parentFragmentManager
+
+        binding.backButton.setOnClickListener {
+            clearBackStack(fragmentManager)
         }
 
         val emojiRatingBar1 = binding.emojiRatingBar1
@@ -122,6 +130,11 @@ class AiQuestionFragment : Fragment() {
         Log.d("AiQuestionFragment", "userResponses: ${bundle.getString("userResponses")}")
 
         findNavController().navigate(R.id.action_aiQuestionFragment_to_chatFragment, bundle)
+    }
+
+    // 프래그먼트 스택 비우기
+    private fun clearBackStack(fragmentManager: FragmentManager) {
+        fragmentManager.popBackStack()
     }
 
 
