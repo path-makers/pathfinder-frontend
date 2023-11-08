@@ -46,7 +46,7 @@ class TeamBuildingLVAdapter(val teamBuildingList : MutableList<Team>): BaseAdapt
         val teamDisplayName = view?.findViewById<TextView>(R.id.tvUserName)
         val teamUploadTime = view?.findViewById<TextView>(R.id.tvPostTime)
         val teamLikeCount = view?.findViewById<TextView>(R.id.tvHeartCount)
-        val teamCommentCount = view?.findViewById<TextView>(R.id.tvMessageCount)
+//        val teamCommentCount = view?.findViewById<TextView>(R.id.tvMessageCount)
 
         //아래 카운트 2개 확인하기
 
@@ -59,7 +59,7 @@ class TeamBuildingLVAdapter(val teamBuildingList : MutableList<Team>): BaseAdapt
         teamDisplayName!!.text = teamBuildingList[position].displayName
         teamUploadTime!!.text = teamBuildingList[position].uploadTime
         teamLikeCount!!.text = teamBuildingList[position].likeCount.toString()
-        teamCommentCount!!.text = teamBuildingList[position].commentCount.toString()
+//        teamCommentCount!!.text = teamBuildingList[position].commentCount.toString()
 
 
         return view!!
