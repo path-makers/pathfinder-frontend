@@ -1,6 +1,7 @@
 package com.example.pathfinder.ui.aiService
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -46,22 +47,22 @@ class AiQuestionFragment : Fragment() {
 
     private fun collectResponsesAndShowResults() {
         val responses = arrayOf(
-            binding.ratingQuestion1.rating,
-            binding.ratingQuestion2.rating,
-            binding.ratingQuestion3.rating,
-            binding.ratingQuestion4.rating,
-            binding.ratingQuestion5.rating,
-            binding.ratingQuestion6.rating,
-            binding.ratingQuestion7.rating,
-            binding.ratingQuestion8.rating,
-            binding.ratingQuestion9.rating,
-            binding.ratingQuestion10.rating,
+            binding.ratingQuestion1.rating.toInt(),
+            binding.ratingQuestion2.rating.toInt(),
+            binding.ratingQuestion3.rating.toInt(),
+            binding.ratingQuestion4.rating.toInt(),
+            binding.ratingQuestion5.rating.toInt(),
+            binding.ratingQuestion6.rating.toInt(),
+            binding.ratingQuestion7.rating.toInt(),
+            binding.ratingQuestion8.rating.toInt(),
+            binding.ratingQuestion9.rating.toInt(),
+            binding.ratingQuestion10.rating.toInt(),
 
         )
 
+        sendOpenAIRequest(responses.toList())
 
-
-        findNavController().navigate(R.id.action_aiQuestionFragment_to_chatFragment)
+//        findNavController().navigate(R.id.action_aiQuestionFragment_to_chatFragment)
     }
 
 
@@ -69,41 +70,54 @@ class AiQuestionFragment : Fragment() {
         val queue = Volley.newRequestQueue(requireContext())
         val url = "https://api.openai.com/v1/chat/completions"
 
-        val jsonArray = JSONArray()
-        val questions = resources.getStringArray(R.array.questions) // 질문 배열 리소스
+        val contentBuilder = StringBuilder()
+        val questions = resources.getStringArray(R.array.questions)
         for (i in responses.indices) {
-            val userResponse = JSONObject()
-            userResponse.put("role", "user")
-            userResponse.put("content", "${questions[i]} ${responses[i]}.")
-            jsonArray.put(userResponse)
+            contentBuilder.append("${questions[i]}에 대한 점수는${responses[i]}.")
         }
 
-        val prompt = "이 정보를 바탕으로 내게 어울리는 직업을 추천해주세요."
-        val aiRequest = JSONObject()
-        aiRequest.put("role", "system")
-        aiRequest.put("content", prompt)
-        jsonArray.put(aiRequest)
 
-        val jsonObject = JSONObject()
-        jsonObject.put("messages", jsonArray)
-        jsonObject.put("model", "gpt-4")
-        jsonObject.put("max_tokens", 4096)
+
+        val userResponses = JSONObject().apply {
+            put("role", "user")
+            put("content", contentBuilder.toString())
+        }
+
+        val jsonArray = JSONArray().apply {
+            put(userResponses)
+
+            // 시스템의 메시지를 추가합니다.
+            put(JSONObject().apply {
+
+                put("content", "흥미도를 1부터 5로 평가했어요. 이 정보를 바탕으로 내게 어울리는 직업을 추천해주세요.")
+            })
+        }
+        Log.d("NetworkRequest", "Request: $jsonArray")
+
+
+        val jsonObject = JSONObject().apply {
+            put("messages", jsonArray)
+            put("model", "gpt-4")
+            put("max_tokens", 8000)
+        }
 
         val stringRequest = object : JsonObjectRequest(Request.Method.POST, url, jsonObject,
             Response.Listener<JSONObject> { response ->
-
+                Log.d("NetworkSuccess", "Response: $response")
                 displayResults(response)
             },
             Response.ErrorListener { error ->
+                Log.e("NetworkError", "Error: ${error.toString()}")
 
 
             }
         ) {
             override fun getHeaders(): MutableMap<String, String> {
-                val headers = HashMap<String, String>()
-                headers["Content-Type"] = "application/json"
-                headers["Authorization"] = "Bearer API"
-                return headers
+                var map = HashMap<String, String>()
+                map.put("Content-Type", "application/json")
+                map.put("Authorization", "Bearer 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")
+                Log.d("NetworkHeaders", "Headers: $map")
+                return map
             }
         }
 
@@ -118,6 +132,7 @@ class AiQuestionFragment : Fragment() {
 
     private fun displayResults(response: JSONObject) {
         val answer = response.getJSONArray("choices").getJSONObject(0).getJSONObject("message").getString("content")
+        binding.tvResults.text = answer
 
     }
 

@@ -56,6 +56,10 @@ class HomeFragment : Fragment() {
             it.findNavController().navigate(R.id.action_homeFragment_to_aiIntroFragment)
         }
 
+        binding.button3.setOnClickListener {
+            it.findNavController().navigate(R.id.action_homeFragment_to_chatFragment)
+        }
+
 
         return binding.root
     }
@@ -75,6 +79,8 @@ class HomeFragment : Fragment() {
             .setNegativeButton("취소", null)
             .show()
     }
+
+
 
     class EventDecorator(private val color: Int, dates: Collection<CalendarDay>) : DayViewDecorator {
 

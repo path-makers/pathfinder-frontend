@@ -24,6 +24,9 @@
         <action
             android:id="@+id/action_homeFragment_to_teamBuildingFragment"
             app:destination="@id/teamBuildingFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_chatFragment"
+            app:destination="@id/chatFragment" />
     </fragment>
 
     <fragment

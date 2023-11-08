@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="questions" >
+        <item>숫자와 데이터를 다루는 일에 흥미가 있나요?</item>
+        <item>예술과 디자인을 창조하거나 감상하는 데 관심이 있나요?</item>
+        <item>다른 사람을 돕고 지원하는 일에서 성취감을 느끼나요?</item>
+        <item>구조화되고 정돈된 환경에서 일하는 것이 중요하다고 생각하나요?</item>
+        <item>리더십 역할을 추구하고 프로젝트나 사람을 관리하는 것을 즐기나요?</item>
+        <item>신체 활동을 필요로 하거나 손으로 작업하는 직업에 끌리나요?</item>
+        <item>일에서 다양성과 변화를 중요시하나요?</item>
+        <item>팀보다는 독립적으로 일하는 것을 선호하나요?</item>
+        <item>직업 만족도보다 높은 소득을 달성하는 것이 더 중요하다고 생각하나요?</item>
+        <item>과학에 관심이 있고 사물이 어떻게 작동하는지 이해하는 것에 흥미가 있나요?</item>
+    </string-array>
+</resources>

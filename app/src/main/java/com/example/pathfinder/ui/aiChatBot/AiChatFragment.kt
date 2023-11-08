@@ -103,7 +103,7 @@ class AiChatFragment : Fragment() {
             override fun getHeaders(): MutableMap<String, String> {
                 var map = HashMap<String, String>()
                 map.put("Content-Type", "application/json")
-                map.put("Authorization", "Bearer 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")
+                map.put("Authorization", "Bearer ")
                 return map
             }
         }

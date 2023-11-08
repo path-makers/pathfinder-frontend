@@ -1,142 +1,164 @@
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:orientation="vertical"
-android:padding="16dp">
+    <ScrollView
 
-<!-- 질문 1 -->
-<TextView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="질문 1: 숫자와 데이터를 다루는 일에 흥미가 있나요?" />
-    <RatingBar
-        android:id="@+id/rating_question_1"
-        style="?android:attr/ratingBarStyleIndicator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:numStars="5"
-        android:stepSize="1.0" />
-
-
-    <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="질문2 :예술과 디자인을 창조하거나 감상하는 데 관심이 있나요?" />
+        android:layout_height="match_parent">
 
-    <RatingBar
-        android:id="@+id/rating_question_2"
-        style="?android:attr/ratingBarStyleIndicator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:numStars="5"
-        android:stepSize="1.0" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="질문 3:다른 사람을 돕고 지원하는 일에서 성취감을 느끼나요?" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
 
-    <RatingBar
-        android:id="@+id/rating_question_3"
-        style="?android:attr/ratingBarStyleIndicator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:numStars="5"
-        android:stepSize="1.0" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="질문 4:구조화되고 정돈된 환경에서 일하는 것이 중요하다고 생각하나요?" />
+            <!-- 질문 1 -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="질문 1: 숫자와 데이터를 다루는 일에 흥미가 있나요?" />
 
-    <RatingBar
-        android:id="@+id/rating_question_4"
-        style="?android:attr/ratingBarStyleIndicator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:numStars="5"
-        android:stepSize="1.0" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="질문 5:리더십 역할을 추구하고 프로젝트나 사람을 관리하는 것을 즐기나요?" />
+            <RatingBar
+                android:id="@+id/rating_question_1"
+                style="?android:attr/ratingBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:stepSize="1.0" />
 
-    <RatingBar
-        android:id="@+id/rating_question_5"
-        style="?android:attr/ratingBarStyleIndicator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:numStars="5"
-        android:stepSize="1.0" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="질문 6:신체 활동을 필요로 하거나 손으로 작업하는 직업에 끌리나요?" />
 
-    <RatingBar
-        android:id="@+id/rating_question_6"
-        style="?android:attr/ratingBarStyleIndicator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:numStars="5"
-        android:stepSize="1.0" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="질문 7:일에서 다양성과 변화를 중요시하나요?" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="질문2 :예술과 디자인을 창조하거나 감상하는 데 관심이 있나요?" />
 
-    <RatingBar
-        android:id="@+id/rating_question_7"
-        style="?android:attr/ratingBarStyleIndicator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:numStars="5"
-        android:stepSize="1.0" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="질문 8:팀보다는 독립적으로 일하는 것을 선호하나요?" />
+            <RatingBar
+                android:id="@+id/rating_question_2"
+                style="?android:attr/ratingBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:stepSize="1.0" />
 
-    <RatingBar
-        android:id="@+id/rating_question_8"
-        style="?android:attr/ratingBarStyleIndicator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:numStars="5"
-        android:stepSize="1.0" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="질문 9:직업 만족도보다 높은 소득을 달성하는 것이 더 중요하다고 생각하나요?" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="질문 3:다른 사람을 돕고 지원하는 일에서 성취감을 느끼나요?" />
 
-    <RatingBar
-        android:id="@+id/rating_question_9"
-        style="?android:attr/ratingBarStyleIndicator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:numStars="5"
-        android:stepSize="1.0" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="질문 10:과학에 관심이 있고 사물이 어떻게 작동하는지 이해하는 것에 흥미가 있나요?" />
+            <RatingBar
+                android:id="@+id/rating_question_3"
+                style="?android:attr/ratingBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:stepSize="1.0" />
 
-    <RatingBar
-        android:id="@+id/rating_question_10"
-        style="?android:attr/ratingBarStyleIndicator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:numStars="5"
-        android:stepSize="1.0" />
-<!-- 질문 2, 3, ..., 10까지 반복 -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="질문 4:구조화되고 정돈된 환경에서 일하는 것이 중요하다고 생각하나요?" />
 
-<!-- 결과 보기 버튼 -->
-<Button
-    android:id="@+id/btn_show_results"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center_horizontal"
-    android:text="결과 보기" />
+            <RatingBar
+                android:id="@+id/rating_question_4"
+                style="?android:attr/ratingBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:stepSize="1.0" />
 
-</LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="질문 5:리더십 역할을 추구하고 프로젝트나 사람을 관리하는 것을 즐기나요?" />
+
+            <RatingBar
+                android:id="@+id/rating_question_5"
+                style="?android:attr/ratingBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:stepSize="1.0" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="질문 6:신체 활동을 필요로 하거나 손으로 작업하는 직업에 끌리나요?" />
+
+            <RatingBar
+                android:id="@+id/rating_question_6"
+                style="?android:attr/ratingBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:stepSize="1.0" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="질문 7:일에서 다양성과 변화를 중요시하나요?" />
+
+            <RatingBar
+                android:id="@+id/rating_question_7"
+                style="?android:attr/ratingBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:stepSize="1.0" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="질문 8:팀보다는 독립적으로 일하는 것을 선호하나요?" />
+
+            <RatingBar
+                android:id="@+id/rating_question_8"
+                style="?android:attr/ratingBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:stepSize="1.0" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="질문 9:직업 만족도보다 높은 소득을 달성하는 것이 더 중요하다고 생각하나요?" />
+
+            <RatingBar
+                android:id="@+id/rating_question_9"
+                style="?android:attr/ratingBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:stepSize="1.0" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="질문 10:과학에 관심이 있고 사물이 어떻게 작동하는지 이해하는 것에 흥미가 있나요?" />
+
+            <RatingBar
+                android:id="@+id/rating_question_10"
+                style="?android:attr/ratingBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:stepSize="1.0" />
+            <!-- 질문 2, 3, ..., 10까지 반복 -->
+
+            <!-- 결과 보기 버튼 -->
+            <Button
+                android:id="@+id/btn_show_results"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="결과 보기" />
+
+            <TextView
+                android:id="@+id/tvResults"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="결과" />
+
+
+        </LinearLayout>
+    </ScrollView>
 </layout>
