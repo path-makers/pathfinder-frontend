@@ -142,7 +142,30 @@
                 android:layout_height="wrap_content"
                 android:numStars="5"
                 android:stepSize="1.0" />
-            <!-- 질문 2, 3, ..., 10까지 반복 -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="MBTI 유형을 입력해주세요:" />
+
+            <EditText
+                android:id="@+id/editTextMBTI"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="예: INFP"
+                android:inputType="textPersonName"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="자신을 뭐든 한 단어로 표현하면?:" />
+
+            <EditText
+                android:id="@+id/editTextWord"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="예: 창의적인, 치타, 열정, 집념"
+                android:inputType="textPersonName"/>
+
+
 
             <!-- 결과 보기 버튼 -->
             <Button
@@ -152,11 +175,6 @@
                 android:layout_gravity="center_horizontal"
                 android:text="결과 보기" />
 
-            <TextView
-                android:id="@+id/tvResults"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="결과" />
 
 
         </LinearLayout>

@@ -191,7 +191,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/commentBtn" />
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/commentBtn"
                 android:src="@drawable/ic_send"
                 android:layout_width="60dp"

@@ -31,7 +31,7 @@ import com.example.pathfinder.databinding.FragmentAiChatBinding
 
 class AiChatFragment : Fragment() {
 
-    lateinit var sendBtn: ImageButton
+    lateinit var sendBtn: ImageView
     lateinit var editText: EditText
     lateinit var messagesList: MessagesList
     lateinit var us: User
@@ -45,20 +45,22 @@ class AiChatFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_ai_chat, container, false)
 
 
-        sendBtn = binding.imageButton2
+
+        sendBtn = binding.aiBtn
         loadingBar = binding.loadingBar
-        editText = binding.editTextTextPersonName2
+        editText = binding.aiInputText
         messagesList = binding.messagesList2
 
         var imageLoader: ImageLoader = object : ImageLoader {
             override fun loadImage(imageView: ImageView?, url: String?, payload: Any?) {
+                imageView?.setImageResource(R.drawable.ic_robot)
             }
         }
         adapter = MessagesListAdapter<Message>("1", imageLoader)
         messagesList.setAdapter(adapter)
 
         us = User("1", "jsh", "")
-        chatgpt = User("2", "ChatGPT", "")
+        chatgpt = User("2", "ChatGPT", "drawable://ic_robot")
 
         sendBtn.setOnClickListener {
             var message: Message = Message("m1", editText.text.toString(), us, Calendar.getInstance().time)
@@ -67,10 +69,16 @@ class AiChatFragment : Fragment() {
             editText.text.clear()
         }
 
+
+        val userResponses = arguments?.getString("userResponses")
+        Log.d("AiChatFragment", "userResponses: $userResponses")
+        if (userResponses != null) {
+            performAction(userResponses)
+        }
         return binding.root
     }
 
-    fun performAction(input: String) {
+        private fun performAction(input: String) {
         // Instantiate the RequestQueue.
         val queue = Volley.newRequestQueue(requireContext())
         val url = "https://api.openai.com/v1/chat/completions"
@@ -108,7 +116,20 @@ class AiChatFragment : Fragment() {
                 Log.d("NetworkHeaders", "Headers: $map")
                 return map
             }
+
         }
+            stringRequest.retryPolicy = object : RetryPolicy {
+                override fun getCurrentTimeout(): Int {
+                    return 60000
+                }
+
+                override fun getCurrentRetryCount(): Int {
+                    return 15
+                }
+
+                override fun retry(error: VolleyError?) {
+                }
+            }
 
 
         queue.add(stringRequest)

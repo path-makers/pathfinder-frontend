@@ -47,6 +47,8 @@ class AiQuestionFragment : Fragment() {
     }
 
     private fun collectResponsesAndShowResults() {
+        val contentBuilder = StringBuilder()
+        val questions = resources.getStringArray(R.array.questions)
         val responses = arrayOf(
             binding.ratingQuestion1.rating.toInt(),
             binding.ratingQuestion2.rating.toInt(),
@@ -61,88 +63,101 @@ class AiQuestionFragment : Fragment() {
 
         )
 
-        sendOpenAIRequest(responses.toList())
 
-//        findNavController().navigate(R.id.action_aiQuestionFragment_to_chatFragment)
-    }
-
-
-    fun sendOpenAIRequest(responses: List<Int>) {
-        val queue = Volley.newRequestQueue(requireContext())
-        val url = "https://api.openai.com/v1/chat/completions"
-
-
-
-        val contentBuilder = StringBuilder()
-        val questions = resources.getStringArray(R.array.questions)
         for (i in responses.indices) {
-            contentBuilder.append("${questions[i]}에 대한 점수는 ${responses[i]}.") // 문장 끝에 마침표와 줄바꿈 추가
+            contentBuilder.append("${questions[i]}에 대한 점수는 ${responses[i]}.")
         }
+        val mbtiType = binding.editTextMBTI.text.toString().trim()
+        val wordType = binding.editTextWord.text.toString().trim()
+        contentBuilder.append("그리고 제 MBTI는 $mbtiType 이고, ")
+        contentBuilder.append("저를 한단어로 표현하면 $wordType 입니다.")
+
+        contentBuilder.append("흥미도를 1부터 5로 평가했어요. 이 정보들을 바탕으로 내게 어울리는 직업을 추천해주세요.")
 
 
-        contentBuilder.append("흥미도를 1부터 5로 평가했어요. 이 정보를 바탕으로 내게 어울리는 직업을 추천해주세요.")
+        val bundle = Bundle()
+        bundle.putString("userResponses", contentBuilder.toString())
+        Log.d("AiQuestionFragment", "userResponses: ${bundle.getString("userResponses")}")
 
-        val userResponses = JSONObject().apply {
-            put("role", "user")
-            put("content", contentBuilder.toString())
-        }
-
-        val jsonArray = JSONArray().apply {
-            put(userResponses)
-        }
-        val jsonObject = JSONObject().apply {
-            put("messages", jsonArray)
-            put("model", "gpt-4")
-            put("max_tokens", 4096)
-        }
-        Log.d("NetworkRequest", "Request: $jsonArray")
-
-
-
-
-        val stringRequest = object : JsonObjectRequest(
-            Request.Method.POST, url, jsonObject,
-            Response.Listener<JSONObject> { response ->
-                Log.d("NetworkSuccess", "Response: $response")
-                displayResults(response)
-            },
-            Response.ErrorListener { error ->
-                Log.e("NetworkError", "Error: ${error.toString()}")
-
-
-            }
-        ) {
-            override fun getHeaders(): MutableMap<String, String> {
-                var map = HashMap<String, String>()
-                map.put("Content-Type", "application/json")
-                map.put("Authorization", "Bearer ")
-                Log.d("NetworkHeaders", "Headers: $map")
-                return map
-            }
-        }
-        stringRequest.retryPolicy = object : RetryPolicy {
-            override fun getCurrentTimeout(): Int {
-                return 60000
-            }
-
-            override fun getCurrentRetryCount(): Int {
-                return 15
-            }
-
-            override fun retry(error: VolleyError?) {
-            }
-        }
-        queue.add(stringRequest)
-        Log.d("NetworkRequest", "Request: $stringRequest")
-
+        findNavController().navigate(R.id.action_aiQuestionFragment_to_chatFragment, bundle)
     }
 
-    private fun displayResults(response: JSONObject) {
-        val answer = response.getJSONArray("choices").getJSONObject(0).getJSONObject("message").getString("content")
-        Log.d("NetworkAnswer", "Answer: $answer")
-        binding.tvResults.text = answer
 
-    }
+//    fun sendOpenAIRequest(responses: List<Int>) {
+//        val queue = Volley.newRequestQueue(requireContext())
+//        val url = "https://api.openai.com/v1/chat/completions"
+//
+//
+//
+//        val contentBuilder = StringBuilder()
+//        val questions = resources.getStringArray(R.array.questions)
+//        for (i in responses.indices) {
+//            contentBuilder.append("${questions[i]}에 대한 점수는 ${responses[i]}.")
+//        }
+//
+//
+//        contentBuilder.append("흥미도를 1부터 5로 평가했어요. 이 정보를 바탕으로 내게 어울리는 직업을 추천해주세요.")
+//
+//        val userResponses = JSONObject().apply {
+//            put("role", "user")
+//            put("content", contentBuilder.toString())
+//        }
+//
+//        val jsonArray = JSONArray().apply {
+//            put(userResponses)
+//        }
+//        val jsonObject = JSONObject().apply {
+//            put("messages", jsonArray)
+//            put("model", "gpt-4")
+//            put("max_tokens", 4096)
+//        }
+//        Log.d("NetworkRequest", "Request: $jsonArray")
+//
+//
+//
+//
+//        val stringRequest = object : JsonObjectRequest(
+//            Request.Method.POST, url, jsonObject,
+//            Response.Listener<JSONObject> { response ->
+//                Log.d("NetworkSuccess", "Response: $response")
+//                displayResults(response)
+//            },
+//            Response.ErrorListener { error ->
+//                Log.e("NetworkError", "Error: ${error.toString()}")
+//
+//
+//            }
+//        ) {
+//            override fun getHeaders(): MutableMap<String, String> {
+//                var map = HashMap<String, String>()
+//                map.put("Content-Type", "application/json")
+//                map.put("Authorization", "Bearer ")
+//                Log.d("NetworkHeaders", "Headers: $map")
+//                return map
+//            }
+//        }
+//        stringRequest.retryPolicy = object : RetryPolicy {
+//            override fun getCurrentTimeout(): Int {
+//                return 60000
+//            }
+//
+//            override fun getCurrentRetryCount(): Int {
+//                return 15
+//            }
+//
+//            override fun retry(error: VolleyError?) {
+//            }
+//        }
+//        queue.add(stringRequest)
+//        Log.d("NetworkRequest", "Request: $stringRequest")
+//
+//    }
+//
+//    private fun displayResults(response: JSONObject) {
+//        val answer = response.getJSONArray("choices").getJSONObject(0).getJSONObject("message").getString("content")
+//        Log.d("NetworkAnswer", "Answer: $answer")
+//
+//    }
 
 
 
