@@ -10,15 +10,16 @@
 
         <ToggleButton
             android:id="@+id/mentorBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="10dp"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:paddingTop="18dp"
+            android:paddingBottom="6dp"
+            android:layout_marginStart="24dp"
             android:textOff="멘토"
             android:textOn="멘토"
+            android:fontFamily="@font/pretendard_semibold"
             android:textStyle="bold"
-            android:textSize="18dp"
-            android:padding="8dp"
+            android:textSize="20dp"
             android:background="@android:color/transparent"
             android:textColor="@color/tab_colors"
             app:layout_constraintTop_toTopOf="parent"
@@ -26,15 +27,18 @@
 
         <ToggleButton
             android:id="@+id/menteeBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="10dp"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:paddingTop="18dp"
+            android:paddingBottom="6dp"
+            android:layout_marginStart="24dp"
             android:textOff="멘티"
             android:textOn="멘티"
+            android:fontFamily="@font/pretendard_semibold"
             android:textStyle="bold"
-            android:textSize="18dp"
-            android:padding="8dp"
+            android:textSize="20dp"
+            android:textAlignment="center"
+            android:gravity="center"
             android:background="@android:color/transparent"
             android:textColor="@color/tab_colors"
             app:layout_constraintTop_toTopOf="parent"
@@ -43,8 +47,8 @@
 
         <Button
             android:id="@+id/button"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:background="@drawable/ic_search"
             app:layout_constraintEnd_toStartOf="@id/button2"
             app:layout_constraintTop_toTopOf="parent"
@@ -53,21 +57,41 @@
 
         <Button
             android:id="@+id/button2"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:background="@drawable/ic_setting"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="18dp"
             android:layout_marginEnd="20dp" />
 
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/boardListView"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/mentorBtn" />
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/mentorBtn">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/boardimg"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:background="@color/light_gray"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/boardListView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/boardimg" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
 
         <ImageView
             android:id="@+id/writeBtn"
@@ -76,10 +100,8 @@
             android:src="@drawable/ic_writebtn"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginBottom="30dp"
-            android:layout_marginEnd="10dp" />
-
-
+            android:layout_marginBottom="12dp"
+            android:layout_marginEnd="24dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
