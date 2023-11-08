@@ -1,6 +1,7 @@
 package com.example.pathfinder.ui.aiChatBot
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -80,7 +81,7 @@ class AiChatFragment : Fragment() {
         jsonObject.put("messages", jsonArray)
         jsonObject.put("model", "gpt-4")
         jsonObject.put("max_tokens", 4096)
-
+        Log.d("NetworkRequest", "Request: $jsonArray")
         val stringRequest = object : JsonObjectRequest(
             Request.Method.POST, url, jsonObject,
             Response.Listener<JSONObject> { response ->
@@ -103,23 +104,14 @@ class AiChatFragment : Fragment() {
             override fun getHeaders(): MutableMap<String, String> {
                 var map = HashMap<String, String>()
                 map.put("Content-Type", "application/json")
-                map.put("Authorization", "Bearer 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")
+                map.put("Authorization", "Bearer ")
+                Log.d("NetworkHeaders", "Headers: $map")
                 return map
             }
         }
-        stringRequest.retryPolicy = object : RetryPolicy {
-            override fun getCurrentTimeout(): Int {
-                return 60000
-            }
 
-            override fun getCurrentRetryCount(): Int {
-                return 15
-            }
-
-            override fun retry(error: VolleyError?) {
-            }
-        }
 
         queue.add(stringRequest)
+        Log.d("NetworkRequest", "Request: $stringRequest")
     }
 }

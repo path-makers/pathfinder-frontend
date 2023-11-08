@@ -57,7 +57,7 @@ class HomeFragment : Fragment() {
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
         binding.chatButton.setOnClickListener {
-            it.findNavController().navigate(R.id.action_homeFragment_to_chatFragment)
+            it.findNavController().navigate(R.id.action_homeFragment_to_aiIntroFragment)
         }
 
         val boardRepository = BoardRepository(requireContext())
