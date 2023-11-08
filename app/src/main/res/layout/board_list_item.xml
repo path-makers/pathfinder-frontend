@@ -3,11 +3,7 @@
     android:id="@+id/itemView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:paddingStart="12dp"
-    android:paddingEnd="12dp"
-    android:paddingTop="8dp"
-    android:paddingBottom="8dp">
+    android:orientation="vertical">
 
     <!-- 태그 레이아웃 -->
     <LinearLayout
@@ -15,7 +11,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:layout_marginTop="14dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp">
 
         <!-- 태그를 위한 TextView 여기에 추가됨-->
     </LinearLayout>
@@ -24,34 +23,39 @@
         android:id="@+id/titleArea"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
+        android:layout_marginTop="4dp"
         android:text="title"
         android:textColor="@color/black"
-        android:textSize="18sp"
-        android:textStyle="bold"/>
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"/>
 
     <TextView
         android:id="@+id/contentArea"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="2dp"
         android:text="content"
         android:textColor="@color/black"
-        android:textSize="14sp"
-        android:maxLines="2"/>
+        android:textSize="14dp"
+        android:maxLines="2"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"/>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp">
+        android:layout_marginTop="8dp">
 
         <TextView
             android:id="@+id/userName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="userName"
-            android:textColor="@color/gray"
-            android:textSize="10sp"/>
+            android:textColor="@color/Gray_700"
+            android:textSize="10dp"
+            android:layout_marginStart="24dp" />
 
         <TextView
             android:id="@+id/timeArea"
@@ -59,7 +63,17 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="time"
-            android:textColor="@color/gray"
-            android:textSize="10sp"/>
+            android:textColor="@color/Gray_700"
+            android:textSize="10dp"
+            android:layout_marginEnd="24dp"/>
     </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/Gray_300"/>
+
 </LinearLayout>
