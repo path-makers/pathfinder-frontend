@@ -25,7 +25,8 @@ import android.widget.ProgressBar
 import androidx.core.view.isVisible
 import com.android.volley.DefaultRetryPolicy
 import com.android.volley.RetryPolicy
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.hadi.emojiratingbar.EmojiRatingBar
+import com.hadi.emojiratingbar.RateStatus
 
 
 class AiQuestionFragment : Fragment() {
@@ -44,26 +45,64 @@ class AiQuestionFragment : Fragment() {
             collectResponsesAndShowResults()
         }
 
-        hideBottomNavigation(true);
+        val emojiRatingBar1 = binding.emojiRatingBar1
+        val emojiRatingBar2 = binding.emojiRatingBar2
+        val emojiRatingBar3 = binding.emojiRatingBar3
+        val emojiRatingBar4 = binding.emojiRatingBar4
+        val emojiRatingBar5 = binding.emojiRatingBar5
+        val emojiRatingBar6 = binding.emojiRatingBar6
+        val emojiRatingBar7 = binding.emojiRatingBar7
+        val emojiRatingBar8 = binding.emojiRatingBar8
+        val emojiRatingBar9 = binding.emojiRatingBar9
+        val emojiRatingBar10 = binding.emojiRatingBar10
+
+
+        setCustomEmojiTitles(emojiRatingBar1)
+        setCustomEmojiTitles(emojiRatingBar2)
+        setCustomEmojiTitles(emojiRatingBar3)
+        setCustomEmojiTitles(emojiRatingBar4)
+        setCustomEmojiTitles(emojiRatingBar5)
+        setCustomEmojiTitles(emojiRatingBar6)
+        setCustomEmojiTitles(emojiRatingBar7)
+        setCustomEmojiTitles(emojiRatingBar8)
+        setCustomEmojiTitles(emojiRatingBar9)
+        setCustomEmojiTitles(emojiRatingBar10)
 
         return binding.root
+    }
+
+    fun setCustomEmojiTitles(emojiRatingBar: EmojiRatingBar) {
+        emojiRatingBar.setAwfulEmojiTitle("전혀 없음")
+        emojiRatingBar.setBadEmojiTitle("조금 있음")
+        emojiRatingBar.setOkayEmojiTitle("보통")
+        emojiRatingBar.setGoodEmojiTitle("많음")
+        emojiRatingBar.setGreatEmojiTitle("매우 많음")
+    }
+    fun getRatingValue(rateStatus: RateStatus): Int {
+        return when (rateStatus) {
+            RateStatus.EMPTY -> 0
+            RateStatus.AWFUL -> 1
+            RateStatus.BAD -> 2
+            RateStatus.OKAY -> 3
+            RateStatus.GOOD -> 4
+            RateStatus.GREAT -> 5
+        }
     }
 
     private fun collectResponsesAndShowResults() {
         val contentBuilder = StringBuilder()
         val questions = resources.getStringArray(R.array.questions)
-        val responses = arrayOf(
-            binding.ratingQuestion1.rating.toInt(),
-            binding.ratingQuestion2.rating.toInt(),
-            binding.ratingQuestion3.rating.toInt(),
-            binding.ratingQuestion4.rating.toInt(),
-            binding.ratingQuestion5.rating.toInt(),
-            binding.ratingQuestion6.rating.toInt(),
-            binding.ratingQuestion7.rating.toInt(),
-            binding.ratingQuestion8.rating.toInt(),
-            binding.ratingQuestion9.rating.toInt(),
-            binding.ratingQuestion10.rating.toInt(),
-
+        val responses = listOf(
+            getRatingValue(binding.emojiRatingBar1.getCurrentRateStatus()),
+            getRatingValue(binding.emojiRatingBar2.getCurrentRateStatus()),
+            getRatingValue(binding.emojiRatingBar3.getCurrentRateStatus()),
+            getRatingValue(binding.emojiRatingBar4.getCurrentRateStatus()),
+            getRatingValue(binding.emojiRatingBar5.getCurrentRateStatus()),
+            getRatingValue(binding.emojiRatingBar6.getCurrentRateStatus()),
+            getRatingValue(binding.emojiRatingBar7.getCurrentRateStatus()),
+            getRatingValue(binding.emojiRatingBar8.getCurrentRateStatus()),
+            getRatingValue(binding.emojiRatingBar9.getCurrentRateStatus()),
+            getRatingValue(binding.emojiRatingBar10.getCurrentRateStatus())
         )
 
 
@@ -164,17 +203,5 @@ class AiQuestionFragment : Fragment() {
 
 
 
-//    override fun onDestroyView() {
-//        super.onDestroyView()
-//        hideBottomNavigation(false)
-//    }
-
-    fun hideBottomNavigation(bool: Boolean) {
-        val bottomNavigation = requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavigationView)
-        if (bool)
-            bottomNavigation.visibility = View.GONE
-        else
-            bottomNavigation.visibility = View.VISIBLE
-    }
 
 }
