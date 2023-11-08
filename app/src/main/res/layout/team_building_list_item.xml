@@ -124,26 +124,26 @@
 
             app:layout_constraintStart_toEndOf="@id/ivHeart" />
 
-        <ImageView
-            android:id="@+id/ivMessage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:src="@drawable/ic_message"
-            app:layout_constraintStart_toEndOf="@id/tvHeartCount"
+<!--        <ImageView-->
+<!--            android:id="@+id/ivMessage"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="12dp"-->
+<!--            android:src="@drawable/ic_message"-->
+<!--            app:layout_constraintStart_toEndOf="@id/tvHeartCount"-->
 
-            />
+<!--            />-->
 
-        <!-- Message Count TextView -->
-        <TextView
-            android:id="@+id/tvMessageCount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:text="0"
-            app:layout_constraintStart_toEndOf="@id/ivMessage"
+<!--        &lt;!&ndash; Message Count TextView &ndash;&gt;-->
+<!--        <TextView-->
+<!--            android:id="@+id/tvMessageCount"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="12dp"-->
+<!--            android:text="0"-->
+<!--            app:layout_constraintStart_toEndOf="@id/ivMessage"-->
 
-            />
+<!--            />-->
 
         <!-- Bookmark Icon ImageView -->
         <ImageView

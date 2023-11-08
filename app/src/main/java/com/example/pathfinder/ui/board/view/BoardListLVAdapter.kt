@@ -36,15 +36,16 @@ class BoardListLVAdapter(val boardList : MutableList<Board>): BaseAdapter(){
         val title = view?.findViewById<TextView>(R.id.titleArea)
         val content = view?.findViewById<TextView>(R.id.contentArea)
         val date = view?.findViewById<TextView>(R.id.timeArea)  // 이름을 time에서 date로 변경
-        val uid = view?.findViewById<TextView>(R.id.userName)    // 이름을 userName에서 uid로 변경
+        val author = view?.findViewById<TextView>(R.id.userName)    // 이름을 userName에서 uid로 변경
 
         if (tagsLayout != null && boardList[position].tags.isNotEmpty()) {
             displayTags(tagsLayout, boardList[position].tags)
         }
+
         title!!.text = boardList[position].title
         content!!.text = boardList[position].content
         date!!.text = formatDate(boardList[position].date.toLong())
-        uid!!.text = boardList[position].uid
+        author!!.text = boardList[position].author
 
         return view!!
     }

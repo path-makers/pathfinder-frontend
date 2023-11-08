@@ -1,5 +1,6 @@
 package com.example.pathfinder.ui.board.view
 
+import BoardRecyclerViewAdapter
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
@@ -11,6 +12,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pathfinder.R
 import com.example.pathfinder.data.repository.BoardRepository
 import com.example.pathfinder.data.models.Board
@@ -25,7 +27,7 @@ class BoardFragment : Fragment() {
     private lateinit var binding: FragmentBoardBinding
 
     private val boardDataList = mutableListOf<Board>()
-    private lateinit var boardRVAdapter: BoardListLVAdapter
+    private lateinit var boardRVAdapter: BoardRecyclerViewAdapter
 
     private val startWriteActivityForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
@@ -54,11 +56,12 @@ class BoardFragment : Fragment() {
     }
 
     private fun initBoardListView() {
-        boardRVAdapter = BoardListLVAdapter(boardDataList)
+        boardRVAdapter = BoardRecyclerViewAdapter(boardDataList)
         binding.boardListView.adapter = boardRVAdapter
+        binding.boardListView.layoutManager = LinearLayoutManager(context)
 
         binding.mentorBtn.setOnClickListener {
-          
+
             binding.mentorBtn.isChecked = true
             binding.menteeBtn.isChecked = false
 
@@ -79,12 +82,7 @@ class BoardFragment : Fragment() {
             getFBBoardData("MENTEE")
         }
 
-        binding.boardListView.setOnItemClickListener { parent, view, position, id ->
-            val intent = Intent(context, BoardInsideActivity::class.java)
-            val boardData = boardDataList[position] // boardList는 BoardModel 객체의 리스트
-            intent.putExtra("boardData", boardData as Serializable)
-            startActivity(intent)
-        }
+
     }
 
     private fun initWriteButton() {

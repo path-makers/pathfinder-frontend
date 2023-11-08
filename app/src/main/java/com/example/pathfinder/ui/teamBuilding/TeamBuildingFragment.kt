@@ -16,6 +16,9 @@ import com.example.pathfinder.utils.FBRef
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.firestore.QuerySnapshot
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class TeamBuildingFragment : Fragment() {
 
@@ -24,6 +27,7 @@ class TeamBuildingFragment : Fragment() {
     private val teamKeyList = mutableListOf<String>()
     private lateinit var teamRVAdapter: TeamBuildingLVAdapter
     private val TAG = TeamBuildingFragment::class.java.simpleName
+    private val db = Firebase.firestore
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,7 +49,7 @@ class TeamBuildingFragment : Fragment() {
         teamRVAdapter = TeamBuildingLVAdapter(teamDataList)
         binding.teamBuildingListView.adapter = teamRVAdapter
         binding.teamBuildingListView.setOnItemClickListener { parent, view, position, id ->
-            val intent = Intent(context, BoardInsideActivity::class.java)
+            val intent = Intent(context, TeamBuildingInsideActivity::class.java)
             intent.putExtra("key", teamKeyList[position])
             startActivity(intent)
         }
@@ -60,30 +64,30 @@ class TeamBuildingFragment : Fragment() {
 
     private fun getFBTeamData() {
 
-        val postListener = object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-
-                teamDataList.clear()
-
-                for (dataModel in snapshot.children) {
-                    Log.d(TAG, dataModel.toString())
-                    val item = dataModel.getValue(Team::class.java)
-                    teamDataList.add(item!!)
-                    teamKeyList.add(dataModel.key.toString())
-                }
-
-                teamKeyList.reverse()
-                teamDataList.reverse()
-                teamRVAdapter.notifyDataSetChanged()
-                Log.d(TAG, teamDataList.toString())
+        db.collection("teamBuilding")
+            .get()
+            .addOnSuccessListener { teamdatas ->
+                handleSnapshot(teamdatas)
             }
-
-            override fun onCancelled(error: DatabaseError) {
-                Log.w(TAG, "LoadPost:onCanceled", error.toException())
+            .addOnFailureListener { exception ->
+                Log.w(TAG, "Error getting documents: ", exception)
             }
+    }
+
+    private fun handleSnapshot(teamdatas: QuerySnapshot) {
+        teamDataList.clear()
+        teamKeyList.clear()
+
+        for (teamdata in teamdatas) {
+            Log.d(TAG, teamdata.id + " => " + teamdata.data)
+            val item = teamdata.toObject(Team::class.java)
+            teamDataList.add(item)
+            teamKeyList.add(teamdata.id)
         }
-        FBRef.teamBuildingRef.addValueEventListener(postListener)
 
+        teamDataList.reverse()
+        teamKeyList.reverse()
+        teamRVAdapter.notifyDataSetChanged()
     }
 
 }

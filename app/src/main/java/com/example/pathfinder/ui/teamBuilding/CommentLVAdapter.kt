@@ -1,4 +1,4 @@
-package com.example.pathfinder.ui.board.view
+package com.example.pathfinder.ui.teamBuilding
 
 import android.view.LayoutInflater
 import android.view.View
@@ -30,15 +30,15 @@ class CommentLVAdapter(val commentList : MutableList<Comment>):BaseAdapter() {
         if(view==null){
             view = LayoutInflater.from(parent?.context).inflate(R.layout.comment_list_item,parent,false)
         }
-
-        val author = view?.findViewById<TextView>(R.id.userNameArea)
-        val title = view?.findViewById<TextView>(R.id.commentArea)
+        val userName = view?.findViewById<TextView>(R.id.userNameArea)
         val time = view?.findViewById<TextView>(R.id.timeArea)
+        val content = view?.findViewById<TextView>(R.id.commentArea)
 
 
-        author!!.text = commentList[position].author
-        title!!.text = commentList[position].content
-        time!!.text = formatDate(commentList[position].createdAt.toLong())
+        time?.text = formatDate(commentList[position].timeStamp)
+        content!!.text = commentList[position].content
+        userName!!.text = commentList[position].userName
+
 
         return view!!
     }
