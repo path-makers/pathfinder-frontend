@@ -12,6 +12,8 @@
     <color name="black">#131415</color>
     <color name="gray">#AFB2B6</color>
     <color name="light_gray">#FAFBFC</color>
+    <color name="light_purple">#CECFE5</color>
+
 
     <color name="Gray_300">#D9DCDF</color>
     <color name="Gray_700">#6E7377</color>
