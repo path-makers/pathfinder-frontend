@@ -193,7 +193,7 @@
 
             <ImageButton
                 android:id="@+id/commentBtn"
-                android:src="@drawable/ic_send"
+                android:src="@drawable/ic_sending"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 app:layout_constraintEnd_toEndOf="parent"

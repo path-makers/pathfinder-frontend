@@ -25,6 +25,7 @@ import android.widget.ProgressBar
 import androidx.core.view.isVisible
 import com.android.volley.DefaultRetryPolicy
 import com.android.volley.RetryPolicy
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class AiQuestionFragment : Fragment() {
@@ -42,6 +43,8 @@ class AiQuestionFragment : Fragment() {
         binding.btnShowResults.setOnClickListener {
             collectResponsesAndShowResults()
         }
+
+        hideBottomNavigation(true);
 
         return binding.root
     }
@@ -161,5 +164,17 @@ class AiQuestionFragment : Fragment() {
 
 
 
+//    override fun onDestroyView() {
+//        super.onDestroyView()
+//        hideBottomNavigation(false)
+//    }
+
+    fun hideBottomNavigation(bool: Boolean) {
+        val bottomNavigation = requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+        if (bool)
+            bottomNavigation.visibility = View.GONE
+        else
+            bottomNavigation.visibility = View.VISIBLE
+    }
 
 }

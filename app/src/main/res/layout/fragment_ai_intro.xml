@@ -1,28 +1,157 @@
-<layout>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.aiService.AiIntroFragment">
 
+    <Button
+        android:id="@+id/button_back"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:background="@drawable/ic_back"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="18dp"
+        android:layout_marginStart="20dp" />
+
     <TextView
-        android:id="@+id/tv_intro_text"
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="28dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginStart="60dp"
+        android:text="AI 진로상담"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:textColor="@color/Gray_700"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:background="@drawable/ic_setting"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="20dp" />
+
+    <com.stfalcon.chatkit.messages.MessagesList
+        android:id="@+id/messagesList2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="6dp"
+        android:background="@color/Blue_100"
+        app:layout_constraintTop_toBottomOf="@id/titleTextView"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:text="11월 8일 오후 12:13"
+        android:textSize="12dp"
+        android:textColor="@color/Gray_700"
+        android:textAlignment="center"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@id/aichat_img"/>
+
+    <ImageView
+        android:id="@+id/aichat_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingStart="24dp"
+        android:layout_marginBottom="10dp"
+        android:adjustViewBounds="true"
+        android:background="@color/transparent_ripple_color"
+        android:scaleType="fitCenter"
+        android:src="@drawable/aichat_image"
+        app:layout_constraintBottom_toTopOf="@id/aiInputLayout"/>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/aiInputLayout"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/aiInputText"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:hint="체크리스트를 보내세요"
+            android:background="@color/transparent"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="12dp"
+            android:textColor="@color/gray"
+            android:textSize="16dp"
+            android:gravity="center_vertical"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/aiBtn" />
+
+        <ImageView
+            android:id="@+id/aiBtn"
+            android:src="@drawable/ic_sending"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginEnd="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/tv_intro_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:padding="16dp"
-        android:text="안녕하세요! AI 진로상담 '파인'입니다. 체크리스트를 선택해 내게 적절한 상담 결과를 알아볼까요?"
-        android:textAlignment="center" />
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:text="안녕하세요! AI 진로상담 '파인'입니다.\n체크리스트를 선택해 내게 적절한 상담 결과를 알아볼까요?"
+        android:textSize="14dp"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.3"
+        app:layout_constraintTop_toBottomOf="@id/titleTextView" />
 
     <ImageButton
         android:id="@+id/btn_start_chat"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_below="@id/tv_intro_text"
-        android:layout_centerHorizontal="true"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_marginTop="24dp"
         android:background="@drawable/ic_robot"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_intro_text" />
 
-</RelativeLayout>
+    <TextView
+        android:id="@+id/tv_intro_text2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="4dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:text="'파인'을 터치해 주세요!"
+        android:textSize="10dp"
+        android:textColor="@color/Gray_700"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@id/btn_start_chat" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
@@ -25,9 +26,11 @@ import java.util.*
 import android.widget.ProgressBar
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.FragmentManager
 import com.example.pathfinder.data.models.Message
 import com.example.pathfinder.data.models.User
 import com.example.pathfinder.databinding.FragmentAiChatBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class AiChatFragment : Fragment() {
 
@@ -75,6 +78,18 @@ class AiChatFragment : Fragment() {
         if (userResponses != null) {
             performAction(userResponses)
         }
+
+        // 뒤로가기
+        val fragmentManager: FragmentManager = parentFragmentManager
+
+        binding.buttonBack.setOnClickListener {
+            repeat(2){
+                clearBackStack(fragmentManager)
+            }
+        }
+
+        hideBottomNavigation(true);
+
         return binding.root
     }
 
@@ -134,5 +149,23 @@ class AiChatFragment : Fragment() {
 
         queue.add(stringRequest)
         Log.d("NetworkRequest", "Request: $stringRequest")
+    }
+
+    // 프래그먼트 스택 비우기
+    private fun clearBackStack(fragmentManager: FragmentManager) {
+        fragmentManager.popBackStack()
+    }
+
+//    override fun onDestroyView() {
+//        super.onDestroyView()
+//        hideBottomNavigation(false)
+//    }
+
+    fun hideBottomNavigation(bool: Boolean) {
+        val bottomNavigation = requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+        if (bool)
+            bottomNavigation.visibility = View.GONE
+        else
+            bottomNavigation.visibility = View.VISIBLE
     }
 }

@@ -19,6 +19,7 @@ import com.example.pathfinder.ui.board.view.BoardInsideActivity
 import com.example.pathfinder.ui.board.view.BoardListLVAdapter
 import com.example.pathfinder.ui.board.view.viewModel.BoardViewModel
 import com.example.pathfinder.ui.board.view.viewModel.BoardViewModelFactory
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -67,6 +68,8 @@ class HomeFragment : Fragment() {
         initBoardListView()
         getFBBoardData_mentor("MENTOR")
         getFBBoardData_mentee("MENTEE")
+
+        hideBottomNavigation(false);
 
         return binding.root
     }
@@ -132,6 +135,14 @@ class HomeFragment : Fragment() {
         viewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
             // 에러 처리
         }
+    }
+
+    fun hideBottomNavigation(bool: Boolean) {
+        val bottomNavigation = requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+        if (bool)
+            bottomNavigation.visibility = View.GONE
+        else
+            bottomNavigation.visibility = View.VISIBLE
     }
 
 
