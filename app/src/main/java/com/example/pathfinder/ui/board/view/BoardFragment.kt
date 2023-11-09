@@ -1,6 +1,6 @@
 package com.example.pathfinder.ui.board.view
 
-import BoardRecyclerViewAdapter
+import BoardRVAdapter
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
@@ -19,7 +19,6 @@ import com.example.pathfinder.data.models.Board
 import com.example.pathfinder.databinding.FragmentBoardBinding
 import com.example.pathfinder.ui.board.view.viewModel.BoardViewModelFactory
 import com.example.pathfinder.ui.board.view.viewModel.BoardViewModel
-import java.io.Serializable
 
 
 class BoardFragment : Fragment() {
@@ -27,7 +26,7 @@ class BoardFragment : Fragment() {
     private lateinit var binding: FragmentBoardBinding
 
     private val boardDataList = mutableListOf<Board>()
-    private lateinit var boardRVAdapter: BoardRecyclerViewAdapter
+    private lateinit var boardRVAdapter: BoardRVAdapter
 
     private val startWriteActivityForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
@@ -56,7 +55,7 @@ class BoardFragment : Fragment() {
     }
 
     private fun initBoardListView() {
-        boardRVAdapter = BoardRecyclerViewAdapter(boardDataList)
+        boardRVAdapter = BoardRVAdapter(boardDataList)
         binding.boardListView.adapter = boardRVAdapter
         binding.boardListView.layoutManager = LinearLayoutManager(context)
 

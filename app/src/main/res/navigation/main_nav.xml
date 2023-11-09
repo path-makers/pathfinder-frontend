@@ -75,7 +75,7 @@
         tools:layout="@layout/fragment_team_building" />
     <fragment
         android:id="@+id/aiIntroFragment"
-        android:name="com.example.pathfinder.ui.aiService.AiIntroFragment"
+        android:name="com.example.pathfinder.ui.aiChatBot.AiIntroFragment"
         android:label="fragment_ai_intro"
         tools:layout="@layout/fragment_ai_intro" >
         <action
@@ -84,7 +84,7 @@
     </fragment>
     <fragment
         android:id="@+id/aiQuestionFragment"
-        android:name="com.example.pathfinder.ui.aiService.AiQuestionFragment"
+        android:name="com.example.pathfinder.ui.aiChatBot.AiQuestionFragment"
         android:label="fragment_ai_intro"
         tools:layout="@layout/fragment_ai_intro">
 

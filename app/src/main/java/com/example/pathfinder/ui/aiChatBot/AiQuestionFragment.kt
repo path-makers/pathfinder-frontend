@@ -1,4 +1,4 @@
-package com.example.pathfinder.ui.aiService
+package com.example.pathfinder.ui.aiChatBot
 
 import android.os.Bundle
 import android.util.Log
@@ -7,25 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.android.volley.toolbox.Volley
 import com.example.pathfinder.R
 import com.example.pathfinder.databinding.FragmentAiQuestionBinding
-import org.json.JSONArray
-import org.json.JSONObject
 
-
-import com.android.volley.Request
-import com.android.volley.Response
-
-import com.android.volley.VolleyError
-import com.android.volley.toolbox.JsonObjectRequest
 
 import java.util.*
-import android.widget.ProgressBar
-import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentManager
-import com.android.volley.DefaultRetryPolicy
-import com.android.volley.RetryPolicy
 import com.hadi.emojiratingbar.EmojiRatingBar
 import com.hadi.emojiratingbar.RateStatus
 
