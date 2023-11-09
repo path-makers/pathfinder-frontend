@@ -12,40 +12,94 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/linearLayout1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="270dp"
                 android:orientation="vertical"
-                android:background="@color/mainColor">
+                android:background="@color/mainColor"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <!-- Title Bar ConstraintLayout -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/typeBarLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:background="@color/mainColor"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent">
+
+                    <TextView
+                        android:id="@+id/titleTextView"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginEnd="50dp"
+                        android:gravity="left|center_vertical"
+                        android:text="프로필"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/boardSettingIcon"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+
+                        />
+
+                    <ImageView
+                        android:id="@+id/boardSettingIcon"
+                        android:layout_width="40dp"
+                        android:layout_height="25dp"
+                        android:layout_marginEnd="18dp"
+                        android:src="@drawable/ic_setting2"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/white" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <ImageView
+                    android:layout_width="104dp"
+                    android:layout_height="104dp"
+                    android:layout_marginTop="28dp"
+                    android:background="@drawable/circle_image"
+                    android:cropToPadding="true"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/typeBarLayout" />
 
                 <ImageView
                     android:id="@+id/userImage"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="40dp"
-                    android:background="@drawable/circle_image"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/ic_profildefault"
                     android:cropToPadding="true"
                     android:scaleType="centerCrop"
-                     />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/typeBarLayout" />
 
                 <Button
                     android:id="@+id/btnChangeImage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="24dp"
                     android:background="@drawable/custom_button"
                     android:paddingLeft="16dp"
                     android:paddingRight="16dp"
+                    android:text="프로필 이미지 변경"
                     android:textStyle="bold"
-                    android:text="프로필 이미지 변경" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/userImage" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="32dp" />  <!-- Added Space -->
-            </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <ScrollView
                 android:id="@+id/userProfileContainer"
@@ -53,6 +107,7 @@
                 android:layout_height="0dp"
 
 
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout1">
 
 
@@ -60,7 +115,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="16dp">
+                    android:padding="24dp">
 
                     <EditText
                         android:id="@+id/editUserName"
@@ -77,8 +132,8 @@
                         android:background="@drawable/custom_button"
                         android:paddingLeft="16dp"
                         android:paddingRight="16dp"
-                        android:textStyle="bold"
-                        android:text="닉네임 업데이트" />
+                        android:text="닉네임 업데이트"
+                        android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/editEmail"
@@ -96,8 +151,8 @@
                         android:background="@drawable/custom_button"
                         android:paddingLeft="16dp"
                         android:paddingRight="16dp"
-                        android:textStyle="bold"
-                        android:text="이메일 업데이트" />
+                        android:text="이메일 업데이트"
+                        android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/editPassword"
@@ -116,8 +171,13 @@
                         android:background="@drawable/custom_button"
                         android:paddingLeft="16dp"
                         android:paddingRight="16dp"
-                        android:textStyle="bold"
-                        android:text="비밀번호 업데이트" />
+                        android:text="비밀번호 업데이트"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:background="@color/transparent_ripple_color" />
 
                 </LinearLayout>
 

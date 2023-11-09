@@ -18,6 +18,8 @@ import com.bumptech.glide.Glide
 
 import com.example.pathfinder.R
 import com.example.pathfinder.databinding.FragmentUserProfileBinding
+import com.example.pathfinder.ui.board.view.BoardWriteActivity
+import com.example.pathfinder.ui.setting.SettingActivity
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.ktx.Firebase
@@ -57,6 +59,11 @@ class UserProfileFragment : Fragment() {
                 .into(binding.userImage)
             binding.editUserName.setText(name)
             binding.editEmail.setText(email)
+        }
+
+        binding.boardSettingIcon.setOnClickListener{
+            val intent = Intent(context, SettingActivity::class.java)
+            startActivity(intent)
         }
 
 
