@@ -17,8 +17,9 @@
         <!-- AppBar Content -->
         <ImageView
             android:id="@+id/backButton"
-            android:layout_width="40dp"
+            android:layout_width="50dp"
             android:layout_height="20dp"
+            android:paddingStart="10dp"
             android:src="@drawable/ic_arrow"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/typeArea"

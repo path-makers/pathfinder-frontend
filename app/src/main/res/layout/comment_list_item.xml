@@ -8,8 +8,9 @@
         android:id="@+id/commentArea"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:layout_marginLeft="7dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         android:text="comment"
         android:textColor="@color/black"
         android:textSize="16dp" />
@@ -22,19 +23,29 @@
         <TextView
             android:id="@+id/userNameArea"
             android:text="userName"
-            android:layout_marginLeft="8dp"
-            android:layout_marginBottom="3dp"
-            android:textSize="12dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="6dp"
+            android:textColor="@color/Gray_700"
+            android:textSize="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <TextView
             android:id="@+id/timeArea"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="3dp"
-            android:layout_marginLeft="8dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="24dp"
             android:text="time"
             android:textColor="@color/gray"
-            android:textSize="12dp" />
+            android:textSize="10dp" />
     </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:background="@color/Gray_300" />
 </androidx.appcompat.widget.LinearLayoutCompat>
