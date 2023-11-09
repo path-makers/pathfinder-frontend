@@ -3,6 +3,7 @@ package com.example.pathfinder.ui.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,12 +13,17 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.pathfinder.R
 import com.example.pathfinder.data.models.Board
+import com.example.pathfinder.data.models.Team
 import com.example.pathfinder.data.repository.BoardRepository
 import com.example.pathfinder.databinding.FragmentHomeBinding
 import com.example.pathfinder.ui.board.view.BoardInsideActivity
 import com.example.pathfinder.ui.board.view.viewModel.BoardViewModel
 import com.example.pathfinder.ui.board.view.viewModel.BoardViewModelFactory
+import com.example.pathfinder.ui.teamBuilding.TeamBuildingLVAdapter
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.firestore.QuerySnapshot
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 import java.io.Serializable
 
@@ -29,11 +35,15 @@ class HomeFragment : Fragment() {
 
 
     private lateinit var viewModel: BoardViewModel
-
+    private val teamDataList = mutableListOf<Team>()
     private val boardDataListMentor = mutableListOf<Board>()
     private val boardDataListMentee = mutableListOf<Board>()
     private lateinit var boardRVAdapterMentor: HomeListLVAdapter2
     private lateinit var boardRVAdapterMentee: HomeListLVAdapter2_mentee
+    private lateinit var teamLVAdapter: TeamBuildingLVAdapter
+    private val teamKeyList = mutableListOf<String>()
+    private val db = Firebase.firestore
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,6 +67,7 @@ class HomeFragment : Fragment() {
         initBoardListView()
         getFBBoardDataMentor()
         getFBBoardDataMentee()
+//        getFBTeamData()
 
         hideBottomNavigation(false);
 
@@ -66,9 +77,10 @@ class HomeFragment : Fragment() {
     private fun initBoardListView() {
         boardRVAdapterMentor = HomeListLVAdapter2(boardDataListMentor)
         boardRVAdapterMentee = HomeListLVAdapter2_mentee(boardDataListMentee)
+//        teamLVAdapter = TeamBuildingLVAdapter(teamDataList)
+//        binding.teamList.adapter = teamLVAdapter
         binding.mentorList.adapter = boardRVAdapterMentor
         binding.menteeList.adapter = boardRVAdapterMentee
-        binding.teamList.adapter = boardRVAdapterMentor
 
 
         // 더보기 -> 해당 fragment로 이동
@@ -78,9 +90,9 @@ class HomeFragment : Fragment() {
         binding.menteeTextViewMore.setOnClickListener {
 
         }
-        binding.teamTextViewMore.setOnClickListener {
-
-        }
+//        binding.teamTextViewMore.setOnClickListener {
+//
+//        }
 
         // 글 클릭 -> 해당 글 페이지로 이동
         binding.mentorList.setOnItemClickListener { _, _, position, _ ->
@@ -126,6 +138,33 @@ class HomeFragment : Fragment() {
         }
     }
 
+//    private fun getFBTeamData() {
+//
+//        db.collection("teamBuilding")
+//            .get()
+//            .addOnSuccessListener { teamdatas ->
+//                handleSnapshot(teamdatas)
+//            }
+//            .addOnFailureListener { exception ->
+//
+//            }
+//    }
+//
+//    private fun handleSnapshot(teamdatas: QuerySnapshot) {
+//        teamDataList.clear()
+//        teamKeyList.clear()
+//
+//        for (teamdata in teamdatas) {
+//
+//            val item = teamdata.toObject(Team::class.java)
+//            teamDataList.add(item)
+//            teamKeyList.add(teamdata.id)
+//        }
+//
+//        teamDataList.reverse()
+//        teamKeyList.reverse()
+//        teamLVAdapter.notifyDataSetChanged()
+//    }
     fun hideBottomNavigation(bool: Boolean) {
         val bottomNavigation = requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         if (bool)

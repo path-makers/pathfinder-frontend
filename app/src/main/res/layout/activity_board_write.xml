@@ -13,7 +13,8 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:gravity="center"
-            android:text="글쓰기"
+            android:text="게시글 작성"
+            android:textSize="20dp"
             android:textColor="@color/black"
             android:textStyle="bold" />
 
