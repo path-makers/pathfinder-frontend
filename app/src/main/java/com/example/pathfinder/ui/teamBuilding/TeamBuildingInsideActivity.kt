@@ -7,6 +7,7 @@ import com.example.pathfinder.R
 import com.example.pathfinder.data.models.Comment
 import com.example.pathfinder.databinding.ActivityBoardInsideBinding
 import com.example.pathfinder.data.models.Team
+import com.example.pathfinder.utils.CommentRVAdapter
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -16,7 +17,7 @@ class TeamBuildingInsideActivity : AppCompatActivity() {
     private lateinit var binding: ActivityBoardInsideBinding
     private val db = Firebase.firestore
     private val commentList = mutableListOf<Comment>()
-    private lateinit var commentAdapter: CommentLVAdapter
+    private lateinit var commentAdapter: CommentRVAdapter
     private lateinit var teamId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,15 +47,15 @@ class TeamBuildingInsideActivity : AppCompatActivity() {
     }
 
     private fun setupCommentListView() {
-        commentAdapter = CommentLVAdapter(commentList)
-        binding.commentLV.adapter = commentAdapter
+        commentAdapter = CommentRVAdapter(commentList)
+        binding.commentRV.adapter = commentAdapter
         loadComments(teamId)
     }
 
     private fun initCommentButton() {
         binding.commentBtn.setOnClickListener {
             binding.commentArea.text.toString().takeIf { it.isNotBlank() }?.let { commentText ->
-                val comment = Comment(userName = getUserName(), content = commentText)
+                val comment = Comment(userName = getUserName(), content = commentText,createdAt = System.currentTimeMillis())
                 postComment(teamId, comment)
                 binding.commentArea.text.clear()
             }

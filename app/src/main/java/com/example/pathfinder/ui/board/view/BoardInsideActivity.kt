@@ -15,6 +15,7 @@ import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pathfinder.R
 import com.example.pathfinder.databinding.ActivityBoardInsideBinding
 import com.example.pathfinder.data.models.Board
@@ -23,6 +24,7 @@ import com.example.pathfinder.data.models.Comment
 import com.example.pathfinder.data.repository.BoardRepository
 import com.example.pathfinder.ui.board.view.viewModel.BoardViewModel
 import com.example.pathfinder.ui.board.view.viewModel.BoardViewModelFactory
+import com.example.pathfinder.utils.CommentRVAdapter
 import com.example.pathfinder.utils.FBAuth
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -32,7 +34,7 @@ class BoardInsideActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityBoardInsideBinding
     private val commentDataList = mutableListOf<Comment>()
-    private lateinit var commentAdapter: CommentLVAdapter
+    private lateinit var commentAdapter: CommentRVAdapter
     private lateinit var viewModel: BoardViewModel
     private lateinit var boardId: String
 
@@ -80,6 +82,7 @@ class BoardInsideActivity : AppCompatActivity() {
             binding.timeArea.text = formatDate(board.date.toLong())
                 binding.userNameArea.text = board.author
             viewModel.commentsData.value = board.comments
+                Log.d("commentDataList", commentDataList.toString())
 
 
 
@@ -113,8 +116,9 @@ class BoardInsideActivity : AppCompatActivity() {
 
     }
     private fun setupCommentListView() {
-        commentAdapter = CommentLVAdapter(commentDataList)
-        binding.commentLV.adapter = commentAdapter
+        commentAdapter = CommentRVAdapter(commentDataList)
+        binding.commentRV.adapter = commentAdapter
+        binding.commentRV.layoutManager = LinearLayoutManager(this)
     }
 
     private fun hideKeyboard() {

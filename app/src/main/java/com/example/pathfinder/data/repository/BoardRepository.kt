@@ -20,7 +20,7 @@ class BoardRepository(private val context: Context) { // Context 추가
 
         val jsonObjectRequest = JsonObjectRequest(
             Request.Method.GET, url, null,
-            Response.Listener<JSONObject> { response ->
+            { response ->
                 val boardsArray = response.getJSONArray("boards")
                 Log.d(TAG, "Received data: $response")
                 val boardDataList = mutableListOf<Board>()
@@ -34,17 +34,6 @@ class BoardRepository(private val context: Context) { // Context 추가
                         }
                     }
 
-                    val commentsList = mutableListOf<Comment>()
-                    item.getJSONArray("comments").let {
-                        for (j in 0 until it.length()) {
-                            val commentItem = it.getJSONObject(j)
-                            val content = commentItem.getString("content")
-                            val uid = commentItem.getString("uid")
-                            val createdAt = commentItem.optString("createdAt", "Unknown")
-
-                            commentsList.add(Comment(content, uid, createdAt))
-                        }
-                    }
 
                     val board = Board(
                         author = item.getString("author"),
@@ -55,7 +44,7 @@ class BoardRepository(private val context: Context) { // Context 추가
                         date = item.optString("createdAt", "Unknown"),
                         boardType = item.getString("boardType"),
                         tags = tagsList,
-                        comments = commentsList
+
                     )
                     Log.d(TAG, "Parsed data: $board")
 
@@ -64,7 +53,7 @@ class BoardRepository(private val context: Context) { // Context 추가
 
                 success(boardDataList)
             },
-            Response.ErrorListener { err ->
+            { err ->
                 Log.w(TAG, "Error: ${err.message}")
                 error(err.message ?: "Unknown error")
             }
@@ -79,7 +68,7 @@ class BoardRepository(private val context: Context) { // Context 추가
 
         val jsonObjectRequest = JsonObjectRequest(
             Request.Method.GET, url, null,
-            Response.Listener<JSONObject> { response ->
+            { response ->
                 Log.d(TAG, "Received data: $response")
                 val boardJson = response.getJSONObject("board")
 
@@ -100,7 +89,7 @@ class BoardRepository(private val context: Context) { // Context 추가
                         val author = commentItem.getString("author")
                         val content = commentItem.getString("content")
                         val uid = commentItem.getString("uid")
-                        val createdAt = commentItem.optString("createdAt", "Unknown")
+                        val createdAt = commentItem.optLong("createdAt")
 
                         commentsList.add(Comment(author,content, uid, createdAt))
                     }
@@ -120,7 +109,7 @@ class BoardRepository(private val context: Context) { // Context 추가
 
                 success(board) // Invoke success callback with a single Board object
             },
-            Response.ErrorListener { err ->
+            { err ->
                 Log.w(TAG, "Error: ${err.message}")
                 error(err.message ?: "Unknown error")
             }
