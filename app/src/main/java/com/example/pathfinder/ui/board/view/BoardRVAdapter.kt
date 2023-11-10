@@ -28,7 +28,7 @@ class BoardRVAdapter(private val boardList: MutableList<Board>) :
 
     // 새로운 뷰 홀더 생성
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BoardViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.board_list_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_board_list, parent, false)
         return BoardViewHolder(view)
     }
 

@@ -28,7 +28,7 @@ class CommentLVAdapter(val commentList : MutableList<Comment>):BaseAdapter() {
         var view = convertView
 
         if(view==null){
-            view = LayoutInflater.from(parent?.context).inflate(R.layout.comment_list_item,parent,false)
+            view = LayoutInflater.from(parent?.context).inflate(R.layout.item_comment_list,parent,false)
         }
         val userName = view?.findViewById<TextView>(R.id.userNameArea)
         val time = view?.findViewById<TextView>(R.id.timeArea)

@@ -13,7 +13,7 @@ import java.util.Locale
 
 class CommentRVAdapter(val commentList : MutableList<Comment>) : RecyclerView.Adapter<CommentRVAdapter.CommentViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommentViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.comment_list_item,parent,false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_comment_list,parent,false)
         return CommentViewHolder(view)
     }
 
