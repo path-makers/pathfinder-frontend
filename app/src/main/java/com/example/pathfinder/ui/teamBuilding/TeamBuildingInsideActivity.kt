@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pathfinder.R
 import com.example.pathfinder.data.models.Comment
 import com.example.pathfinder.databinding.ActivityBoardInsideBinding
@@ -50,6 +51,7 @@ class TeamBuildingInsideActivity : AppCompatActivity() {
     private fun setupCommentListView() {
         commentAdapter = CommentRVAdapter(commentList)
         binding.commentRV.adapter = commentAdapter
+        binding.commentRV.layoutManager = LinearLayoutManager(this)
         loadComments(teamId)
     }
 
@@ -82,7 +84,7 @@ class TeamBuildingInsideActivity : AppCompatActivity() {
         db.collection("teamBuilding")
             .document(teamId)
             .collection("comments")
-            .orderBy("timeStamp")
+            .orderBy("createdAt")
             .addSnapshotListener { snapshot, e ->
                 if (e != null) {
                     // Handle the error
@@ -90,6 +92,7 @@ class TeamBuildingInsideActivity : AppCompatActivity() {
                     return@addSnapshotListener
                 }
                 snapshot?.toObjects(Comment::class.java)?.let { comments ->
+                    Log.d("loadComments", "Comments loaded: ${comments.size}")
                     commentList.clear()
                     commentList.addAll(comments)
                     commentAdapter.notifyDataSetChanged()

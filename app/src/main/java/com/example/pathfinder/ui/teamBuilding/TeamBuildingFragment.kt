@@ -1,11 +1,13 @@
 package com.example.pathfinder.ui.teamBuilding
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.pathfinder.R
@@ -16,6 +18,7 @@ import com.example.pathfinder.utils.FBRef
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -28,6 +31,14 @@ class TeamBuildingFragment : Fragment() {
     private lateinit var teamRVAdapter: TeamBuildingLVAdapter
     private val TAG = TeamBuildingFragment::class.java.simpleName
     private val db = Firebase.firestore
+
+    private val startWriteActivityForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            getFBTeamData()
+        }
+    }
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -58,13 +69,14 @@ class TeamBuildingFragment : Fragment() {
     private fun initWriteButton() {
         binding.teamWriteBtn.setOnClickListener {
             val intent = Intent(context, TeamBuildingWriteActivity::class.java)
-            startActivity(intent)
+            startWriteActivityForResult.launch(intent)
         }
     }
 
     private fun getFBTeamData() {
 
         db.collection("teamBuilding")
+            .orderBy("uploadTime", Query.Direction.ASCENDING)
             .get()
             .addOnSuccessListener { teamdatas ->
                 handleSnapshot(teamdatas)
