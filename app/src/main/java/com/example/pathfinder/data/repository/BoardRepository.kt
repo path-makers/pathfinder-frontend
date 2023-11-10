@@ -10,6 +10,7 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.pathfinder.data.models.Board
 import com.example.pathfinder.data.models.Comment
+import com.example.pathfinder.utils.FBAuth
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -20,7 +21,7 @@ class BoardRepository(private val context: Context) { // Context 추가
 
         val jsonObjectRequest = JsonObjectRequest(
             Request.Method.GET, url, null,
-            Response.Listener<JSONObject> { response ->
+            { response ->
                 val boardsArray = response.getJSONArray("boards")
                 Log.d(TAG, "Received data: $response")
                 val boardDataList = mutableListOf<Board>()
@@ -41,13 +42,15 @@ class BoardRepository(private val context: Context) { // Context 추가
                             val content = commentItem.getString("content")
                             val uid = commentItem.getString("uid")
                             val createdAt = commentItem.optString("createdAt", "Unknown")
+                            val author = if (commentItem.getString("author") == "null") "익명 유저" else commentItem.getString("author")
 
-                            commentsList.add(Comment(content, uid, createdAt))
+                            commentsList.add(Comment(content, uid, createdAt,author))
                         }
                     }
 
+
                     val board = Board(
-                        author = item.getString("author"),
+                        author = if (item.getString("author") == "null") "익명 유저" else item.getString("author"),
                         id = item.getString("id"),
                         title = item.getString("title"),
                         content = item.getString("content"),
@@ -64,7 +67,7 @@ class BoardRepository(private val context: Context) { // Context 추가
 
                 success(boardDataList)
             },
-            Response.ErrorListener { err ->
+            { err ->
                 Log.w(TAG, "Error: ${err.message}")
                 error(err.message ?: "Unknown error")
             }
@@ -79,7 +82,7 @@ class BoardRepository(private val context: Context) { // Context 추가
 
         val jsonObjectRequest = JsonObjectRequest(
             Request.Method.GET, url, null,
-            Response.Listener<JSONObject> { response ->
+            { response ->
                 Log.d(TAG, "Received data: $response")
                 val boardJson = response.getJSONObject("board")
 
@@ -97,7 +100,7 @@ class BoardRepository(private val context: Context) { // Context 추가
                 if (commentsArray != null) { // commentsArray가 null이 아닐 때만 반복문 실행
                     for (j in 0 until commentsArray.length()) {
                         val commentItem = commentsArray.getJSONObject(j)
-                        val author = commentItem.getString("author")
+                        val author = if (commentItem.getString("author") == "null") "익명 유저" else commentItem.getString("author")
                         val content = commentItem.getString("content")
                         val uid = commentItem.getString("uid")
                         val createdAt = commentItem.optString("createdAt", "Unknown")
@@ -107,7 +110,7 @@ class BoardRepository(private val context: Context) { // Context 추가
                 }
 
                 val board = Board(
-                    author = boardJson.getString("author"),
+                    author = if (boardJson.getString("author") == "null") "익명 유저" else boardJson.getString("author"),
                     id = boardJson.getString("id"),
                     title = boardJson.getString("title"),
                     content = boardJson.getString("content"),
@@ -120,7 +123,7 @@ class BoardRepository(private val context: Context) { // Context 추가
 
                 success(board) // Invoke success callback with a single Board object
             },
-            Response.ErrorListener { err ->
+            { err ->
                 Log.w(TAG, "Error: ${err.message}")
                 error(err.message ?: "Unknown error")
             }
@@ -139,6 +142,7 @@ class BoardRepository(private val context: Context) { // Context 추가
             put("boardType", board.boardType)
             put("title", board.title)
             put("content", board.content)
+            put("author", FBAuth.getUserName())
         }
         val requestBody = jsonBody.toString()
 
@@ -175,6 +179,7 @@ class BoardRepository(private val context: Context) { // Context 추가
         val jsonBody = JSONObject().apply {
             put("uid", comment.uid)
             put("content", comment.content)
+            put("author", FBAuth.getUserName())
         }
         val requestBody = jsonBody.toString()
 
