@@ -33,7 +33,7 @@ class TeamBuildingLVAdapter(val teamBuildingList : MutableList<Team>): BaseAdapt
         var view = convertView
 
         //if(view==null){
-        view = LayoutInflater.from(parent?.context).inflate(R.layout.team_building_list_item,parent,false)
+        view = LayoutInflater.from(parent?.context).inflate(R.layout.item_team_building_list,parent,false)
         //}
 
         val itemLinearLayoutView = view?.findViewById<ConstraintLayout>(R.id.teamItemView)

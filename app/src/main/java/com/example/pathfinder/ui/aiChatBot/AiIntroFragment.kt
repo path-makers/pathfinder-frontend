@@ -1,4 +1,4 @@
-package com.example.pathfinder.ui.aiService
+package com.example.pathfinder.ui.aiChatBot
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

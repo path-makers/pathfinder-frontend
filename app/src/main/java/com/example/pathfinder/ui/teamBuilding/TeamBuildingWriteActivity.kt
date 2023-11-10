@@ -2,6 +2,7 @@
 
 package com.example.pathfinder.ui.teamBuilding
 
+import android.app.Activity
 import android.app.DatePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -57,6 +58,7 @@ class TeamBuildingWriteActivity : AppCompatActivity() {
                     }
                     .addOnFailureListener { e ->
                     }
+                setResult(Activity.RESULT_OK)
                 finish()
             }
         }

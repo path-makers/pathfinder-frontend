@@ -1,4 +1,4 @@
-package com.example.pathfinder.ui.aiService
+package com.example.pathfinder.ui.aiChatBot
 
 import android.os.Bundle
 import android.util.Log
@@ -7,25 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.android.volley.toolbox.Volley
 import com.example.pathfinder.R
 import com.example.pathfinder.databinding.FragmentAiQuestionBinding
-import org.json.JSONArray
-import org.json.JSONObject
 
-
-import com.android.volley.Request
-import com.android.volley.Response
-
-import com.android.volley.VolleyError
-import com.android.volley.toolbox.JsonObjectRequest
 
 import java.util.*
-import android.widget.ProgressBar
-import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentManager
-import com.android.volley.DefaultRetryPolicy
-import com.android.volley.RetryPolicy
 import com.hadi.emojiratingbar.EmojiRatingBar
 import com.hadi.emojiratingbar.RateStatus
 
@@ -136,84 +123,6 @@ class AiQuestionFragment : Fragment() {
     private fun clearBackStack(fragmentManager: FragmentManager) {
         fragmentManager.popBackStack()
     }
-
-
-//    fun sendOpenAIRequest(responses: List<Int>) {
-//        val queue = Volley.newRequestQueue(requireContext())
-//        val url = "https://api.openai.com/v1/chat/completions"
-//
-//
-//
-//        val contentBuilder = StringBuilder()
-//        val questions = resources.getStringArray(R.array.questions)
-//        for (i in responses.indices) {
-//            contentBuilder.append("${questions[i]}에 대한 점수는 ${responses[i]}.")
-//        }
-//
-//
-//        contentBuilder.append("흥미도를 1부터 5로 평가했어요. 이 정보를 바탕으로 내게 어울리는 직업을 추천해주세요.")
-//
-//        val userResponses = JSONObject().apply {
-//            put("role", "user")
-//            put("content", contentBuilder.toString())
-//        }
-//
-//        val jsonArray = JSONArray().apply {
-//            put(userResponses)
-//        }
-//        val jsonObject = JSONObject().apply {
-//            put("messages", jsonArray)
-//            put("model", "gpt-4")
-//            put("max_tokens", 4096)
-//        }
-//        Log.d("NetworkRequest", "Request: $jsonArray")
-//
-//
-//
-//
-//        val stringRequest = object : JsonObjectRequest(
-//            Request.Method.POST, url, jsonObject,
-//            Response.Listener<JSONObject> { response ->
-//                Log.d("NetworkSuccess", "Response: $response")
-//                displayResults(response)
-//            },
-//            Response.ErrorListener { error ->
-//                Log.e("NetworkError", "Error: ${error.toString()}")
-//
-//
-//            }
-//        ) {
-//            override fun getHeaders(): MutableMap<String, String> {
-//                var map = HashMap<String, String>()
-//                map.put("Content-Type", "application/json")
-//                map.put("Authorization", "Bearer ")
-//                Log.d("NetworkHeaders", "Headers: $map")
-//                return map
-//            }
-//        }
-//        stringRequest.retryPolicy = object : RetryPolicy {
-//            override fun getCurrentTimeout(): Int {
-//                return 60000
-//            }
-//
-//            override fun getCurrentRetryCount(): Int {
-//                return 15
-//            }
-//
-//            override fun retry(error: VolleyError?) {
-//            }
-//        }
-//        queue.add(stringRequest)
-//        Log.d("NetworkRequest", "Request: $stringRequest")
-//
-//    }
-//
-//    private fun displayResults(response: JSONObject) {
-//        val answer = response.getJSONArray("choices").getJSONObject(0).getJSONObject("message").getString("content")
-//        Log.d("NetworkAnswer", "Answer: $answer")
-//
-//    }
-
 
 
 

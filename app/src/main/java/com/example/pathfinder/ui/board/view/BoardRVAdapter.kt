@@ -4,7 +4,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pathfinder.R
 import com.example.pathfinder.data.models.Board
@@ -14,8 +13,8 @@ import java.util.Date
 import java.util.Locale
 
 
-class BoardRecyclerViewAdapter(private val boardList: MutableList<Board>) :
-    RecyclerView.Adapter<BoardRecyclerViewAdapter.BoardViewHolder>() {
+class BoardRVAdapter(private val boardList: MutableList<Board>) :
+    RecyclerView.Adapter<BoardRVAdapter.BoardViewHolder>() {
 
     // ViewHolder 클래스 정의
     class BoardViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -29,7 +28,7 @@ class BoardRecyclerViewAdapter(private val boardList: MutableList<Board>) :
 
     // 새로운 뷰 홀더 생성
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BoardViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.board_list_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_board_list, parent, false)
         return BoardViewHolder(view)
     }
 
