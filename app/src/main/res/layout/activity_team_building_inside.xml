@@ -145,8 +145,8 @@
         <!-- Comments ListView -->
 
         <!-- Comment Input Layout -->
-        <ListView
-            android:id="@+id/commentLV"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/commentRV"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="10dp"

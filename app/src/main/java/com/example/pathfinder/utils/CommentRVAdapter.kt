@@ -27,7 +27,7 @@ class CommentRVAdapter(val commentList : MutableList<Comment>) : RecyclerView.Ad
         val comment = commentList[position]
         holder.author.text = comment.author
         holder.content.text = comment.content
-        holder.date.text = formatDate(comment.createdAt.toLong())
+        holder.date.text = formatDate(comment.createdAt)
     }
 
     override fun getItemCount(): Int {

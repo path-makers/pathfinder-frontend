@@ -35,18 +35,6 @@ class BoardRepository(private val context: Context) { // Context 추가
                         }
                     }
 
-                    val commentsList = mutableListOf<Comment>()
-                    item.getJSONArray("comments").let {
-                        for (j in 0 until it.length()) {
-                            val commentItem = it.getJSONObject(j)
-                            val content = commentItem.getString("content")
-                            val uid = commentItem.getString("uid")
-                            val createdAt = commentItem.optString("createdAt", "Unknown")
-                            val author = if (commentItem.getString("author") == "null") "익명 유저" else commentItem.getString("author")
-
-                            commentsList.add(Comment(content, uid, createdAt,author))
-                        }
-                    }
 
 
                     val board = Board(
@@ -58,7 +46,7 @@ class BoardRepository(private val context: Context) { // Context 추가
                         date = item.optString("createdAt", "Unknown"),
                         boardType = item.getString("boardType"),
                         tags = tagsList,
-                        comments = commentsList
+
                     )
                     Log.d(TAG, "Parsed data: $board")
 
@@ -103,7 +91,7 @@ class BoardRepository(private val context: Context) { // Context 추가
                         val author = if (commentItem.getString("author") == "null") "익명 유저" else commentItem.getString("author")
                         val content = commentItem.getString("content")
                         val uid = commentItem.getString("uid")
-                        val createdAt = commentItem.optString("createdAt", "Unknown")
+                        val createdAt = commentItem.optLong("createdAt")
 
                         commentsList.add(Comment(author,content, uid, createdAt))
                     }
@@ -180,6 +168,7 @@ class BoardRepository(private val context: Context) { // Context 추가
             put("uid", comment.uid)
             put("content", comment.content)
             put("author", FBAuth.getUserName())
+
         }
         val requestBody = jsonBody.toString()
 
