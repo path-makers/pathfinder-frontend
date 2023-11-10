@@ -74,25 +74,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <ImageView
-                    android:id="@+id/boardimg"
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp"
-                    android:background="@color/light_gray"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"/>
-
-
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/boardListView"
                     android:layout_width="match_parent"
-                    android:layout_height="670dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/boardimg" />
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toTopOf="@+id/boardBottomPadding"
+                     />
 
                 <ImageView
+                    android:id="@+id/boardBottomPadding"
                     android:layout_width="match_parent"
-                    android:layout_height="10dp"
+                    android:layout_height="50dp"
                     android:background="@color/transparent_ripple_color"
                     app:layout_constraintBottom_toBottomOf="parent"/>
 
