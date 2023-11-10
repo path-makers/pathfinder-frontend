@@ -1,6 +1,7 @@
 package com.example.pathfinder.ui.teamBuilding
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.pathfinder.R
@@ -55,7 +56,7 @@ class TeamBuildingInsideActivity : AppCompatActivity() {
     private fun initCommentButton() {
         binding.commentBtn.setOnClickListener {
             binding.commentArea.text.toString().takeIf { it.isNotBlank() }?.let { commentText ->
-                val comment = Comment(userName = getUserName(), content = commentText,createdAt = System.currentTimeMillis())
+                val comment = Comment(author = getUserName(), content = commentText,createdAt = System.currentTimeMillis())
                 postComment(teamId, comment)
                 binding.commentArea.text.clear()
             }
@@ -85,6 +86,7 @@ class TeamBuildingInsideActivity : AppCompatActivity() {
             .addSnapshotListener { snapshot, e ->
                 if (e != null) {
                     // Handle the error
+                    Log.e("loadComments", "Error loading comments", e)
                     return@addSnapshotListener
                 }
                 snapshot?.toObjects(Comment::class.java)?.let { comments ->

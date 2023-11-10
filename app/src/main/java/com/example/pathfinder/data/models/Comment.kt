@@ -7,5 +7,4 @@ class Comment (
     val content : String = "",
     val uid : String = "",
     val createdAt: Long = System.currentTimeMillis(),
-    val userName: String = "",
         ): Serializable

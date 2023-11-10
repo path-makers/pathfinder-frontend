@@ -164,6 +164,7 @@ class BoardRepository(private val context: Context) { // Context 추가
         val jsonBody = JSONObject().apply {
             put("uid", comment.uid)
             put("content", comment.content)
+            put("author", comment.author)
         }
         val requestBody = jsonBody.toString()
 

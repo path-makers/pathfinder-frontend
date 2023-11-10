@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.example.pathfinder.data.models.Board
 import com.example.pathfinder.data.models.Comment
 import com.example.pathfinder.data.repository.BoardRepository
+import com.example.pathfinder.utils.FBAuth
 
 class BoardViewModel(private val boardRepository: BoardRepository) : ViewModel() {
 
@@ -61,11 +62,11 @@ class BoardViewModel(private val boardRepository: BoardRepository) : ViewModel()
         )
         boardRepository.sendBoardData(board)
     }
-    fun addComment(uid: String, content: String, boardId: String) {
+    fun addComment(uid: String, content: String, boardId: String,author:String) {
         val comment = Comment(
             uid = uid,
             content = content,
-
+            author = author,
         )
         boardRepository.sendCommentData(comment, boardId)
         { success ->

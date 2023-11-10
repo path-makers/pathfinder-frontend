@@ -51,7 +51,7 @@ class BoardInsideActivity : AppCompatActivity() {
 
 
         binding.commentBtn.setOnClickListener {
-            viewModel.addComment(FBAuth.getUid(), binding.commentArea.text.toString(), boardId)
+            viewModel.addComment(FBAuth.getUid(), binding.commentArea.text.toString(), boardId, FBAuth.getUserName())
             binding.commentArea.text.clear()
             hideKeyboard()
 
@@ -82,7 +82,7 @@ class BoardInsideActivity : AppCompatActivity() {
             binding.timeArea.text = formatDate(board.date.toLong())
                 binding.userNameArea.text = board.author
             viewModel.commentsData.value = board.comments
-                Log.d("commentDataList", commentDataList.toString())
+
 
 
 
