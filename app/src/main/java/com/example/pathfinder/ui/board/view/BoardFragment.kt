@@ -4,6 +4,9 @@ import BoardRVAdapter
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -27,10 +30,16 @@ class BoardFragment : Fragment() {
 
     private val boardDataList = mutableListOf<Board>()
     private lateinit var boardRVAdapter: BoardRVAdapter
+    private var currentBoardType = "MENTOR"
 
     private val startWriteActivityForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
-            getFBBoardData("MENTOR")
+
+            Handler(Looper.getMainLooper()).postDelayed({
+                //서버와 프론트 시간 차이로 인해 글 작성후 업데이트 전 0.1초 딜레이
+                getFBBoardData(currentBoardType)
+            }, 100)
+            Log.d("BoardFragment", "onCreateView: ${viewModel.boardDataList.value}}")
         }
     }
 
@@ -43,7 +52,7 @@ class BoardFragment : Fragment() {
         binding.mentorBtn.isChecked = true
         val boardRepository = BoardRepository(requireContext())
         val viewModelFactory = BoardViewModelFactory(boardRepository)
-        viewModel = ViewModelProvider(this, viewModelFactory).get(BoardViewModel::class.java)
+        viewModel = ViewModelProvider(this, viewModelFactory)[BoardViewModel::class.java]
 
 
 
@@ -61,6 +70,9 @@ class BoardFragment : Fragment() {
 
         binding.mentorBtn.setOnClickListener {
 
+            if (currentBoardType != "MENTOR"){
+                currentBoardType = "MENTOR"}
+
             binding.mentorBtn.isChecked = true
             binding.menteeBtn.isChecked = false
 
@@ -71,6 +83,9 @@ class BoardFragment : Fragment() {
         }
 
         binding.menteeBtn.setOnClickListener {
+
+            if (currentBoardType != "MENTEE"){
+                currentBoardType = "MENTEE"}
 
             binding.menteeBtn.isChecked = true
             binding.mentorBtn.isChecked = false

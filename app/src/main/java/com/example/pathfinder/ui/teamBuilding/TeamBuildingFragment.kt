@@ -74,15 +74,17 @@ class TeamBuildingFragment : Fragment() {
     }
 
     private fun getFBTeamData() {
-
         db.collection("teamBuilding")
             .orderBy("uploadTime", Query.Direction.ASCENDING)
-            .get()
-            .addOnSuccessListener { teamdatas ->
-                handleSnapshot(teamdatas)
-            }
-            .addOnFailureListener { exception ->
-                Log.w(TAG, "Error getting documents: ", exception)
+            .addSnapshotListener { teamdatas, e ->
+                if (e != null) {
+                    Log.w(TAG, "Listen failed.", e)
+                    return@addSnapshotListener
+                }
+
+                if (teamdatas != null) {
+                    handleSnapshot(teamdatas)
+                }
             }
     }
 
