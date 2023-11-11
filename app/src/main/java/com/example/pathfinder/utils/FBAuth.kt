@@ -19,12 +19,6 @@ class FBAuth {
             return auth.currentUser?.uid.toString()
 
         }
-        fun getEmail() : String{
-
-            auth = FirebaseAuth.getInstance()
-
-            return auth.currentUser?.email.toString()
-        }
 
         fun getUserName() : String{
             auth = FirebaseAuth.getInstance()
@@ -33,13 +27,11 @@ class FBAuth {
         }
 
 
-
-        fun getTime(): String{
+        fun getTime(): String {
 
             val currentDateTime = Calendar.getInstance().time
-            val dateFormat = SimpleDateFormat("yyyy.MM.dd HH:mm", Locale.KOREA).format(currentDateTime)
 
-            return dateFormat
+            return SimpleDateFormat("yyyy.MM.dd HH:mm", Locale.KOREA).format(currentDateTime)
         }
     }
 }

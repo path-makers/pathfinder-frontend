@@ -2,17 +2,17 @@ package com.example.pathfinder.data.models
 
 import com.stfalcon.chatkit.commons.models.IUser
 
-class User(val idm:String,val namem:String,val avatarm:String):IUser {
+class User(private val id:String, private val name:String, private val avatar:String):IUser {
     override fun getId(): String {
-       return idm
+       return id
     }
 
     override fun getName(): String {
-        return namem
+        return name
     }
 
     override fun getAvatar(): String {
-        return avatarm
+        return avatar
     }
 
 }

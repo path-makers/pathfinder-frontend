@@ -23,7 +23,6 @@ class BoardRVAdapter(private val boardList: MutableList<Board>) :
         val date: TextView = view.findViewById(R.id.timeArea)
         val author: TextView = view.findViewById(R.id.userName)
         val tagsLayout: LinearLayout = view.findViewById(R.id.tagsLayout)
-        // 추가적으로 필요한 뷰를 여기에 정의합니다.
     }
 
     // 새로운 뷰 홀더 생성

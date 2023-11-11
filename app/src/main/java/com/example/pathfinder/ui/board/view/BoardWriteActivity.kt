@@ -32,7 +32,7 @@ class BoardWriteActivity : AppCompatActivity() {
 
         val boardRepository = BoardRepository(this)
         val viewModelFactory = BoardViewModelFactory(boardRepository)
-        viewModel = ViewModelProvider(this, viewModelFactory).get(BoardViewModel::class.java)
+        viewModel = ViewModelProvider(this, viewModelFactory)[BoardViewModel::class.java]
 
         Toaster.init(application)
         initSpinner()
@@ -42,7 +42,6 @@ class BoardWriteActivity : AppCompatActivity() {
 
 
     private fun initSpinner() {
-        //todo: 스피너 어댑터 설정 추가 공부
         ArrayAdapter.createFromResource(
             this,
             R.array.spinner_items,
@@ -69,10 +68,10 @@ class BoardWriteActivity : AppCompatActivity() {
 
 
     private fun displaySelectedTags() {
-        // 기존에 추가된 태그 뷰를 모두 제거합니다.
+        // 기존에 추가된 태그 뷰를 모두 제거
         binding.tagsLayout.removeAllViews()
 
-        // 선택된 태그를 순회하며 화면에 추가합니다.
+        // 선택된 태그를 순회하며 화면에 추가
         for (tag in selectedTags) {
             val tagView = LayoutInflater.from(this).inflate(R.layout.item_tag, binding.tagsLayout, false)
             val tagName = tagView.findViewById<TextView>(R.id.tagName)
@@ -93,7 +92,6 @@ class BoardWriteActivity : AppCompatActivity() {
             val errorMessage = "모든 사항을 입력해주세요."
 
             if (title.isEmpty() || content.isEmpty()) {
-                // Show a Toast message to fill all details
                 Toaster.show(errorMessage)
             } else {
                 viewModel.addBoard(title, content, uid, boardType, selectedTags)

@@ -12,7 +12,6 @@ import com.example.pathfinder.R
 import com.example.pathfinder.data.models.Team
 import com.example.pathfinder.databinding.ActivityTeamBuildingWriteBinding
 import com.example.pathfinder.utils.FBAuth
-import com.example.pathfinder.utils.FBRef
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import java.util.*

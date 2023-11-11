@@ -1,5 +1,7 @@
 package com.example.pathfinder.data.models
 
+import java.io.Serializable
+
 data class Team  (
         val category : String="",
         val title : String="",
@@ -12,4 +14,4 @@ data class Team  (
         val commentCount : Int = 0
 
 
-    )
+    ): Serializable

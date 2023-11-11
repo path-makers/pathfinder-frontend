@@ -119,7 +119,7 @@ class AiQuestionFragment : Fragment() {
         findNavController().navigate(R.id.action_aiQuestionFragment_to_chatFragment, bundle)
     }
 
-    // 프래그먼트 스택 비우기
+
     private fun clearBackStack(fragmentManager: FragmentManager) {
         fragmentManager.popBackStack()
     }

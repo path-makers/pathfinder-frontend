@@ -34,7 +34,7 @@ class AiRepository(val context: Context) {
             override fun getHeaders(): MutableMap<String, String> {
                 val map = HashMap<String, String>()
                 map["Content-Type"] = "application/json"
-                map["Authorization"] = "Bearer YOUR_API_KEY" // CAUTION: Do not hard-code API keys!
+                map["Authorization"] = "Bearer "
                 return map
             }
         }

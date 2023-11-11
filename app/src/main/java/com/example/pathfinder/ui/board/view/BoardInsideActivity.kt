@@ -51,7 +51,12 @@ class BoardInsideActivity : AppCompatActivity() {
 
 
         binding.commentBtn.setOnClickListener {
-            viewModel.addComment(FBAuth.getUid(), binding.commentArea.text.toString(), boardId, FBAuth.getUserName())
+            viewModel.addComment(
+                FBAuth.getUid(),
+                binding.commentArea.text.toString(),
+                boardId,
+                FBAuth.getUserName()
+            )
             binding.commentArea.text.clear()
             hideKeyboard()
 
@@ -60,12 +65,9 @@ class BoardInsideActivity : AppCompatActivity() {
         binding.backButton.setOnClickListener {
             finish()
         }
-        binding.boardSettingIcon.setOnClickListener {
-//            showDialog()
-        }
+
 
     }
-
 
 
     private fun getFBBoardDataById(boardId: String) {
@@ -73,25 +75,15 @@ class BoardInsideActivity : AppCompatActivity() {
         viewModel.singleBoardData.observe(this) { board ->
 
             board?.let {
-
-
-            binding.typeArea.text = board.boardType
-            binding.titleArea.text = board.title
-            binding.tagsLayout.isVisible = board.tags.isNotEmpty()
-            binding.textArea.text = board.content
-            binding.timeArea.text = formatDate(board.date.toLong())
+                binding.typeArea.text = board.boardType
+                binding.titleArea.text = board.title
+                binding.tagsLayout.isVisible = board.tags.isNotEmpty()
+                binding.textArea.text = board.content
+                binding.timeArea.text = formatDate(board.date.toLong())
                 binding.userNameArea.text = board.author
-            viewModel.commentsData.value = board.comments
+                viewModel.commentsData.value = board.comments
 
-
-
-
-            displayTags(binding.tagsLayout, board.tags)
-            val myUid = FBAuth.getUid()
-            val writeUid = board.uid
-
-//            commentDataList.addAll(board.comments)
-            binding.boardSettingIcon.isVisible = myUid == writeUid
+                displayTags(binding.tagsLayout, board.tags)
             }
         }
 
@@ -115,6 +107,7 @@ class BoardInsideActivity : AppCompatActivity() {
 
 
     }
+
     private fun setupCommentListView() {
         commentAdapter = CommentRVAdapter(commentDataList)
         binding.commentRV.adapter = commentAdapter
@@ -139,27 +132,6 @@ class BoardInsideActivity : AppCompatActivity() {
         }
     }
 
-    private fun showDialog() {
-
-        val mDialogView = LayoutInflater.from(this).inflate(R.layout.custom_dialog, null)
-        val mBuilder = AlertDialog.Builder(this)
-            .setView(mDialogView)
-            .setTitle("게시글 수정/삭제")
-
-        val alertDialog = mBuilder.show()
-        alertDialog.findViewById<Button>(R.id.editBtn)?.setOnClickListener {
-
-            val intent = Intent(this, BoardEditActivity::class.java)
-
-            startActivity(intent)
-
-        }
-        alertDialog.findViewById<Button>(R.id.removeBtn)?.setOnClickListener {
-            //구현필요
-            finish()
-        }
-
-    }
 
     private fun formatDate(timeStamp: Long): String {
         val date = Date(timeStamp)

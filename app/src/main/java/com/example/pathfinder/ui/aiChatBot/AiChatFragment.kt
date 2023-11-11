@@ -54,11 +54,8 @@ class AiChatFragment : Fragment() {
         editText = binding.aiInputText
         messagesList = binding.messagesList2
 
-        var imageLoader: ImageLoader = object : ImageLoader {
-            override fun loadImage(imageView: ImageView?, url: String?, payload: Any?) {
-                imageView?.setImageResource(R.drawable.ic_robot)
-            }
-        }
+        var imageLoader =
+            ImageLoader { imageView, _, _ -> imageView?.setImageResource(R.drawable.ic_robot) }
         adapter = MessagesListAdapter<Message>("1", imageLoader)
         messagesList.setAdapter(adapter)
 
@@ -151,7 +148,7 @@ class AiChatFragment : Fragment() {
         Log.d("NetworkRequest", "Request: $stringRequest")
     }
 
-    // 프래그먼트 스택 비우기
+
     private fun clearBackStack(fragmentManager: FragmentManager) {
         fragmentManager.popBackStack()
     }

@@ -4,21 +4,21 @@ import com.stfalcon.chatkit.commons.models.IMessage
 import com.stfalcon.chatkit.commons.models.IUser
 import java.util.*
 
-class Message(val mid:String,val mtext:String,var muser:IUser,var mdate:Date):IMessage{
+class Message(private val id:String, private val text:String, private var user:IUser, private var date:Date):IMessage{
     override fun getId(): String {
-        return mid;
+        return id;
     }
 
     override fun getText(): String {
-        return mtext;
+        return text;
     }
 
     override fun getUser(): IUser {
-        return muser;
+        return user;
     }
 
     override fun getCreatedAt(): Date {
-        return mdate;
+        return date;
     }
 
 

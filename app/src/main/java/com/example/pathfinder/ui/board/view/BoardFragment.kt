@@ -41,7 +41,7 @@ class BoardFragment : Fragment() {
             }, 100)
             Log.d("BoardFragment", "onCreateView: ${viewModel.boardDataList.value}}")
         }
-    }
+    }//글 작성후 업데이트
 
 
     override fun onCreateView(

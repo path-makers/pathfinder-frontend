@@ -86,7 +86,7 @@ class HomeFragment : Fragment() {
             boardRVAdapterMentor.notifyDataSetChanged()
         }
 
-        viewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
+        viewModel.errorMessage.observe(viewLifecycleOwner) {
             // 에러 처리
         }
     }
@@ -100,7 +100,7 @@ class HomeFragment : Fragment() {
             boardRVAdapterMentee.notifyDataSetChanged()
         }
 
-        viewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
+        viewModel.errorMessage.observe(viewLifecycleOwner) {
             // 에러 처리
         }
     }

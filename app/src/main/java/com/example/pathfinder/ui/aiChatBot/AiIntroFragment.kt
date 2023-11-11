@@ -46,12 +46,11 @@ class AiIntroFragment : Fragment() {
     }
 
     private fun navigateToQuestionnaire() {
-        // 질문지 프래그먼트로 이동하는 로직을 여기에 구현합니다.
-        // 예를 들어 Navigation Component를 사용한다면 아래와 같이 사용할 수 있습니다.
+
         findNavController().navigate(R.id.action_aiIntroFragment_to_aiQuestionFragment)
     }
 
-    // 프래그먼트 스택 비우기
+
     private fun clearBackStack(fragmentManager: FragmentManager) {
         fragmentManager.popBackStack()
     }

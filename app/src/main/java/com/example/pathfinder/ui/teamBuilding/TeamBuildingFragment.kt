@@ -10,14 +10,10 @@ import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pathfinder.R
 import com.example.pathfinder.databinding.FragmentTeamBuildingBinding
 import com.example.pathfinder.data.models.Team
-import com.example.pathfinder.ui.board.view.BoardInsideActivity
-import com.example.pathfinder.utils.FBRef
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
@@ -28,7 +24,7 @@ class TeamBuildingFragment : Fragment() {
    private lateinit var binding: FragmentTeamBuildingBinding
     private val teamDataList = mutableListOf<Team>()
     private val teamKeyList = mutableListOf<String>()
-    private lateinit var teamRVAdapter: TeamBuildingLVAdapter
+    private lateinit var teamRVAdapter: TeamBuildingRVAdapter
     private val TAG = TeamBuildingFragment::class.java.simpleName
     private val db = Firebase.firestore
 
@@ -57,13 +53,9 @@ class TeamBuildingFragment : Fragment() {
 
     }
     private fun initTeamListView() {
-        teamRVAdapter = TeamBuildingLVAdapter(teamDataList)
-        binding.teamBuildingListView.adapter = teamRVAdapter
-        binding.teamBuildingListView.setOnItemClickListener { parent, view, position, id ->
-            val intent = Intent(context, TeamBuildingInsideActivity::class.java)
-            intent.putExtra("key", teamKeyList[position])
-            startActivity(intent)
-        }
+        teamRVAdapter = TeamBuildingRVAdapter(teamDataList)
+        binding.teamBuildingRecyclerView.adapter = teamRVAdapter
+        binding.teamBuildingRecyclerView.layoutManager = LinearLayoutManager(context)
     }
 
     private fun initWriteButton() {
