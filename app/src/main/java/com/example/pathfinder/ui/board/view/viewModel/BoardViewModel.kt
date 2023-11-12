@@ -17,13 +17,6 @@ class BoardViewModel(private val boardRepository: BoardRepository) : ViewModel()
     val boardDataListMentor: MutableLiveData<List<Board>> = MutableLiveData()
     val boardDataListMentee: MutableLiveData<List<Board>> = MutableLiveData()
 
-    fun getBoardData(boardType: String) {
-        boardRepository.getFBBoardData(boardType, {
-            boardDataList.value = it.reversed()
-        }, { err ->
-            errorMessage.value = err
-        })
-    }
 
     fun getBoardDataMentor() {
         boardRepository.getFBBoardData("MENTOR", {

@@ -32,16 +32,18 @@ class BoardFragment : Fragment() {
     private lateinit var boardRVAdapter: BoardRVAdapter
     private var currentBoardType = "MENTOR"
 
-    private val startWriteActivityForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result.resultCode == Activity.RESULT_OK) {
+    private val startWriteActivityForResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
 
-            Handler(Looper.getMainLooper()).postDelayed({
-                //서버와 프론트 시간 차이로 인해 글 작성후 업데이트 전 0.1초 딜레이
-                getFBBoardData(currentBoardType)
-            }, 100)
-            Log.d("BoardFragment", "onCreateView: ${viewModel.boardDataList.value}}")
-        }
-    }//글 작성후 업데이트
+                Handler(Looper.getMainLooper()).postDelayed({
+                    //서버와 프론트 시간 차이로 인해 글 작성후 업데이트 전 0.1초 딜레이
+                    getBoardData()
+                    subscribeToDataChanges(currentBoardType)
+                }, 100)
+                Log.d("BoardFragment", "onCreateView: ${viewModel.boardDataList.value}}")
+            }
+        }//글 작성후 업데이트
 
 
     override fun onCreateView(
@@ -52,75 +54,95 @@ class BoardFragment : Fragment() {
         binding.mentorBtn.isChecked = true
         val boardRepository = BoardRepository(requireContext())
         val viewModelFactory = BoardViewModelFactory(boardRepository)
-        viewModel = ViewModelProvider(this, viewModelFactory)[BoardViewModel::class.java]
+        viewModel = ViewModelProvider(requireActivity(), viewModelFactory)[BoardViewModel::class.java]
 
 
-
-        initBoardListView()
+        initBoardRecyclerView()
         initWriteButton()
-        getFBBoardData("MENTOR")
+
 
         return binding.root
-    }
+    }//뷰 생성과 초기화
 
-    private fun initBoardListView() {
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        if (viewModel.boardDataListMentor.value == null) {
+            getBoardData()
+        }
+        subscribeToDataChanges(currentBoardType)
+    }//뷰가 생성된 후 데이터를 연결
+
+    private fun initBoardRecyclerView() {
         boardRVAdapter = BoardRVAdapter(boardDataList)
         binding.boardListView.adapter = boardRVAdapter
         binding.boardListView.layoutManager = LinearLayoutManager(context)
 
+        val updateButtonState = { mentorSelected: Boolean ->
+            binding.mentorBtn.isChecked = mentorSelected
+            binding.menteeBtn.isChecked = !mentorSelected
+
+            binding.mentorBtn.setTextColor(ContextCompat.getColor(requireContext(), if (mentorSelected) R.color.black else R.color.gray))
+            binding.menteeBtn.setTextColor(ContextCompat.getColor(requireContext(), if (mentorSelected) R.color.gray else R.color.black))
+
+            subscribeToDataChanges(if (mentorSelected) "MENTOR" else "MENTEE")
+        }
+
         binding.mentorBtn.setOnClickListener {
-
-            if (currentBoardType != "MENTOR"){
-                currentBoardType = "MENTOR"}
-
-            binding.mentorBtn.isChecked = true
-            binding.menteeBtn.isChecked = false
-
-            binding.mentorBtn.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
-            binding.menteeBtn.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray))
-
-            getFBBoardData("MENTOR")
+            if (currentBoardType != "MENTOR") { currentBoardType = "MENTOR"
+                updateButtonState(true)
+            }
         }
 
         binding.menteeBtn.setOnClickListener {
-
-            if (currentBoardType != "MENTEE"){
-                currentBoardType = "MENTEE"}
-
-            binding.menteeBtn.isChecked = true
-            binding.mentorBtn.isChecked = false
-
-            binding.menteeBtn.setTextColor(ContextCompat.getColor(requireContext(),  R.color.black))
-            binding.mentorBtn.setTextColor(ContextCompat.getColor(requireContext(),  R.color.gray))
-
-            getFBBoardData("MENTEE")
+            if (currentBoardType != "MENTEE") {
+                currentBoardType = "MENTEE"
+                updateButtonState(false)
+            }
         }
 
 
-    }
+    }//리사이클러뷰 초기화,버튼 상태 변경
 
     private fun initWriteButton() {
         binding.writeBtn.setOnClickListener {
             val intent = Intent(context, BoardWriteActivity::class.java)
             startWriteActivityForResult.launch(intent)
         }
-    }
+    }//글 작성
 
 
+    private fun getBoardData() {
 
-    private fun getFBBoardData(boardType: String) {
-        viewModel.getBoardData(boardType)
-        viewModel.boardDataList.observe(viewLifecycleOwner) { boardDataList ->
-            this.boardDataList.clear()
-            this.boardDataList.addAll(boardDataList)
-            this.boardDataList.reverse()
-            boardRVAdapter.notifyDataSetChanged()
+        viewModel.getBoardDataMentor()
+        viewModel.getBoardDataMentee()
+
+    }//데이터 가져오기
+
+    private fun subscribeToDataChanges(boardType: String) {
+        viewModel.boardDataListMentor.removeObservers(viewLifecycleOwner)
+        viewModel.boardDataListMentee.removeObservers(viewLifecycleOwner)
+
+        if (boardType == "MENTOR") {
+            viewModel.boardDataListMentor.observe(viewLifecycleOwner) { boardDataList ->
+                updateUI(boardDataList)
+            }
+        } else {
+            viewModel.boardDataListMentee.observe(viewLifecycleOwner) { boardDataList ->
+                updateUI(boardDataList)
+            }
         }
 
-        viewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
-            // 에러 처리
-        }
-    }
+    }//데이터 변경시에 불려와서 리사이클러뷰 업데이트, 중복 구독 안되게 관찰자 제거해줘야 함
+
+    private fun updateUI(boardDataList: List<Board>) {
+        this.boardDataList.clear()
+        this.boardDataList.addAll(boardDataList)
+        this.boardDataList.reverse()
+        boardRVAdapter.notifyDataSetChanged()
+    }//리사이클러뷰 업데이트
+
 
 }
 

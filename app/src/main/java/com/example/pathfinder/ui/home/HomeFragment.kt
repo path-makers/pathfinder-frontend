@@ -38,12 +38,6 @@ class HomeFragment : Fragment() {
     private val boardDataListMentee = mutableListOf<Board>()
 
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -55,19 +49,25 @@ class HomeFragment : Fragment() {
 
         val boardRepository = BoardRepository(requireContext())
         val viewModelFactory = BoardViewModelFactory(boardRepository)
-        viewModel = ViewModelProvider(this, viewModelFactory)[BoardViewModel::class.java]
+        viewModel = ViewModelProvider(requireActivity(), viewModelFactory)[BoardViewModel::class.java]
 
-        initBoardListView()
-        getFBBoardDataMentor()
-        getFBBoardDataMentee()
+        initBoardRecyclerView()
 
-
-        hideBottomNavigation(false);
 
         return binding.root
     }
 
-    private fun initBoardListView() {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        if (viewModel.boardDataListMentor.value == null) {
+            getBoardData()
+        }
+
+        subscribeToData()
+    }
+
+    private fun initBoardRecyclerView() {
         boardRVAdapterMentor = HomeRVAdapter(boardDataListMentor)
         boardRVAdapterMentee = HomeRVAdapter(boardDataListMentee)
         binding.mentorList.adapter = boardRVAdapterMentor
@@ -77,41 +77,31 @@ class HomeFragment : Fragment() {
 
     }
 
-    private fun getFBBoardDataMentor() {
+    private fun getBoardData() {
+
         viewModel.getBoardDataMentor()
+        viewModel.getBoardDataMentee()
+
+    }
+
+    private fun subscribeToData() {
+
         viewModel.boardDataListMentor.observe(viewLifecycleOwner) { boardDataListMentor ->
             this.boardDataListMentor.clear()
             this.boardDataListMentor.addAll(boardDataListMentor)
             this.boardDataListMentor.reverse()
             boardRVAdapterMentor.notifyDataSetChanged()
         }
-
-        viewModel.errorMessage.observe(viewLifecycleOwner) {
-            // 에러 처리
-        }
-    }
-
-    private fun getFBBoardDataMentee() {
-        viewModel.getBoardDataMentee()
         viewModel.boardDataListMentee.observe(viewLifecycleOwner) { boardDataListMentee ->
             this.boardDataListMentee.clear()
             this.boardDataListMentee.addAll(boardDataListMentee)
             this.boardDataListMentee.reverse()
             boardRVAdapterMentee.notifyDataSetChanged()
-        }
 
-        viewModel.errorMessage.observe(viewLifecycleOwner) {
-            // 에러 처리
         }
     }
 
-    fun hideBottomNavigation(bool: Boolean) {
-        val bottomNavigation = requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavigationView)
-        if (bool)
-            bottomNavigation.visibility = View.GONE
-        else
-            bottomNavigation.visibility = View.VISIBLE
-    }
+
 
 
 }
