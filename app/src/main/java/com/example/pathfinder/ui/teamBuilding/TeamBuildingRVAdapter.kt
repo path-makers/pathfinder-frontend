@@ -11,7 +11,7 @@ import com.example.pathfinder.R
 import com.example.pathfinder.data.models.Team
 import com.example.pathfinder.ui.board.view.BoardInsideActivity
 
-class TeamBuildingRVAdapter(private val teamBuildingList: MutableList<Team>) :
+class TeamBuildingRVAdapter(private val teamBuildingList: MutableList<Team>,private val teamBuildingKeyList: MutableList<String>) :
     RecyclerView.Adapter<TeamBuildingRVAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -46,7 +46,7 @@ class TeamBuildingRVAdapter(private val teamBuildingList: MutableList<Team>) :
 
         holder.itemView.setOnClickListener {
             val intent = Intent(it.context, TeamBuildingInsideActivity::class.java)
-            intent.putExtra("key", item)
+            intent.putExtra("key", teamBuildingKeyList[position])
             it.context.startActivity(intent)
         }
 

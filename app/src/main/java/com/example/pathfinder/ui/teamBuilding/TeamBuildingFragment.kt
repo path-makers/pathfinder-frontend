@@ -53,7 +53,7 @@ class TeamBuildingFragment : Fragment() {
 
     }
     private fun initTeamListView() {
-        teamRVAdapter = TeamBuildingRVAdapter(teamDataList)
+        teamRVAdapter = TeamBuildingRVAdapter(teamDataList, teamKeyList)
         binding.teamBuildingRecyclerView.adapter = teamRVAdapter
         binding.teamBuildingRecyclerView.layoutManager = LinearLayoutManager(context)
     }
@@ -75,6 +75,7 @@ class TeamBuildingFragment : Fragment() {
                 }
 
                 if (teamdatas != null) {
+                    Log.d(TAG, "Current data: ${teamdatas.documents}")
                     handleSnapshot(teamdatas)
                 }
             }
