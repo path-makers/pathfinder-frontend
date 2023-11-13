@@ -11,8 +11,6 @@
  -------------------------------
 
 
- 중간 시연 동영상
-https://youtu.be/GlwE4Xo0pYo
 
   
 ### 주요 기능
@@ -66,6 +64,10 @@ https://youtu.be/GlwE4Xo0pYo
      
    
 ## 시연 동영상 및 사진
+
+
+ 중간 시연 동영상
+https://youtu.be/GlwE4Xo0pYo  
     
 <홈화면>
 
