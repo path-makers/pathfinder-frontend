@@ -490,10 +490,11 @@
             <!-- 결과 보기 버튼 -->
             <Button
                 android:id="@+id/btn_show_results"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
                 android:layout_gravity="center_horizontal"
-                style="@style/TagButton"
+                style="@style/CommonButtonStyle"
                 android:text="결과 보기" />
 
 
