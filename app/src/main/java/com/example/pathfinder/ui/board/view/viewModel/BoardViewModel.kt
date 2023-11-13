@@ -1,12 +1,10 @@
 package com.example.pathfinder.ui.board.view.viewModel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.pathfinder.data.models.Board
 import com.example.pathfinder.data.models.Comment
 import com.example.pathfinder.data.repository.BoardRepository
-import com.example.pathfinder.utils.FBAuth
 
 class BoardViewModel(private val boardRepository: BoardRepository) : ViewModel() {
 
@@ -16,10 +14,11 @@ class BoardViewModel(private val boardRepository: BoardRepository) : ViewModel()
     val commentsData: MutableLiveData<List<Comment>> = MutableLiveData()
     val boardDataListMentor: MutableLiveData<List<Board>> = MutableLiveData()
     val boardDataListMentee: MutableLiveData<List<Board>> = MutableLiveData()
+    val boardDataListAlgorithm: MutableLiveData<List<Board>> = MutableLiveData()
 
 
     fun getBoardDataMentor() {
-        boardRepository.getFBBoardData("MENTOR", {
+        boardRepository.getBoardDataByType("MENTOR", {
             boardDataListMentor.value = it.reversed()
         }, { err ->
             errorMessage.value = err
@@ -27,7 +26,7 @@ class BoardViewModel(private val boardRepository: BoardRepository) : ViewModel()
     }
 
     fun getBoardDataMentee() {
-        boardRepository.getFBBoardData("MENTEE", {
+        boardRepository.getBoardDataByType("MENTEE", {
             boardDataListMentee.value = it.reversed()
         }, { err ->
             errorMessage.value = err
@@ -36,12 +35,22 @@ class BoardViewModel(private val boardRepository: BoardRepository) : ViewModel()
 
 
     fun getBoardDataById(boardId: String) {
-        boardRepository.getFBBoardDataById(boardId, {board->
+        boardRepository.getBoardDataById(boardId, { board->
             singleBoardData.value = board
         }, { err ->
             errorMessage.value = err
         })
     }
+
+    fun getBoardDataByAlgorithm(userId: String) {
+        boardRepository.getBoardDataByAlgorithm(userId, {
+            boardDataListAlgorithm.value = it.reversed()
+        }, { err ->
+            errorMessage.value = err
+        })
+    }
+
+
 
     fun addBoard(title: String, content: String, uid: String, boardType: String, tags: List<String>) {
         val board = Board(

@@ -16,7 +16,7 @@ import org.json.JSONObject
 
 class BoardRepository(private val context: Context) { // Context 추가
 
-    fun getFBBoardData(boardType: String, success: (List<Board>) -> Unit, error: (String) -> Unit) {
+    fun getBoardDataByType(boardType: String, success: (List<Board>) -> Unit, error: (String) -> Unit) {
         val url = "http://138.2.114.130:8080/api/board/all?boardType=$boardType"
 
         val jsonObjectRequest = JsonObjectRequest(
@@ -65,7 +65,7 @@ class BoardRepository(private val context: Context) { // Context 추가
     }
 
 
-    fun getFBBoardDataById(boardId: String, success: (Board) -> Unit, error: (String) -> Unit) {
+    fun getBoardDataById(boardId: String, success: (Board) -> Unit, error: (String) -> Unit) {
         val url = "http://138.2.114.130:8080/api/board/single/$boardId"
 
         val jsonObjectRequest = JsonObjectRequest(
@@ -119,6 +119,56 @@ class BoardRepository(private val context: Context) { // Context 추가
 
         Volley.newRequestQueue(context).add(jsonObjectRequest)
     }
+
+
+    fun getBoardDataByAlgorithm(userId: String, success: (List<Board>) -> Unit, error: (String) -> Unit) {
+        val url = "http://138.2.114.130:8080/api/board/all?boardType=$userId"
+
+        val jsonObjectRequest = JsonObjectRequest(
+            Request.Method.GET, url, null,
+            { response ->
+                val boardsArray = response.getJSONArray("boards")
+                Log.d(TAG, "Received data: $response")
+                val boardDataList = mutableListOf<Board>()
+
+                for (i in 0 until boardsArray.length()) {
+                    val item = boardsArray.getJSONObject(i)
+                    val tagsList = mutableListOf<String>()
+                    item.getJSONArray("tags").let {
+                        for (j in 0 until it.length()) {
+                            tagsList.add(it.getString(j))
+                        }
+                    }
+
+
+
+                    val board = Board(
+                        author = if (item.getString("author") == "null") "익명 유저" else item.getString("author"),
+                        id = item.getString("id"),
+                        title = item.getString("title"),
+                        content = item.getString("content"),
+                        uid = item.getString("uid"),
+                        date = item.optString("createdAt", "Unknown"),
+                        boardType = item.getString("boardType"),
+                        tags = tagsList,
+
+                        )
+                    Log.d(TAG, "Parsed data: $board")
+
+                    boardDataList.add(board)
+                }
+
+                success(boardDataList)
+            },
+            { err ->
+                Log.w(TAG, "Error: ${err.message}")
+                error(err.message ?: "Unknown error")
+            }
+        )
+
+        Volley.newRequestQueue(context).add(jsonObjectRequest)
+    }
+
 
 
     fun sendBoardData(board: Board) {

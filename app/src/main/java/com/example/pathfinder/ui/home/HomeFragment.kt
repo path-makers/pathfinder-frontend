@@ -1,6 +1,7 @@
 package com.example.pathfinder.ui.home
 
 
+import HomeRVAlgorithmAdapter
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -34,8 +35,11 @@ class HomeFragment : Fragment() {
     private lateinit var viewModel: BoardViewModel
     private lateinit var boardRVAdapterMentor: HomeRVAdapter
     private lateinit var boardRVAdapterMentee: HomeRVAdapter
+    private lateinit var boardRVAdapterAlgorithm: HomeRVAlgorithmAdapter
     private val boardDataListMentor = mutableListOf<Board>()
     private val boardDataListMentee = mutableListOf<Board>()
+    private val boardDataListAlgorithm = mutableListOf<Board>()
+
 
 
     override fun onCreateView(
@@ -64,16 +68,20 @@ class HomeFragment : Fragment() {
             getBoardData()
         }
 
+
         subscribeToData()
     }
 
     private fun initBoardRecyclerView() {
         boardRVAdapterMentor = HomeRVAdapter(boardDataListMentor)
         boardRVAdapterMentee = HomeRVAdapter(boardDataListMentee)
+        boardRVAdapterAlgorithm = HomeRVAlgorithmAdapter(boardDataListAlgorithm)
         binding.mentorList.adapter = boardRVAdapterMentor
         binding.menteeList.adapter = boardRVAdapterMentee
+        binding.recommendList.adapter = boardRVAdapterAlgorithm
         binding.mentorList.layoutManager = LinearLayoutManager(context)
         binding.menteeList.layoutManager = LinearLayoutManager(context)
+        binding.recommendList.layoutManager = LinearLayoutManager(context)
 
     }
 
@@ -81,6 +89,7 @@ class HomeFragment : Fragment() {
 
         viewModel.getBoardDataMentor()
         viewModel.getBoardDataMentee()
+        viewModel.getBoardDataByAlgorithm("algorithm")
 
     }
 
@@ -99,6 +108,16 @@ class HomeFragment : Fragment() {
             boardRVAdapterMentee.notifyDataSetChanged()
 
         }
+
+
+        viewModel.boardDataListAlgorithm.observe(viewLifecycleOwner) { boardDataListAlgorithm ->
+            this.boardDataListAlgorithm.clear()
+            this.boardDataListAlgorithm.addAll(boardDataListAlgorithm)
+            this.boardDataListAlgorithm.reverse()
+            boardRVAdapterAlgorithm.notifyDataSetChanged()
+
+        }
+
     }
 
 
