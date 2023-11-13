@@ -2,6 +2,7 @@ package com.example.pathfinder.ui.teamBuilding
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.PopupMenu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,6 +26,24 @@ class TeamBuildingInsideActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_board_inside)
+
+        // 메뉴
+        binding.boardSettingIcon.setOnClickListener {
+            val popupMenu = PopupMenu(this, it)
+            popupMenu.menuInflater.inflate(R.menu.menu_option, popupMenu.menu)
+            popupMenu.setOnMenuItemClickListener { menuItem ->
+                when (menuItem.itemId) {
+                    R.id.menu_refresh -> {
+                        // 새로고침
+                        true
+                    }
+                    else -> {
+                        false
+                    }
+                }
+            }
+            popupMenu.show()
+        }
 
         teamId = intent.getStringExtra("key") ?: return
         initializeUI()

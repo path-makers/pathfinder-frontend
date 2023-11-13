@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.LinearLayout
+import android.widget.PopupMenu
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -65,6 +66,25 @@ class BoardInsideActivity : AppCompatActivity() {
         binding.backButton.setOnClickListener {
             finish()
         }
+
+        // 메뉴
+        binding.boardSettingIcon.setOnClickListener {
+            val popupMenu = PopupMenu(this, it)
+            popupMenu.menuInflater.inflate(R.menu.menu_option, popupMenu.menu)
+            popupMenu.setOnMenuItemClickListener { menuItem ->
+                when (menuItem.itemId) {
+                    R.id.menu_refresh -> {
+                        // 새로고침
+                        true
+                    }
+                    else -> {
+                        false
+                    }
+                }
+            }
+            popupMenu.show()
+        }
+
 
 
     }

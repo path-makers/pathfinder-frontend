@@ -2,9 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/itemView"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="4dp"
-    android:layout_marginBottom="4dp"
+    android:layout_height="34dp"
     android:gravity="center_vertical"
     android:orientation="horizontal">
 
@@ -12,21 +10,18 @@
     <LinearLayout
         android:id="@+id/tagsLayout"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginStart="8dp">
 
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:gravity="center_vertical"
-    android:layout_marginStart="8dp"
-   >
-
-
-</LinearLayout>
+    </LinearLayout>
 
     <!-- 제목 -->
-<TextView
-android:id="@+id/titleArea"
-android:layout_width="0dp"
-android:layout_weight="1"
+    <TextView
+    android:id="@+id/titleArea"
+    android:layout_width="0dp"
+    android:layout_weight="1"
     android:layout_height="wrap_content"
     android:layout_marginStart="12dp"
     android:layout_marginEnd="24dp"

@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
@@ -53,6 +54,23 @@ class BoardFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_board, container, false)
         binding.mentorBtn.isChecked = true
+        // 메뉴
+        binding.button2.setOnClickListener {
+            val popupMenu = PopupMenu(context, it)
+            popupMenu.menuInflater.inflate(R.menu.menu_option, popupMenu.menu)
+            popupMenu.setOnMenuItemClickListener { menuItem ->
+                when (menuItem.itemId) {
+                    R.id.menu_refresh -> {
+                        getBoardData()
+                        true
+                    }
+                    else -> {
+                        false
+                    }
+                }
+            }
+            popupMenu.show()
+        }
         val boardRepository = BoardRepository(requireContext())
         val viewModelFactory = BoardViewModelFactory(boardRepository)
         viewModel = ViewModelProvider(requireActivity(), viewModelFactory)[BoardViewModel::class.java]
@@ -153,7 +171,6 @@ class BoardFragment : Fragment() {
         this.boardDataList.reverse()
         boardRVAdapter.notifyDataSetChanged()
     }//리사이클러뷰 업데이트
-
 
 }
 

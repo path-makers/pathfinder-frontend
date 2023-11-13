@@ -46,6 +46,15 @@ class HomeFragment : Fragment() {
         binding.chatButton.setOnClickListener {
             it.findNavController().navigate(R.id.action_homeFragment_to_aiIntroFragment)
         }
+        binding.recommendTextViewMore.setOnClickListener {
+            it.findNavController().navigate(R.id.action_homeFragment_to_boardFragment)
+        }
+        binding.mentorTextViewMore.setOnClickListener {
+            it.findNavController().navigate(R.id.action_homeFragment_to_boardFragment)
+        }
+        binding.mentorTextViewMore.setOnClickListener {
+            it.findNavController().navigate(R.id.action_homeFragment_to_boardFragment)
+        }
 
         val boardRepository = BoardRepository(requireContext())
         val viewModelFactory = BoardViewModelFactory(boardRepository)
