@@ -11,6 +11,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.pathfinder.R
 import com.example.pathfinder.databinding.FragmentTeamBuildingBinding
 import com.example.pathfinder.data.models.Team
@@ -27,6 +28,7 @@ class TeamBuildingFragment : Fragment() {
     private lateinit var teamRVAdapter: TeamBuildingRVAdapter
     private val TAG = TeamBuildingFragment::class.java.simpleName
     private val db = Firebase.firestore
+    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
     private val startWriteActivityForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
@@ -44,7 +46,7 @@ class TeamBuildingFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_team_building, container, false)
 
-        getFBTeamData()
+
         initTeamListView()
         initWriteButton()
 
@@ -52,6 +54,28 @@ class TeamBuildingFragment : Fragment() {
         return binding.root
 
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        swipeRefreshLayout = binding.swipeRefreshLayout
+
+
+        getFBTeamData()
+
+        swipeRefreshLayout.setOnRefreshListener {
+            // 사용자가 새로고침을 요청하면 실행될 로직
+            getFBTeamData()
+
+            // 데이터 로딩이 끝난 후에는 새로고침 종료
+            swipeRefreshLayout.isRefreshing = false
+        }//pull to refresh 구현
+
+
+    }//뷰가 생성된 후 데이터를 연결
+
+
+
     private fun initTeamListView() {
         teamRVAdapter = TeamBuildingRVAdapter(teamDataList, teamKeyList)
         binding.teamBuildingRecyclerView.adapter = teamRVAdapter

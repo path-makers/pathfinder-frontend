@@ -16,6 +16,7 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.pathfinder.R
 import com.example.pathfinder.data.repository.BoardRepository
 import com.example.pathfinder.data.models.Board
@@ -27,7 +28,7 @@ import com.example.pathfinder.ui.board.view.viewModel.BoardViewModel
 class BoardFragment : Fragment() {
     private lateinit var viewModel: BoardViewModel
     private lateinit var binding: FragmentBoardBinding
-
+    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
     private val boardDataList = mutableListOf<Board>()
     private lateinit var boardRVAdapter: BoardRVAdapter
     private var currentBoardType = "MENTOR"
@@ -67,6 +68,16 @@ class BoardFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        swipeRefreshLayout = binding.swipeRefreshLayout
+
+        swipeRefreshLayout.setOnRefreshListener {
+            // 사용자가 새로고침을 요청하면 실행될 로직
+            getBoardData()
+
+            // 데이터 로딩이 끝난 후에는 새로고침 종료
+            swipeRefreshLayout.isRefreshing = false
+        }//pull to refresh 구현
 
         if (viewModel.boardDataListMentor.value == null) {
             getBoardData()
