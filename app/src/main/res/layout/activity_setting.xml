@@ -9,8 +9,8 @@
 
     <Button
         android:id="@+id/logoutBtn"
-        android:layout_width="150dp"
-        android:layout_height="60dp"
+        android:layout_width="130dp"
+        android:layout_height="50dp"
         android:background="@drawable/background_radius_maincolor"
         android:backgroundTint="@color/Red_500"
         android:text="로그아웃"
@@ -22,6 +22,6 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.45" />
+        app:layout_constraintVertical_bias="0.5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

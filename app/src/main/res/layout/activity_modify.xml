@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".ui.userProfile.ModifyActivity"
     android:background="@color/white">
 
     <Button
@@ -30,7 +31,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/button2"
+        android:id="@+id/btn_complete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="완료"
@@ -47,7 +48,21 @@
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_marginTop="40dp"
-        android:background="@drawable/ic_profildefault"
+        android:background="@drawable/background_circle"
+        android:adjustViewBounds="true"
+        android:cropToPadding="true"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleTextView" />
+
+    <ImageView
+        android:id="@+id/userImage2"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/ic_profildefault"
+        android:adjustViewBounds="true"
         android:cropToPadding="true"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
@@ -55,9 +70,100 @@
         app:layout_constraintTop_toBottomOf="@id/titleTextView" />
     
     <ImageButton
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:id="@+id/changeImage"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_camera"
+        android:background="@color/transparent_ripple_color"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="2dp"
         app:layout_constraintEnd_toEndOf="@+id/userImage"
         app:layout_constraintBottom_toBottomOf="@+id/userImage"/>
+
+    <TextView
+        android:id="@+id/textview1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="닉네임"
+        android:textColor="@color/Gray_700"
+        android:textSize="16dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginStart="26dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/userImage"/>
+
+    <EditText
+        android:id="@+id/updateName"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="닉네임을 입력해주세요."
+        android:background="@drawable/background_radius_gray_edge"
+        android:textColor="@color/black"
+        android:textColorHint="@color/gray"
+        android:textSize="14dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:paddingStart="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textview1"/>
+
+    <TextView
+        android:id="@+id/textview2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="이메일"
+        android:textColor="@color/Gray_700"
+        android:textSize="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="26dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/updateName"/>
+
+    <EditText
+        android:id="@+id/updateEmail"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="이메일을 입력해주세요."
+        android:background="@drawable/background_radius_gray_edge"
+        android:textColor="@color/black"
+        android:textColorHint="@color/gray"
+        android:textSize="14dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:paddingStart="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textview2"/>
+
+    <TextView
+        android:id="@+id/textview3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="비밀번호"
+        android:textColor="@color/Gray_700"
+        android:textSize="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="26dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/updateEmail"/>
+
+    <EditText
+        android:id="@+id/updatePassword"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="비밀번호를 입력해주세요."
+        android:background="@drawable/background_radius_gray_edge"
+        android:textColor="@color/black"
+        android:textColorHint="@color/gray"
+        android:textSize="14dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:paddingStart="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textview3"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

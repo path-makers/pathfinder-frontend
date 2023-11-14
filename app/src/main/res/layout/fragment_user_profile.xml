@@ -51,7 +51,19 @@
                 android:layout_height="80dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginStart="24dp"
-                android:background="@drawable/ic_profildefault"
+                android:background="@drawable/background_circle"
+                android:cropToPadding="true"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/titleTextView"/>
+
+            <ImageView
+                android:id="@+id/userImage2"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="24dp"
+                android:src="@drawable/ic_profildefault"
                 android:cropToPadding="true"
                 android:scaleType="centerCrop"
                 app:layout_constraintStart_toStartOf="parent"
@@ -81,12 +93,36 @@
                 app:layout_constraintTop_toBottomOf="@+id/userName"/>
 
             <ImageView
+                android:id="@+id/imageview"
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
                 android:layout_marginTop="24dp"
                 android:background="@color/light_gray"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/userImage"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageview"
+                android:orientation="vertical">
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/profileTabLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    app:tabGravity="fill"
+                    app:tabMode="fixed"
+                    app:tabSelectedTextColor="@color/black"
+                    app:tabIndicatorColor="@color/black" />
+
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/profileViewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
 
 <!--            <Button-->
 <!--                android:id="@+id/btnChangeImage"-->

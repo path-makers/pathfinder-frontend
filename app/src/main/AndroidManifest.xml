@@ -20,6 +20,9 @@
 <!--        <activity-->
 <!--            android:name=".pages.board.edit.BoardEditActivity"-->
 <!--            android:exported="false" />-->
+        <activity
+            android:name=".ui.userProfile.ModifyActivity"
+            android:exported="false" />
         <activity android:name=".ui.board.view.BoardEditActivity"/>
         <activity android:name=".ui.board.view.BoardInsideActivity"/>
         <activity android:name=".ui.board.view.BoardWriteActivity"/>
