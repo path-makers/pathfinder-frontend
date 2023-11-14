@@ -26,6 +26,7 @@
         <activity android:name=".ui.board.view.BoardChatActivity"/>
         <activity android:name=".ui.teamBuilding.TeamBuildingWriteActivity" />
         <activity android:name=".ui.teamBuilding.TeamBuildingInsideActivity" />
+        <activity android:name=".ui.home.ChatRoomsActivity"/>
 
 
 

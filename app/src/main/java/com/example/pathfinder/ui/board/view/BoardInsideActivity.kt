@@ -38,6 +38,7 @@ class BoardInsideActivity : AppCompatActivity() {
     private lateinit var viewModel: BoardViewModel
     private lateinit var boardId: String
     private lateinit var userId:String
+    private lateinit var author:String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -70,6 +71,7 @@ class BoardInsideActivity : AppCompatActivity() {
         binding.button3.setOnClickListener(){
             val intent = Intent(this, BoardChatActivity::class.java)
             intent.putExtra("userId", userId)
+            intent.putExtra("chatRoomId", author)
             startActivity(intent)
         }
 
@@ -88,6 +90,7 @@ class BoardInsideActivity : AppCompatActivity() {
                 binding.textArea.text = board.content
                 binding.timeArea.text = formatDate(board.date.toLong())
                 binding.userNameArea.text = board.author
+                author = board.author
                 viewModel.commentsData.value = board.comments
                 userId = board.id
 

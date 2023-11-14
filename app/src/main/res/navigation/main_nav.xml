@@ -27,6 +27,9 @@
         <action
             android:id="@+id/action_homeFragment_to_chatFragment"
             app:destination="@id/chatFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_chatRoomsActivity"
+            app:destination="@id/chatRoomsActivity" />
     </fragment>
 
     <fragment
@@ -94,4 +97,8 @@
 
         />
     </fragment>
+    <activity
+        android:id="@+id/chatRoomsActivity"
+        android:name="com.example.pathfinder.ui.home.ChatRoomsActivity"
+        android:label="ChatRoomsActivity" />
 </navigation>

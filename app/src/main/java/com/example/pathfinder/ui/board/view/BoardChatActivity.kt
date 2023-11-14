@@ -30,77 +30,129 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentManager
+import com.example.pathfinder.data.models.Dm
+import com.example.pathfinder.data.models.DmUser
 import com.example.pathfinder.data.models.Message
 import com.example.pathfinder.data.models.User
 import com.example.pathfinder.databinding.ActivityBoardChatBinding
+import com.example.pathfinder.utils.FBAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 
 class BoardChatActivity:AppCompatActivity() {
 
-    lateinit var sendBtn: ImageView
-    lateinit var editText: EditText
-    lateinit var messagesList: MessagesList
-    lateinit var us: User
-    lateinit var chatgpt: User
-    lateinit var adapter: MessagesListAdapter<Message>
-    lateinit var loadingBar: ProgressBar
+    private lateinit var sendButton: ImageView
+    private lateinit var messageInput: EditText
+    private lateinit var messagesListView: MessagesList
+    private lateinit var currentUser: DmUser
+    private lateinit var recipientUser: DmUser
+    private lateinit var messagesAdapter: MessagesListAdapter<Dm>
+    private lateinit var loadingIndicator: ProgressBar
     private lateinit var binding: ActivityBoardChatBinding
-    lateinit var userId:String
+    private lateinit var recipientUserId: String
+    private lateinit var chatRoomId: String
+    private lateinit var author: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = DataBindingUtil.setContentView(this, R.layout.activity_board_chat)
-        userId = intent.extras?.get("userId").toString()
 
-        sendBtn = binding.aiBtn
-        loadingBar = binding.loadingBar
-        editText = binding.aiInputText
-        messagesList = binding.messagesList2
 
-        var imageLoader =
-            ImageLoader { imageView, _, _ -> imageView?.setImageResource(R.drawable.ic_robot) }
-        adapter = MessagesListAdapter<Message>("1", imageLoader)
-        messagesList.setAdapter(adapter)
+        currentUser = DmUser(FBAuth.getUid(), "CurrentUser", "")
+        recipientUserId = intent.extras?.getString("userId")?:""
+        chatRoomId = intent.extras?.getString("chatRoomId") ?: ""
+        author = intent.extras?.getString("author")?:""
 
-        us = User("1", "jsh", "")
-        chatgpt = User("2", "ChatGPT", "drawable://ic_robot")
-
-        sendBtn.setOnClickListener {
-            val messageText = editText.text.toString()
-            val message =
-                Message(UUID.randomUUID().toString(), messageText, us, Calendar.getInstance().time)
-            sendMessageToFirestore(message)
-            adapter.addToStart(message, true)
-            editText.text.clear()
+        if (chatRoomId.isEmpty() && recipientUserId != null) {
+            // 게시글에서 DM 시작 시나리오
+            chatRoomId = createChatRoomId(currentUser.id, recipientUserId)
+            checkAndCreateChatRoom(chatRoomId, listOf(currentUser.id, recipientUserId))
         }
 
+        initializeUI()
         loadMessagesFromFirestore()
     }
-    private fun sendMessageToFirestore(message: Message) {
+
+    private fun checkAndCreateChatRoom(chatRoomId: String, participants: List<String>) {
         val db = FirebaseFirestore.getInstance()
-        db.collection("messages")
+        val chatRoomRef = db.collection("chatRooms").document(chatRoomId)
+
+        chatRoomRef.get().addOnSuccessListener { document ->
+            if (!document.exists()) {
+                val newChatRoom = hashMapOf(
+                    "participants" to participants
+                    // 필요한 경우 여기에 추가 메타데이터를 추가할 수 있습니다.
+                )
+                chatRoomRef.set(newChatRoom)
+            }
+        }.addOnFailureListener { e ->
+            Log.w("Firestore", "Error checking/creating chat room", e)
+        }
+    }
+    private fun initializeUI() {
+        sendButton = binding.aiBtn
+        messageInput = binding.aiInputText
+        messagesListView = binding.messagesList2
+        loadingIndicator = binding.loadingBar
+
+        val imageLoader = ImageLoader { imageView, _, _ -> imageView.setImageResource(R.drawable.ic_robot) }
+        messagesAdapter = MessagesListAdapter("1", imageLoader)
+        messagesListView.setAdapter(messagesAdapter)
+
+        currentUser = DmUser("1", "CurrentUser", "")
+        recipientUser = DmUser("2", "recipientUser", "drawable://ic_profildefault")
+
+        sendButton.setOnClickListener {
+            val messageText = messageInput.text.toString()
+            val message = Dm(
+                UUID.randomUUID().toString(),
+                messageText,
+                currentUser,
+                Calendar.getInstance().time,
+                currentUser.id,
+                recipientUserId,
+                chatRoomId
+            )
+            sendMessageToFirestore(message)
+            messagesAdapter.addToStart(message, true)
+            messageInput.text.clear()
+        }
+    }
+
+    private fun createChatRoomId(userId1: String, userId2: String): String {
+        val ids = listOf(userId1, userId2).sorted()
+        return ids.joinToString("-")
+    }
+    private fun sendMessageToFirestore(message: Dm) {
+        val db = FirebaseFirestore.getInstance()
+        db.collection("chatRooms").document(chatRoomId)
+            .collection("messages")
             .add(message)
             .addOnSuccessListener { Log.d("Firestore", "Message successfully written!") }
             .addOnFailureListener { e -> Log.w("Firestore", "Error writing message", e) }
     }
 
+
     private fun loadMessagesFromFirestore() {
         val db = FirebaseFirestore.getInstance()
-        db.collection("messages")
-            .whereEqualTo("chatRoomId", chatRoomId) // chatRoomId는 현재 채팅방을 식별하는 데 사용됩니다.
-            .orderBy("timestamp") // 메시지를 시간 순으로 정렬합니다.
+        db.collection("chatRooms").document(chatRoomId)
+            .collection("messages")
+            .orderBy("createdAt")
             .addSnapshotListener { snapshots, e ->
                 if (e != null) {
                     Log.w("Firestore", "Listen failed.", e)
                     return@addSnapshotListener
                 }
 
+                val messagesList = ArrayList<Dm>() // 새 메시지 목록을 저장할 리스트
+
                 for (doc in snapshots!!) {
-                    val message = doc.toObject(Message::class.java)
-                    adapter.addToStart(message, false)
+                    val message = doc.toObject(Dm::class.java)
+                    messagesList.add(message) // 리스트에 메시지 추가
                 }
+
+                messagesAdapter.clear() // 어댑터의 기존 데이터를 클리어
+                messagesAdapter.addToEnd(messagesList, true) // 새로운 메시지 목록을 어댑터에 추가
             }
     }
 
