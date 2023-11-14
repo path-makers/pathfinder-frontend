@@ -4,6 +4,7 @@ package com.example.pathfinder.ui.home
 import HomeRVAlgorithmAdapter
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +21,7 @@ import com.example.pathfinder.databinding.FragmentHomeBinding
 import com.example.pathfinder.ui.board.view.BoardInsideActivity
 import com.example.pathfinder.ui.board.view.viewModel.BoardViewModel
 import com.example.pathfinder.ui.board.view.viewModel.BoardViewModelFactory
+import com.example.pathfinder.utils.FBAuth
 
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.firestore.ktx.firestore
@@ -75,6 +77,7 @@ class HomeFragment : Fragment() {
 
         if (viewModel.boardDataListMentor.value == null) {
             getBoardData()
+
         }
 
 
@@ -90,7 +93,7 @@ class HomeFragment : Fragment() {
         binding.recommendList.adapter = boardRVAdapterAlgorithm
         binding.mentorList.layoutManager = LinearLayoutManager(context)
         binding.menteeList.layoutManager = LinearLayoutManager(context)
-        binding.recommendList.layoutManager = LinearLayoutManager(context)
+        binding.recommendList.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
     }
 
@@ -98,8 +101,7 @@ class HomeFragment : Fragment() {
 
         viewModel.getBoardDataMentor()
         viewModel.getBoardDataMentee()
-        viewModel.getBoardDataByAlgorithm("algorithm")
-
+        viewModel.getBoardDataByAlgorithm(FBAuth.getUid())
     }
 
     private fun subscribeToData() {

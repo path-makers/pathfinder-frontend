@@ -18,8 +18,8 @@ class HomeRVAlgorithmAdapter(private val boardList: MutableList<Board>) :
 
     override fun getItemViewType(position: Int): Int {
         return when (boardList[position].boardType) {
-            "mentee" -> TYPE_MENTEE
-            "mentor" -> TYPE_MENTOR
+            "MENTOR" -> TYPE_MENTEE
+            "MENTEE" -> TYPE_MENTOR
             else -> throw IllegalArgumentException("Unknown type of board at position $position")
         }
     }
@@ -59,7 +59,7 @@ class HomeRVAlgorithmAdapter(private val boardList: MutableList<Board>) :
     }
 
     class HomeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val title: TextView = view.findViewById(R.id.titleArea)
-        val content: TextView = view.findViewById(R.id.contentArea)
+        val title: TextView = view.findViewById(R.id.titleAreaAlgorithm)
+        val content: TextView = view.findViewById(R.id.contentAreaAlgorithm)
     }
 }
