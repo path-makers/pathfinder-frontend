@@ -22,7 +22,7 @@ class TeamBuildingRVAdapter(private val teamBuildingList: MutableList<Team>,priv
         val teamRegion: TextView = view.findViewById(R.id.tvRegion)
         val teamDisplayName: TextView = view.findViewById(R.id.tvUserName)
         val teamUploadTime: TextView = view.findViewById(R.id.tvPostTime)
-        val teamLikeCount: TextView = view.findViewById(R.id.tvHeartCount)
+//        val teamLikeCount: TextView = view.findViewById(R.id.tvHeartCount)
 
 
     }
@@ -41,7 +41,7 @@ class TeamBuildingRVAdapter(private val teamBuildingList: MutableList<Team>,priv
         holder.teamRegion.text = item.regionArea
         holder.teamDisplayName.text = item.displayName
         holder.teamUploadTime.text = item.uploadTime
-        holder.teamLikeCount.text = item.likeCount.toString()
+//        holder.teamLikeCount.text = item.likeCount.toString()
 
 
         holder.itemView.setOnClickListener {

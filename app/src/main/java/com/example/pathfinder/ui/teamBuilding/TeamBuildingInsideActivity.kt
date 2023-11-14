@@ -35,6 +35,7 @@ class TeamBuildingInsideActivity : AppCompatActivity() {
                 when (menuItem.itemId) {
                     R.id.menu_refresh -> {
                         // 새로고침
+                        initializeUI()
                         true
                     }
                     else -> {

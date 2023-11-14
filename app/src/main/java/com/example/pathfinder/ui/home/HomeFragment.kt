@@ -10,6 +10,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI.setupWithNavController
+import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pathfinder.R
 import com.example.pathfinder.data.models.Board
@@ -47,13 +50,16 @@ class HomeFragment : Fragment() {
             it.findNavController().navigate(R.id.action_homeFragment_to_aiIntroFragment)
         }
         binding.recommendTextViewMore.setOnClickListener {
-            it.findNavController().navigate(R.id.action_homeFragment_to_boardFragment)
+            (requireActivity().findViewById(R.id.bottomNavigationView) as BottomNavigationView)
+                .selectedItemId = R.id.boardFragment
         }
         binding.mentorTextViewMore.setOnClickListener {
-            it.findNavController().navigate(R.id.action_homeFragment_to_boardFragment)
+            (requireActivity().findViewById(R.id.bottomNavigationView) as BottomNavigationView)
+                .selectedItemId = R.id.boardFragment
         }
-        binding.mentorTextViewMore.setOnClickListener {
-            it.findNavController().navigate(R.id.action_homeFragment_to_boardFragment)
+        binding.menteeTextViewMore.setOnClickListener {
+            (requireActivity().findViewById(R.id.bottomNavigationView) as BottomNavigationView)
+                .selectedItemId = R.id.boardFragment
         }
 
         val boardRepository = BoardRepository(requireContext())
@@ -61,6 +67,7 @@ class HomeFragment : Fragment() {
         viewModel = ViewModelProvider(requireActivity(), viewModelFactory)[BoardViewModel::class.java]
 
         initBoardRecyclerView()
+        hideBottomNavigation(false);
 
 
         return binding.root
@@ -110,7 +117,13 @@ class HomeFragment : Fragment() {
         }
     }
 
-
+    fun hideBottomNavigation(bool: Boolean) {
+        val bottomNavigation = requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+        if (bool)
+            bottomNavigation.visibility = View.GONE
+        else
+            bottomNavigation.visibility = View.VISIBLE
+    }
 
 
 }

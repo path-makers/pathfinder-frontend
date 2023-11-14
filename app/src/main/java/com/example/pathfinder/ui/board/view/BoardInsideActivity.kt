@@ -75,6 +75,7 @@ class BoardInsideActivity : AppCompatActivity() {
                 when (menuItem.itemId) {
                     R.id.menu_refresh -> {
                         // 새로고침
+                        getFBBoardDataById(boardId)
                         true
                     }
                     else -> {

@@ -107,85 +107,93 @@
         android:textSize="10dp"
         app:layout_constraintStart_toEndOf="@id/tvUserName"
         app:layout_constraintTop_toBottomOf="@id/tvRegion" />
-
-
-    <View
-        android:id="@+id/grayDivider"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:background="@color/Gray_300"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvPostTime" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/ivImg"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/grayDivider">
-
-        <ImageView
-            android:id="@+id/ivHeart"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/ic_heart"
-            android:layout_marginStart="4dp"
-            app:layout_constraintStart_toStartOf="parent"/>
-
-
-        <TextView
-            android:id="@+id/tvHeartCount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:text="0"
-            app:layout_constraintStart_toEndOf="@id/ivHeart" />
-
-<!--        <ImageView-->
-<!--            android:id="@+id/ivMessage"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="12dp"-->
-<!--            android:src="@drawable/ic_message"-->
-<!--            app:layout_constraintStart_toEndOf="@id/tvHeartCount"-->
-
-<!--            />-->
-
-<!--        &lt;!&ndash; Message Count TextView &ndash;&gt;-->
-<!--        <TextView-->
-<!--            android:id="@+id/tvMessageCount"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="12dp"-->
-<!--            android:text="0"-->
-<!--            app:layout_constraintStart_toEndOf="@id/ivMessage"-->
-
-<!--            />-->
-
-        <!-- Bookmark Icon ImageView -->
-        <ImageView
-            android:id="@+id/ivBookmark"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginEnd="4dp"
-            android:src="@drawable/ic_bookmark"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
+<!--하단줄-->
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:layout_marginTop="12dp"
-        android:background="@color/light_gray"
-        app:layout_constraintTop_toBottomOf="@+id/ivImg"/>
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/Gray_300"
+        app:layout_constraintTop_toBottomOf="@id/tvPostTime"/>
+
+<!--    <View-->
+<!--        android:id="@+id/grayDivider"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="1dp"-->
+<!--        android:layout_marginTop="4dp"-->
+<!--        android:layout_marginStart="24dp"-->
+<!--        android:layout_marginEnd="24dp"-->
+<!--        android:background="@color/Gray_300"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/tvPostTime" />-->
+
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:id="@+id/ivImg"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="24dp"-->
+<!--        android:layout_marginEnd="24dp"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/grayDivider">-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/ivHeart"-->
+<!--            android:layout_width="20dp"-->
+<!--            android:layout_height="20dp"-->
+<!--            android:src="@drawable/ic_heart"-->
+<!--            android:layout_marginStart="4dp"-->
+<!--            app:layout_constraintStart_toStartOf="parent"/>-->
+
+
+<!--        <TextView-->
+<!--            android:id="@+id/tvHeartCount"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="4dp"-->
+<!--            android:text="0"-->
+<!--            app:layout_constraintStart_toEndOf="@id/ivHeart" />-->
+
+<!--&lt;!&ndash;        <ImageView&ndash;&gt;-->
+<!--&lt;!&ndash;            android:id="@+id/ivMessage"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_marginStart="12dp"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:src="@drawable/ic_message"&ndash;&gt;-->
+<!--&lt;!&ndash;            app:layout_constraintStart_toEndOf="@id/tvHeartCount"&ndash;&gt;-->
+
+<!--&lt;!&ndash;            />&ndash;&gt;-->
+
+<!--&lt;!&ndash;        &lt;!&ndash; Message Count TextView &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;        <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;            android:id="@+id/tvMessageCount"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_marginStart="12dp"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:text="0"&ndash;&gt;-->
+<!--&lt;!&ndash;            app:layout_constraintStart_toEndOf="@id/ivMessage"&ndash;&gt;-->
+
+<!--&lt;!&ndash;            />&ndash;&gt;-->
+
+<!--        &lt;!&ndash; Bookmark Icon ImageView &ndash;&gt;-->
+<!--        <ImageView-->
+<!--            android:id="@+id/ivBookmark"-->
+<!--            android:layout_width="20dp"-->
+<!--            android:layout_height="20dp"-->
+<!--            android:layout_marginEnd="4dp"-->
+<!--            android:src="@drawable/ic_bookmark"-->
+<!--            app:layout_constraintEnd_toEndOf="parent" />-->
+
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--    <ImageView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="10dp"-->
+<!--        android:layout_marginTop="12dp"-->
+<!--        android:background="@color/light_gray"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/ivImg"/>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

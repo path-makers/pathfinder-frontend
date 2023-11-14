@@ -12,176 +12,179 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/linearLayout1"
-                android:layout_width="match_parent"
-                android:layout_height="270dp"
-                android:orientation="vertical"
-                android:background="@color/mainColor"
+            <TextView
+                android:id="@+id/titleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="28dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="14dp"
+                android:text="프로필"
+                android:textColor="@color/Gray_700"
+                android:textSize="20dp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <!-- Title Bar ConstraintLayout -->
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/typeBarLayout"
-                    android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:background="@color/mainColor"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent">
+            <Button
+                android:id="@+id/button"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/ic_modify"
+                app:layout_constraintEnd_toStartOf="@id/button2"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:id="@+id/titleTextView"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_marginStart="24dp"
-                        android:layout_marginEnd="50dp"
-                        android:gravity="left|center_vertical"
-                        android:text="프로필"
-                        android:textColor="@color/white"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/boardSettingIcon"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/ic_setting2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                        />
+            <ImageView
+                android:id="@+id/userImage"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="24dp"
+                android:background="@drawable/ic_profildefault"
+                android:cropToPadding="true"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/titleTextView"/>
 
-                    <ImageView
-                        android:id="@+id/boardSettingIcon"
-                        android:layout_width="40dp"
-                        android:layout_height="25dp"
-                        android:layout_marginEnd="18dp"
-                        android:src="@drawable/ic_setting2"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:tint="@color/white" />
+            <TextView
+                android:id="@+id/userName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="24dp"
+                android:text="닉네임"
+                android:textSize="16dp"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toEndOf="@id/userImage"
+                app:layout_constraintTop_toTopOf="@+id/userImage"/>
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="이메일"
+                android:textSize="12dp"
+                android:textColor="@color/Gray_700"
+                app:layout_constraintStart_toStartOf="@id/userName"
+                app:layout_constraintTop_toBottomOf="@+id/userName"/>
 
-                <ImageView
-                    android:layout_width="104dp"
-                    android:layout_height="104dp"
-                    android:layout_marginTop="28dp"
-                    android:background="@drawable/circle_image"
-                    android:cropToPadding="true"
-                    android:scaleType="centerCrop"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/typeBarLayout" />
-
-                <ImageView
-                    android:id="@+id/userImage"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="30dp"
-                    android:background="@drawable/ic_profildefault"
-                    android:cropToPadding="true"
-                    android:scaleType="centerCrop"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/typeBarLayout" />
-
-                <Button
-                    android:id="@+id/btnChangeImage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
-                    android:background="@drawable/custom_button"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp"
-                    android:text="프로필 이미지 변경"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/userImage" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <ScrollView
-                android:id="@+id/userProfileContainer"
+            <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="10dp"
+                android:layout_marginTop="24dp"
+                android:background="@color/light_gray"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/userImage"/>
+
+<!--            <Button-->
+<!--                android:id="@+id/btnChangeImage"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="24dp"-->
+<!--                android:background="@drawable/custom_button"-->
+<!--                android:paddingLeft="16dp"-->
+<!--                android:paddingRight="16dp"-->
+<!--                android:text="프로필 이미지 변경"-->
+<!--                android:textStyle="bold"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/userImage" />-->
+
+<!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--            <ScrollView-->
+<!--                android:id="@+id/userProfileContainer"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="0dp"-->
 
 
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout1">
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/linearLayout1">-->
 
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="24dp">
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical"-->
+<!--                    android:padding="24dp">-->
 
-                    <EditText
-                        android:id="@+id/editUserName"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="닉네임" />
+<!--                    <EditText-->
+<!--                        android:id="@+id/editUserName"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:hint="닉네임" />-->
 
-                    <Button
-                        android:id="@+id/btnUpdateName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="8dp"
-                        android:background="@drawable/custom_button"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp"
-                        android:text="닉네임 업데이트"
-                        android:textStyle="bold" />
+<!--                    <Button-->
+<!--                        android:id="@+id/btnUpdateName"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_gravity="center_horizontal"-->
+<!--                        android:layout_marginTop="8dp"-->
+<!--                        android:background="@drawable/custom_button"-->
+<!--                        android:paddingLeft="16dp"-->
+<!--                        android:paddingRight="16dp"-->
+<!--                        android:text="닉네임 업데이트"-->
+<!--                        android:textStyle="bold" />-->
 
-                    <EditText
-                        android:id="@+id/editEmail"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:hint="이메일" />
+<!--                    <EditText-->
+<!--                        android:id="@+id/editEmail"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="8dp"-->
+<!--                        android:hint="이메일" />-->
 
-                    <Button
-                        android:id="@+id/btnUpdateEmail"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="8dp"
-                        android:background="@drawable/custom_button"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp"
-                        android:text="이메일 업데이트"
-                        android:textStyle="bold" />
+<!--                    <Button-->
+<!--                        android:id="@+id/btnUpdateEmail"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_gravity="center_horizontal"-->
+<!--                        android:layout_marginTop="8dp"-->
+<!--                        android:background="@drawable/custom_button"-->
+<!--                        android:paddingLeft="16dp"-->
+<!--                        android:paddingRight="16dp"-->
+<!--                        android:text="이메일 업데이트"-->
+<!--                        android:textStyle="bold" />-->
 
-                    <EditText
-                        android:id="@+id/editPassword"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:hint="비밀번호"
-                        android:inputType="textPassword" />
+<!--                    <EditText-->
+<!--                        android:id="@+id/editPassword"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="8dp"-->
+<!--                        android:hint="비밀번호"-->
+<!--                        android:inputType="textPassword" />-->
 
-                    <Button
-                        android:id="@+id/btnUpdatePassword"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="8dp"
-                        android:background="@drawable/custom_button"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp"
-                        android:text="비밀번호 업데이트"
-                        android:textStyle="bold" />
+<!--                    <Button-->
+<!--                        android:id="@+id/btnUpdatePassword"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_gravity="center_horizontal"-->
+<!--                        android:layout_marginTop="8dp"-->
+<!--                        android:background="@drawable/custom_button"-->
+<!--                        android:paddingLeft="16dp"-->
+<!--                        android:paddingRight="16dp"-->
+<!--                        android:text="비밀번호 업데이트"-->
+<!--                        android:textStyle="bold" />-->
 
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="20dp"
-                        android:background="@color/transparent_ripple_color" />
+<!--                    <ImageView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="20dp"-->
+<!--                        android:background="@color/transparent_ripple_color" />-->
 
-                </LinearLayout>
+<!--                </LinearLayout>-->
 
-            </ScrollView>
+<!--            </ScrollView>-->
 <!--            <LinearLayout-->
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="3dp"-->

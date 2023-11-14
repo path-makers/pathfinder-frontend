@@ -57,64 +57,69 @@ class UserProfileFragment : Fragment() {
             Glide.with(this)
                 .load(photoUrl).circleCrop()
                 .into(binding.userImage)
-            binding.editUserName.setText(name)
-            binding.editEmail.setText(email)
+            binding.userName.setText(name)
+            binding.email.setText(email)
         }
 
-        binding.boardSettingIcon.setOnClickListener{
+        binding.button2.setOnClickListener{
             val intent = Intent(context, SettingActivity::class.java)
             startActivity(intent)
         }
 
+//        binding.button.setOnClickListener {
+//            val intent = Intent(context, ModifyActivity::class.java)
+//            startActivity(intent)
+//        }
 
-        binding.btnChangeImage.setOnClickListener {
-            val galleryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
 
-            startActivityForResult(galleryIntent, GALLERY_REQUEST_CODE)
-
-        }
-
-        binding.btnUpdateName.setOnClickListener {
-            val newUserName = binding.editUserName.text.toString()
-            val profileUpdates = userProfileChangeRequest {
-                displayName = newUserName
-            }
-
-            user!!.updateProfile(profileUpdates)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        Log.d(TAG, "User name updated.")
-                        Toast.makeText(context,"닉네임이 변경되었습니다",Toast.LENGTH_LONG).show()
-                        binding.editUserName.setText("")
-                    }
-                }
-        }
-
-        binding.btnUpdateEmail.setOnClickListener {
-            val newEmail = binding.editEmail.text.toString()
-
-            user!!.updateEmail(newEmail)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        Log.d(TAG, "User email address updated.")
-                        Toast.makeText(context,"이메일이 변경되었습니다",Toast.LENGTH_LONG).show()
-                        binding.editEmail.setText("")
-                    }
-                }
-        }
-
-        binding.btnUpdatePassword.setOnClickListener {
-            val newPassword = binding.editPassword.text.toString()
-
-            user!!.updatePassword(newPassword)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        Log.d(TAG, "User password updated.")
-                        Toast.makeText(context,"비밀번호가 변경되었습니다",Toast.LENGTH_LONG).show()
-                        binding.editPassword.setText("")
-                    }
-                }
-        }
+//        binding.btnChangeImage.setOnClickListener {
+//            val galleryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+//
+//            startActivityForResult(galleryIntent, GALLERY_REQUEST_CODE)
+//
+//        }
+//
+//        binding.btnUpdateName.setOnClickListener {
+//            val newUserName = binding.editUserName.text.toString()
+//            val profileUpdates = userProfileChangeRequest {
+//                displayName = newUserName
+//            }
+//
+//            user!!.updateProfile(profileUpdates)
+//                .addOnCompleteListener { task ->
+//                    if (task.isSuccessful) {
+//                        Log.d(TAG, "User name updated.")
+//                        Toast.makeText(context,"닉네임이 변경되었습니다",Toast.LENGTH_LONG).show()
+//                        binding.editUserName.setText("")
+//                    }
+//                }
+//        }
+//
+//        binding.btnUpdateEmail.setOnClickListener {
+//            val newEmail = binding.editEmail.text.toString()
+//
+//            user!!.updateEmail(newEmail)
+//                .addOnCompleteListener { task ->
+//                    if (task.isSuccessful) {
+//                        Log.d(TAG, "User email address updated.")
+//                        Toast.makeText(context,"이메일이 변경되었습니다",Toast.LENGTH_LONG).show()
+//                        binding.editEmail.setText("")
+//                    }
+//                }
+//        }
+//
+//        binding.btnUpdatePassword.setOnClickListener {
+//            val newPassword = binding.editPassword.text.toString()
+//
+//            user!!.updatePassword(newPassword)
+//                .addOnCompleteListener { task ->
+//                    if (task.isSuccessful) {
+//                        Log.d(TAG, "User password updated.")
+//                        Toast.makeText(context,"비밀번호가 변경되었습니다",Toast.LENGTH_LONG).show()
+//                        binding.editPassword.setText("")
+//                    }
+//                }
+//        }
 
 
 
