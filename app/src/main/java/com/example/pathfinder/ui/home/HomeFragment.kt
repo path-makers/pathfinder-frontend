@@ -1,8 +1,10 @@
 package com.example.pathfinder.ui.home
 
 
+import HomeRVAlgorithmAdapter
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,6 +24,7 @@ import com.example.pathfinder.databinding.FragmentHomeBinding
 import com.example.pathfinder.ui.board.view.BoardInsideActivity
 import com.example.pathfinder.ui.board.view.viewModel.BoardViewModel
 import com.example.pathfinder.ui.board.view.viewModel.BoardViewModelFactory
+import com.example.pathfinder.utils.FBAuth
 
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.firestore.ktx.firestore
@@ -37,8 +40,11 @@ class HomeFragment : Fragment() {
     private lateinit var viewModel: BoardViewModel
     private lateinit var boardRVAdapterMentor: HomeRVAdapter
     private lateinit var boardRVAdapterMentee: HomeRVAdapter
+    private lateinit var boardRVAdapterAlgorithm: HomeRVAlgorithmAdapter
     private val boardDataListMentor = mutableListOf<Board>()
     private val boardDataListMentee = mutableListOf<Board>()
+    private val boardDataListAlgorithm = mutableListOf<Board>()
+
 
 
     override fun onCreateView(
@@ -78,7 +84,9 @@ class HomeFragment : Fragment() {
 
         if (viewModel.boardDataListMentor.value == null) {
             getBoardData()
+
         }
+
 
         subscribeToData()
     }
@@ -86,10 +94,13 @@ class HomeFragment : Fragment() {
     private fun initBoardRecyclerView() {
         boardRVAdapterMentor = HomeRVAdapter(boardDataListMentor)
         boardRVAdapterMentee = HomeRVAdapter(boardDataListMentee)
+        boardRVAdapterAlgorithm = HomeRVAlgorithmAdapter(boardDataListAlgorithm)
         binding.mentorList.adapter = boardRVAdapterMentor
         binding.menteeList.adapter = boardRVAdapterMentee
+        binding.recommendList.adapter = boardRVAdapterAlgorithm
         binding.mentorList.layoutManager = LinearLayoutManager(context)
         binding.menteeList.layoutManager = LinearLayoutManager(context)
+        binding.recommendList.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
     }
 
@@ -97,7 +108,7 @@ class HomeFragment : Fragment() {
 
         viewModel.getBoardDataMentor()
         viewModel.getBoardDataMentee()
-
+        viewModel.getBoardDataByAlgorithm(FBAuth.getUid())
     }
 
     private fun subscribeToData() {
@@ -115,6 +126,16 @@ class HomeFragment : Fragment() {
             boardRVAdapterMentee.notifyDataSetChanged()
 
         }
+
+
+        viewModel.boardDataListAlgorithm.observe(viewLifecycleOwner) { boardDataListAlgorithm ->
+            this.boardDataListAlgorithm.clear()
+            this.boardDataListAlgorithm.addAll(boardDataListAlgorithm)
+            this.boardDataListAlgorithm.reverse()
+            boardRVAdapterAlgorithm.notifyDataSetChanged()
+
+        }
+
     }
 
     fun hideBottomNavigation(bool: Boolean) {
