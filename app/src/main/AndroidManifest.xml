@@ -23,6 +23,7 @@
         <activity android:name=".ui.board.view.BoardEditActivity"/>
         <activity android:name=".ui.board.view.BoardInsideActivity"/>
         <activity android:name=".ui.board.view.BoardWriteActivity"/>
+        <activity android:name=".ui.board.view.BoardChatActivity"/>
         <activity android:name=".ui.teamBuilding.TeamBuildingWriteActivity" />
         <activity android:name=".ui.teamBuilding.TeamBuildingInsideActivity" />
 
