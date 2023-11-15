@@ -23,6 +23,7 @@ import com.example.pathfinder.R
 import com.example.pathfinder.databinding.FragmentUserProfileBinding
 import com.example.pathfinder.ui.board.view.BoardWriteActivity
 import com.example.pathfinder.ui.setting.SettingActivity
+import com.example.pathfinder.utils.FBAuth
 import com.google.android.material.tabs.TabLayout
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
@@ -43,9 +44,13 @@ class UserProfileFragment : Fragment() {
     private lateinit var viewPager: ViewPager
     private var tabCurrentIdx = 0
 
+    companion object {
+        private const val MODIFY_REQUEST_CODE = 1001
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        retainInstance = true
+
 
     }
 
@@ -79,9 +84,8 @@ class UserProfileFragment : Fragment() {
 
         binding.button.setOnClickListener {
             val intent = Intent(context, ModifyActivity::class.java)
-            startActivity(intent)
+            startActivityForResult(intent, MODIFY_REQUEST_CODE) // MODIFY_REQUEST_CODE는 정수 상수
         }
-
         // 탭레이아웃 + 뷰페이저
         tabLayout = binding.profileTabLayout
         viewPager = binding.profileViewPager
@@ -107,54 +111,7 @@ class UserProfileFragment : Fragment() {
             override fun onTabReselected(tab: TabLayout.Tab) {}
         })
 
-//        binding.btnChangeImage.setOnClickListener {
-//            val galleryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-//
-//            startActivityForResult(galleryIntent, GALLERY_REQUEST_CODE)
-//
-//        }
-//
-//        binding.btnUpdateName.setOnClickListener {
-//            val newUserName = binding.editUserName.text.toString()
-//            val profileUpdates = userProfileChangeRequest {
-//                displayName = newUserName
-//            }
-//
-//            user!!.updateProfile(profileUpdates)
-//                .addOnCompleteListener { task ->
-//                    if (task.isSuccessful) {
-//                        Log.d(TAG, "User name updated.")
-//                        Toast.makeText(context,"닉네임이 변경되었습니다",Toast.LENGTH_LONG).show()
-//                        binding.editUserName.setText("")
-//                    }
-//                }
-//        }
-//
-//        binding.btnUpdateEmail.setOnClickListener {
-//            val newEmail = binding.editEmail.text.toString()
-//
-//            user!!.updateEmail(newEmail)
-//                .addOnCompleteListener { task ->
-//                    if (task.isSuccessful) {
-//                        Log.d(TAG, "User email address updated.")
-//                        Toast.makeText(context,"이메일이 변경되었습니다",Toast.LENGTH_LONG).show()
-//                        binding.editEmail.setText("")
-//                    }
-//                }
-//        }
-//
-//        binding.btnUpdatePassword.setOnClickListener {
-//            val newPassword = binding.editPassword.text.toString()
-//
-//            user!!.updatePassword(newPassword)
-//                .addOnCompleteListener { task ->
-//                    if (task.isSuccessful) {
-//                        Log.d(TAG, "User password updated.")
-//                        Toast.makeText(context,"비밀번호가 변경되었습니다",Toast.LENGTH_LONG).show()
-//                        binding.editPassword.setText("")
-//                    }
-//                }
-//        }
+
 
 
 
@@ -164,50 +121,21 @@ class UserProfileFragment : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == GALLERY_REQUEST_CODE && resultCode == Activity.RESULT_OK && data?.data != null) {
-            val selectedImageUri = data.data
-
-            val destinationUri = Uri.fromFile(File(context?.cacheDir, "cropped"))
-
-            val options = UCrop.Options()
-            options.setCircleDimmedLayer(true)
-
-            if (isAdded) {
-                UCrop.of(selectedImageUri!!, destinationUri)
-                    .withOptions(options)
-                    .start(context ?: return, this, UCROP_REQUEST_CODE)
-            }
-
-
-        } else if (requestCode == UCROP_REQUEST_CODE && resultCode == Activity.RESULT_OK && data != null) {
-            val resultUri = UCrop.getOutput(data)
-
-            if (resultUri != null) {
-                val user = Firebase.auth.currentUser
-                val uid = user?.uid
-
-                val storageReference = Firebase.storage.reference.child("userProfiles/$uid")
-
-                storageReference.putFile(resultUri)
-                    .addOnSuccessListener {
-                        storageReference.downloadUrl.addOnSuccessListener { uri ->
-                            val profileUpdates = userProfileChangeRequest {
-                                photoUri = uri
-                            }
-
-                            user!!.updateProfile(profileUpdates)
-                                .addOnCompleteListener { task ->
-                                    if (task.isSuccessful) {
-                                        Glide.with(this)
-                                            .load(uri).circleCrop()
-                                            .into(binding.userImage)
-                                    }
-                                }
-                        }
-                    }
-            }
+        if (requestCode == MODIFY_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            updateUserProfileUI() // UI 업데이트
         }
     }
+
+    private fun updateUserProfileUI() {
+        val user = Firebase.auth.currentUser
+        user?.let {
+            // Firebase에서 최신 사용자 정보 불러오기
+            binding.userName.setText(it.displayName)
+            binding.email.setText(it.email)
+        }
+    }
+
+
 
     private fun createCustomTabView(tabNm: String): View {
         val inflater = context?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater

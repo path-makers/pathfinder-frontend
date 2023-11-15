@@ -25,6 +25,11 @@ class FBAuth {
 
             return auth.currentUser?.displayName.toString()
         }
+        fun getUserEmail() : String{
+            auth = FirebaseAuth.getInstance()
+
+            return auth.currentUser?.email.toString()
+        }
 
 
         fun getTime(): String {

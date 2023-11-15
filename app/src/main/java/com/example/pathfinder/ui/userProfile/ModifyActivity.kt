@@ -1,5 +1,6 @@
 package com.example.pathfinder.ui.userProfile
 
+import android.app.Activity
 import android.content.ContentValues.TAG
 import android.content.Intent
 import android.net.Uri
@@ -93,46 +94,57 @@ class ModifyActivity : AppCompatActivity() {
         }
 
         completeBtn.setOnClickListener {
+            var updatesCount = 0
+            var completedUpdates = 0
+
+            fun checkCompletion() {
+                completedUpdates++
+                if (completedUpdates == updatesCount) {
+                    val resultIntent = Intent()
+                    setResult(Activity.RESULT_OK, resultIntent)
+                    finish() // 모든 업데이트가 완료되면 액티비티 종료
+                }
+            }
 
             // username 변경
             val newUserName = etUpdateName.text.toString()
-            val profileUpdates = userProfileChangeRequest {
-                displayName = newUserName
-            }
-
-            user!!.updateProfile(profileUpdates)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        Log.d(TAG, "User name updated.")
-//                        Toast.makeText(this,"닉네임이 변경되었습니다",Toast.LENGTH_LONG).show()
-//                        etUpdateName.setText("")
-                    }
+            if (newUserName.isNotEmpty()) {
+                updatesCount++
+                val profileUpdates = userProfileChangeRequest {
+                    displayName = newUserName
                 }
+
+                user!!.updateProfile(profileUpdates)
+                    .addOnCompleteListener {
+                        checkCompletion()
+                    }
+            }
 
             // email 변경
             val newEmail = etUpdateEmail.text.toString()
-
-            user!!.updateEmail(newEmail)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        Log.d(TAG, "User email address updated.")
-//                        Toast.makeText(this,"이메일이 변경되었습니다",Toast.LENGTH_LONG).show()
-//                        etUpdateEmail.setText("")
+            if (newEmail.isNotEmpty()) {
+                updatesCount++
+                user!!.updateEmail(newEmail)
+                    .addOnCompleteListener {
+                        checkCompletion()
                     }
-                }
+            }
 
             // password 변경
             val newPassword = etUpdatePassword.text.toString()
-
-            user!!.updatePassword(newPassword)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        Log.d(TAG, "User password updated.")
-//                        Toast.makeText(this,"비밀번호가 변경되었습니다",Toast.LENGTH_LONG).show()
-//                        etUpdatePassword.setText("")
+            if (newPassword.isNotEmpty()) {
+                updatesCount++
+                user!!.updatePassword(newPassword)
+                    .addOnCompleteListener {
+                        checkCompletion()
                     }
-                }
+            }
 
+            if (updatesCount == 0) {
+                val resultIntent = Intent()
+                setResult(Activity.RESULT_OK, resultIntent)
+                finish()// 변경할 항목이 없으면 바로 종료
+            }
         }
 
         // 사진 변경
