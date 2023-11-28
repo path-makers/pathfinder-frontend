@@ -10,9 +10,9 @@ import javax.inject.Inject
 class BoardDetailRemoteDataSource @Inject constructor(
     private val boardApi: BoardApi
 ) {
+
+
     suspend fun getBoardDataByType(boardType: String): Response<List<Board>> {
-        return withContext(Dispatchers.IO) {
-            boardApi.getBoardDataByType(boardType)
-        }
+        return boardApi.getBoardDataByType(boardType)
     }
 }

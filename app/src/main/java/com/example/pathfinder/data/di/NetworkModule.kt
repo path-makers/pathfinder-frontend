@@ -17,7 +17,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 class NetWorkModule {
 
-    private val URL = ""
+    private val URL = "http://138.2.114.130:8080/api/board/"
 
 
 
