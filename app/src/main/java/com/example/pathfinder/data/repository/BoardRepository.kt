@@ -8,11 +8,10 @@ import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.example.pathfinder.data.models.Board
-import com.example.pathfinder.data.models.Comment
+import com.example.pathfinder.data.model.Board
+import com.example.pathfinder.data.model.Comment
 import com.example.pathfinder.utils.FBAuth
 import org.json.JSONArray
-import org.json.JSONException
 import org.json.JSONObject
 import java.nio.charset.Charset
 

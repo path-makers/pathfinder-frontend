@@ -5,11 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pathfinder.R
-import com.example.pathfinder.data.models.Team
-import com.example.pathfinder.ui.board.view.BoardInsideActivity
+import com.example.pathfinder.data.model.Team
 
 class TeamBuildingRVAdapter(private val teamBuildingList: MutableList<Team>,private val teamBuildingKeyList: MutableList<String>) :
     RecyclerView.Adapter<TeamBuildingRVAdapter.ViewHolder>() {

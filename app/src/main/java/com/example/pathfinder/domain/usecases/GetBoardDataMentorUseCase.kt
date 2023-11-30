@@ -1,7 +1,7 @@
 package com.example.pathfinder.domain.usecases
 
-import com.example.pathfinder.data.models.Board
-import com.example.pathfinder.data.models.Results
+import com.example.pathfinder.data.model.Board
+import com.example.pathfinder.data.model.Results
 import com.example.pathfinder.data.repository.BoardRefactorRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject

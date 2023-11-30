@@ -16,7 +16,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.pathfinder.data.models.Board
+import com.example.pathfinder.data.model.Board
 import com.example.pathfinder.data.repository.BoardRepository
 import com.example.pathfinder.ui.board.view.viewModel.BoardViewModel
 import com.example.pathfinder.ui.board.view.viewModel.BoardViewModelFactory

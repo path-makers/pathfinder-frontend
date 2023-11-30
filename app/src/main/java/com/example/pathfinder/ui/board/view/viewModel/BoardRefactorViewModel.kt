@@ -5,13 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.pathfinder.data.models.Board
-import com.example.pathfinder.data.models.Results
+import com.example.pathfinder.data.model.Board
+import com.example.pathfinder.data.model.Results
 import com.example.pathfinder.data.repository.BoardRefactorRepository
 
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

@@ -8,7 +8,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pathfinder.R
-import com.example.pathfinder.data.models.Board
+import com.example.pathfinder.data.model.Board
 import com.example.pathfinder.ui.board.view.BoardInsideActivity
 import java.lang.StrictMath.min
 

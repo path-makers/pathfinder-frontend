@@ -2,8 +2,8 @@ package com.example.pathfinder.ui.board.view.viewModel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.pathfinder.data.models.Board
-import com.example.pathfinder.data.models.Comment
+import com.example.pathfinder.data.model.Board
+import com.example.pathfinder.data.model.Comment
 import com.example.pathfinder.data.repository.BoardRepository
 
 class BoardViewModel(private val boardRepository: BoardRepository) : ViewModel() {

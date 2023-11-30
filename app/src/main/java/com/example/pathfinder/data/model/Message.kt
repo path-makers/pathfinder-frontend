@@ -1,4 +1,4 @@
-package com.example.pathfinder.domain.models
+package com.example.pathfinder.data.model
 
 import com.stfalcon.chatkit.commons.models.IMessage
 import com.stfalcon.chatkit.commons.models.IUser

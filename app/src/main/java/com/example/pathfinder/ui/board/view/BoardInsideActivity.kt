@@ -1,16 +1,12 @@
 package com.example.pathfinder.ui.board.view
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.inputmethod.InputMethodManager
-import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.PopupMenu
 import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
@@ -19,9 +15,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pathfinder.R
 import com.example.pathfinder.databinding.ActivityBoardInsideBinding
-import com.example.pathfinder.data.models.Board
 
-import com.example.pathfinder.data.models.Comment
+import com.example.pathfinder.data.model.Comment
 import com.example.pathfinder.data.repository.BoardRepository
 import com.example.pathfinder.ui.board.view.viewModel.BoardViewModel
 import com.example.pathfinder.ui.board.view.viewModel.BoardViewModelFactory

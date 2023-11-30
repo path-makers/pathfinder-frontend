@@ -7,9 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pathfinder.R
-import com.example.pathfinder.data.models.Comment
+import com.example.pathfinder.data.model.Comment
 import com.example.pathfinder.databinding.ActivityBoardInsideBinding
-import com.example.pathfinder.data.models.Team
+import com.example.pathfinder.data.model.Team
 import com.example.pathfinder.utils.CommentRVAdapter
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore

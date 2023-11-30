@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pathfinder.R
-import com.example.pathfinder.data.models.Comment
+import com.example.pathfinder.data.model.Comment
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale

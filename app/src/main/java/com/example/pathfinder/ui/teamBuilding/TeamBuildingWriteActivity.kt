@@ -9,7 +9,7 @@ import android.os.Bundle
 import android.widget.EditText
 import androidx.databinding.DataBindingUtil
 import com.example.pathfinder.R
-import com.example.pathfinder.data.models.Team
+import com.example.pathfinder.data.model.Team
 import com.example.pathfinder.databinding.ActivityTeamBuildingWriteBinding
 import com.example.pathfinder.utils.FBAuth
 import com.google.firebase.auth.ktx.auth

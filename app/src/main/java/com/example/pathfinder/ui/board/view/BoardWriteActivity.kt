@@ -3,8 +3,6 @@ package com.example.pathfinder.ui.board.view
 import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -12,7 +10,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.pathfinder.R
 import com.example.pathfinder.databinding.ActivityBoardWriteBinding
-import com.example.pathfinder.data.models.Board
 import com.example.pathfinder.data.repository.BoardRepository
 import com.example.pathfinder.ui.board.view.viewModel.BoardViewModel
 import com.example.pathfinder.ui.board.view.viewModel.BoardViewModelFactory

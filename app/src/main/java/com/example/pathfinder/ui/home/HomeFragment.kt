@@ -2,9 +2,7 @@ package com.example.pathfinder.ui.home
 
 
 import HomeRVAlgorithmAdapter
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,25 +10,16 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.NavigationUI.setupWithNavController
-import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pathfinder.R
-import com.example.pathfinder.data.models.Board
-import com.example.pathfinder.data.models.Team
+import com.example.pathfinder.data.model.Board
 import com.example.pathfinder.data.repository.BoardRepository
 import com.example.pathfinder.databinding.FragmentHomeBinding
-import com.example.pathfinder.ui.board.view.BoardInsideActivity
 import com.example.pathfinder.ui.board.view.viewModel.BoardViewModel
 import com.example.pathfinder.ui.board.view.viewModel.BoardViewModelFactory
 import com.example.pathfinder.utils.FBAuth
 
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
-
-import java.io.Serializable
 
 
 class HomeFragment : Fragment() {

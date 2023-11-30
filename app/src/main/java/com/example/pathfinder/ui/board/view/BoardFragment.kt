@@ -20,7 +20,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.pathfinder.R
 import com.example.pathfinder.data.repository.BoardRepository
-import com.example.pathfinder.data.models.Board
+import com.example.pathfinder.data.model.Board
 import com.example.pathfinder.databinding.FragmentBoardBinding
 import com.example.pathfinder.ui.board.view.viewModel.BoardViewModelFactory
 import com.example.pathfinder.ui.board.view.viewModel.BoardViewModel

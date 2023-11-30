@@ -5,9 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import com.android.volley.Request
@@ -27,8 +25,8 @@ import android.widget.ProgressBar
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentManager
-import com.example.pathfinder.data.models.Message
-import com.example.pathfinder.data.models.User
+import com.example.pathfinder.data.model.Message
+import com.example.pathfinder.data.model.User
 import com.example.pathfinder.databinding.FragmentAiChatBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 

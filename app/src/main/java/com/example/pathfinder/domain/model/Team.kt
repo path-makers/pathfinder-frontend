@@ -1,4 +1,4 @@
-package com.example.pathfinder.data.models
+package com.example.pathfinder.domain.model
 
 import java.io.Serializable
 

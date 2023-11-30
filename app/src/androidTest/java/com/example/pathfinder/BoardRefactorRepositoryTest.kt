@@ -1,7 +1,7 @@
 package com.example.pathfinder
 
 import com.example.pathfinder.data.repository.BoardRefactorRepository
-import com.example.pathfinder.domain.models.Results
+import com.example.pathfinder.domain.model.Results
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.Assert.*

@@ -1,4 +1,4 @@
-package com.example.pathfinder.data.models
+package com.example.pathfinder.data.model
 
 sealed class Results<out R> {
     data class Success<out T>(val value: T) : Results<T>()
