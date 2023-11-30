@@ -4,6 +4,7 @@ import com.example.pathfinder.data.di.IoDispatcher
 import com.example.pathfinder.data.response.model.Board
 
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.withContext
 import retrofit2.Response
 import javax.inject.Inject
 
@@ -15,6 +16,12 @@ class BoardDetailRemoteDataSource @Inject constructor(
 
 
     suspend fun getBoardDataByType(boardType: String): Response<List<Board>> {
-        return boardApi.getBoardDataByType(boardType)
+        return withContext(ioDispatcher) {
+            return@withContext boardApi.getBoardDataByType(boardType)
+
+
+        }
+
+
     }
 }

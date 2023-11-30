@@ -82,8 +82,19 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore:24.9.1'
     implementation 'com.github.getActivity:Toaster:12.5'
     implementation 'com.github.unaisulhadi:emojiratingbar:1.0.5'
-    androidTestImplementation 'com.google.dagger:hilt-android-testing:2.28-alpha'
-    kaptAndroidTest 'com.google.dagger:hilt-android-compiler:2.42'
+    // For Robolectric tests.
+    testImplementation 'com.google.dagger:hilt-android-testing:2.44'
+    // ...with Kotlin.
+    kaptTest 'com.google.dagger:hilt-android-compiler:2.44'
+    // ...with Java.
+    testAnnotationProcessor 'com.google.dagger:hilt-android-compiler:2.44'
+
+    // For instrumented tests.
+    androidTestImplementation 'com.google.dagger:hilt-android-testing:2.44'
+    // ...with Kotlin.
+    kaptAndroidTest 'com.google.dagger:hilt-android-compiler:2.44'
+    // ...with Java.
+    androidTestAnnotationProcessor 'com.google.dagger:hilt-android-compiler:2.44'
 
 
     // Import the Firebase BoM
