@@ -6,6 +6,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Singleton
 
 
@@ -15,7 +16,16 @@ class RepositoryModule {
 
     @Singleton
     @Provides
-    fun provideReviewDetailRepository(boardDetailRemoteDataSource: BoardDetailRemoteDataSource): BoardRefactorRepository {
-        return BoardRefactorRepository(boardDetailRemoteDataSource = boardDetailRemoteDataSource)
+    fun provideBoardRefactorRepository(
+        boardDetailRemoteDataSource: BoardDetailRemoteDataSource,
+        @IoDispatcher ioDispatcher: CoroutineDispatcher
+    ): BoardRefactorRepository {
+        return BoardRefactorRepository(
+            boardDetailRemoteDataSource = boardDetailRemoteDataSource,
+            ioDispatcher = ioDispatcher
+
+        )
     }
+
+
 }
