@@ -38,6 +38,13 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_17.toString()
     }
+    java {
+        toolchain {
+            languageVersion.set(JavaLanguageVersion.of(17))
+            // vendor.set(JvmVendorSpec.ADOPTIUM)
+            // implementation.set(JvmImplementation.J9)
+        }
+    }
 
     viewBinding {
         enabled = true
