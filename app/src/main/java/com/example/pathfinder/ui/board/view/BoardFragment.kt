@@ -1,5 +1,7 @@
 package com.example.pathfinder.ui.board.view
 
+
+
 import BoardRVAdapter
 import android.app.Activity
 import android.content.Intent
@@ -15,6 +17,7 @@ import android.widget.PopupMenu
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -22,12 +25,15 @@ import com.example.pathfinder.R
 import com.example.pathfinder.data.repository.BoardRepository
 import com.example.pathfinder.data.model.Board
 import com.example.pathfinder.databinding.FragmentBoardBinding
+import com.example.pathfinder.ui.board.view.viewModel.BoardRefactorViewModel
 import com.example.pathfinder.ui.board.view.viewModel.BoardViewModelFactory
 import com.example.pathfinder.ui.board.view.viewModel.BoardViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
+//@AndroidEntryPoint
 class BoardFragment : Fragment() {
     private lateinit var viewModel: BoardViewModel
+//    private val viewModel: BoardRefactorViewModel by viewModels()
     private lateinit var binding: FragmentBoardBinding
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
     private val boardDataList = mutableListOf<Board>()
