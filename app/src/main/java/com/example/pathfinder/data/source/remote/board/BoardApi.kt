@@ -4,12 +4,21 @@ package com.example.pathfinder.data.source.remote.board
 import com.example.pathfinder.data.response.model.Board
 import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 
 interface BoardApi {
     @GET("/all")
     suspend fun getBoardDataByType(@Query("boardType") boardType: String): Response<List<Board>>
+    @GET("/single/{boardId}")
+    suspend fun getBoardDataById(@Path("boardId") boardId: String): Response<Board>
+
+    @GET("/recommend/{userId}")
+    suspend fun getBoardDataByAlgorithm(@Path("userId") userId: String): Response<List<Board>>
+
+
+
 }
 
 // 데이터 소스의 역할을 하는 인터페이스

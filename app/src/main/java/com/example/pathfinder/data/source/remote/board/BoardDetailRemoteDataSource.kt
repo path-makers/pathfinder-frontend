@@ -1,5 +1,6 @@
 package com.example.pathfinder.data.source.remote.board
 
+import android.util.Log
 import com.example.pathfinder.data.di.IoDispatcher
 import com.example.pathfinder.data.response.model.Board
 
@@ -19,9 +20,26 @@ class BoardDetailRemoteDataSource @Inject constructor(
         return withContext(ioDispatcher) {
             return@withContext boardApi.getBoardDataByType(boardType)
 
-
         }
-
-
     }
+
+    suspend fun getBoardDataById(boardId: String): Response<Board> {
+        return withContext(ioDispatcher) {
+            return@withContext boardApi.getBoardDataById(boardId)
+        }
+    }
+
+    suspend fun getBoardDataByAlgorithm(userId: String): Response<List<Board>> {
+        return withContext(ioDispatcher) {
+            return@withContext boardApi.getBoardDataByAlgorithm(userId)
+        }
+    }
+
+
+
+
+
+
+
+
 }
