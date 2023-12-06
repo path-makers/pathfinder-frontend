@@ -9,7 +9,7 @@ import retrofit2.http.Query
 
 
 interface BoardApi {
-    @GET("/all")
+    @GET("/api/board/all")
     suspend fun getBoardDataByType(@Query("boardType") boardType: String): Response<List<Board>>
     @GET("/single/{boardId}")
     suspend fun getBoardDataById(@Path("boardId") boardId: String): Response<Board>

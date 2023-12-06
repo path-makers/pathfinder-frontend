@@ -19,7 +19,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
-class BoardRefactorRepository @Inject constructor(
+class BoardRefactorRepository constructor(
     private val boardDetailRemoteDataSource: BoardDetailRemoteDataSource,
     private val ioDispatcher: CoroutineDispatcher
 ) {

@@ -1,7 +1,7 @@
 package com.example.pathfinder.data.model
 
 sealed class Results<out R> {
-    data class Success<out T>(val value: T) : Results<T>()
+    data class Success<out T>(val data: T) : Results<T>()
     data class Failure(
         val message: String
     ) : Results<Nothing>()
