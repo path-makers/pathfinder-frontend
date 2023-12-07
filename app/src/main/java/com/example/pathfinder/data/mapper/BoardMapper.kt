@@ -10,7 +10,7 @@ fun responseBoardListModelToDataModel(
 ): List<Board> {
     return boardList.map { board ->
         Board(
-            author = board.author,
+            author = board.author?:"익명 유저",
             id = board.id,
             title = board.title,
             content = board.content,
@@ -18,15 +18,15 @@ fun responseBoardListModelToDataModel(
             date = board.date,
             boardType = board.boardType,
             tags = board.tags.orEmpty(),
-            comments = board.comments.orEmpty().map { comment ->
+
+            comments = board.comments?.map { comment ->
                 Comment(
-                    author = comment.author,
+                    author = comment.author?:"익명 유저",
                     content = comment.content,
                     uid = comment.uid,
                     createdAt = comment.createdAt
                 )
-            }
+            } ?: emptyList()
         )
-
     }
 }

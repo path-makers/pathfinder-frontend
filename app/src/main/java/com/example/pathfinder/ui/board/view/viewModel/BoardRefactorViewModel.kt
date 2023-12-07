@@ -9,6 +9,9 @@ import com.example.pathfinder.data.repository.BoardRefactorRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import androidx.lifecycle.asLiveData
+import com.example.pathfinder.domain.usecases.GetBoardDataByAlgorithmUseCase
+import com.example.pathfinder.domain.usecases.GetBoardDataByIdUseCase
+import com.example.pathfinder.domain.usecases.GetBoardDataMentorUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.catch
 import javax.inject.Inject
@@ -16,7 +19,12 @@ import javax.inject.Inject
 
 @HiltViewModel
 class BoardRefactorViewModel @Inject constructor(
-    private val boardRefactorRepository: BoardRefactorRepository
+    private val boardRefactorRepository: BoardRefactorRepository,
+    private val getBoardDataMentorUseCase: GetBoardDataMentorUseCase,
+    private val getBoardDataMenteeUseCase: GetBoardDataMentorUseCase,
+    private val getBoardDataByIdUseCase: GetBoardDataByIdUseCase,
+    private val getBoardDataByAlgorithmUseCase: GetBoardDataByAlgorithmUseCase
+
 ) :
     ViewModel() {
 
@@ -26,27 +34,82 @@ class BoardRefactorViewModel @Inject constructor(
     private val _boardDataListMentee = MutableStateFlow<Results<List<Board>>>(Results.Loading)
     val boardDataListMentee = _boardDataListMentee.asLiveData()
 
+    private val _boardDataListById = MutableStateFlow<Results<Board>>(Results.Loading)
+    val boardDataListById = _boardDataListById.asLiveData()
+
+    private val _boardDataListAlgorithm = MutableStateFlow<Results<List<Board>>>(Results.Loading)
+    val boardDataListAlgorithm = _boardDataListAlgorithm.asLiveData()
+
     init {
         getBoardDataMentor()
         getBoardDataMentee()
+
     }
 
 
     fun getBoardDataMentor() {
         viewModelScope.launch {
-            boardRefactorRepository.getBoardDataByType("MENTOR").collect { result ->
-                _boardDataListMentor.value = result
+            getBoardDataMentorUseCase().collect { result ->
+                when (result) {
+                    is Results.Success -> {
+                        _boardDataListMentor.value = result
+                    }
+                    is Results.Loading -> {
+                    }
+                    is Results.Failure -> {
+                    }
+                }
+            }
+        }
+    }
+    fun getBoardDataMentee() {
+        viewModelScope.launch {
+            getBoardDataMenteeUseCase().collect { result ->
+                when (result) {
+                    is Results.Success -> {
+                        _boardDataListMentee.value = result
+                    }
+                    is Results.Loading -> {
+                    }
+                    is Results.Failure -> {
+                    }
+                }
             }
         }
     }
 
-    fun getBoardDataMentee() {
+
+    fun getBoardDataById(boardId: String) {
         viewModelScope.launch {
-            boardRefactorRepository.getBoardDataByType("MENTEE").collect { result ->
-                _boardDataListMentee.value = result
+           getBoardDataByIdUseCase(boardId).collect { result ->
+                when (result) {
+                    is Results.Success -> {
+                        _boardDataListById.value = result
+                    }
+                    is Results.Loading -> {
+                    }
+                    is Results.Failure -> {
+                    }
+                }
             }
         }
     }
+    fun getBoardDataByAlgorithm(userId: String) {
+        viewModelScope.launch {
+            getBoardDataByAlgorithmUseCase(userId).collect { result ->
+                when (result) {
+                    is Results.Success -> {
+                        _boardDataListAlgorithm.value = result
+                    }
+                    is Results.Loading -> {
+                    }
+                    is Results.Failure -> {
+                    }
+                }
+            }
+        }
+    }
+
 
 
 
