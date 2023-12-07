@@ -32,7 +32,7 @@ class BoardRefactorRepository constructor(
             }
         }.flowOn(ioDispatcher)
     }
-    
+
 
 
     fun getBoardDataById(boardId: String): Flow<Results<Board>> {

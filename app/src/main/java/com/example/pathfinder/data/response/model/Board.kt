@@ -24,7 +24,6 @@ data class Board(
     @SerializedName("comments")
     val comments: List<Comment>
 
-    //todo:왜 여기에 작성하고 데이터 모델아래에는 작성하지 않는지?
 
 
 )
