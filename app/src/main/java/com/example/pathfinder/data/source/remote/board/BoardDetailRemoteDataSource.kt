@@ -30,7 +30,7 @@ class BoardDetailRemoteDataSource @Inject constructor(
         }
     }
 
-    suspend fun getBoardDataByAlgorithm(userId: String): Response<List<Board>> {
+    suspend fun getBoardDataByAlgorithm(userId: String): Response<BoardResponse> {
         return withContext(ioDispatcher) {
             return@withContext boardApi.getBoardDataByAlgorithm(userId)
         }

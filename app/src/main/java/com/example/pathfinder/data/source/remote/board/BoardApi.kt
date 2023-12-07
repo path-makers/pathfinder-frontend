@@ -16,7 +16,8 @@ interface BoardApi {
     suspend fun getBoardDataById(@Path("boardId") boardId: String): Response<Board>
 
     @GET("/recommend/{userId}")
-    suspend fun getBoardDataByAlgorithm(@Path("userId") userId: String): Response<List<Board>>
+    suspend fun getBoardDataByAlgorithm(@Path("userId") userId: String): Response<BoardResponse>
+
 
 
 

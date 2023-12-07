@@ -25,7 +25,6 @@ class BoardRefactorRepository constructor(
             val response = boardDetailRemoteDataSource.getBoardDataByType(boardType)
             val boards = response.body()?.boards?.let { responseBoardListModelToDataModel(it) }
             if (response.isSuccessful && boards != null) {
-
                 emit(Results.Success(boards))
             } else {
                 emit(Results.Failure(response.message()))
@@ -39,10 +38,9 @@ class BoardRefactorRepository constructor(
         return flow {
             emit(Results.Loading)
             val response = boardDetailRemoteDataSource.getBoardDataById(boardId)
-            val body = response.body()
-            if (response.isSuccessful && body != null) {
-                val data = responseBoardModelToDataModel(board = body)
-                emit(Results.Success(data))
+            val board = response.body()?.let { responseBoardModelToDataModel(it) }
+            if (response.isSuccessful && board!= null) {
+                emit(Results.Success(board))
             } else {
                 emit(Results.Failure(response.message()))
             }
@@ -53,10 +51,9 @@ class BoardRefactorRepository constructor(
         return flow {
             emit(Results.Loading)
             val response = boardDetailRemoteDataSource.getBoardDataByAlgorithm(userId)
-            val body = response.body()
-            if (response.isSuccessful && body != null) {
-                val data = responseBoardListModelToDataModel(boardList = body)
-                emit(Results.Success(data))
+            val boards = response.body()?.boards?.let { responseBoardListModelToDataModel(it) }
+            if (response.isSuccessful && boards != null) {
+                emit(Results.Success(boards))
             } else {
                 emit(Results.Failure(response.message()))
             }
