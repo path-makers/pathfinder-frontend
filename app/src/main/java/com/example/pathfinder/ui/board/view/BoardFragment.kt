@@ -33,7 +33,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class BoardFragment : Fragment() {
-//    private lateinit var viewModel: BoardViewModel
+
     private val viewModel: BoardRefactorViewModel by viewModels()
     private lateinit var binding: FragmentBoardBinding
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
@@ -65,31 +65,12 @@ class BoardFragment : Fragment() {
 
         initBoardRecyclerView()
         initWriteButton()
-        initSettingButton()
+
 
 
         return binding.root
     }//뷰 생성과 초기화
 
-    private fun initSettingButton() {
-        binding.menuBtn.setOnClickListener {
-            val popupMenu = PopupMenu(context, it)
-            popupMenu.menuInflater.inflate(R.menu.menu_option, popupMenu.menu)
-            popupMenu.setOnMenuItemClickListener { menuItem ->
-                when (menuItem.itemId) {
-                    R.id.menu_refresh -> {
-                        getBoardData()
-                        true
-                    }
-
-                    else -> {
-                        false
-                    }
-                }
-            }
-            popupMenu.show()
-        }
-    }//todo: 메뉴 버튼 다시 짜기
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
