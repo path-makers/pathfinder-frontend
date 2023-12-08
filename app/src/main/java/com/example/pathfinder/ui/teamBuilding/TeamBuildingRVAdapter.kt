@@ -9,18 +9,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pathfinder.R
 import com.example.pathfinder.data.model.Team
 
-class TeamBuildingRVAdapter(private val teamBuildingList: MutableList<Team>,private val teamBuildingKeyList: MutableList<String>) :
+class TeamBuildingRVAdapter(private val teamBuildingList: MutableList<Team>) :
     RecyclerView.Adapter<TeamBuildingRVAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val teamCategory: TextView = view.findViewById(R.id.tvCategory)
-        val teamTitle: TextView = view.findViewById(R.id.tvTitle)
-        val teamContent: TextView = view.findViewById(R.id.tvContent)
-        val teamRecruitTime: TextView = view.findViewById(R.id.tvPeriod)
-        val teamRegion: TextView = view.findViewById(R.id.tvRegion)
-        val teamDisplayName: TextView = view.findViewById(R.id.tvUserName)
-        val teamUploadTime: TextView = view.findViewById(R.id.tvPostTime)
-//        val teamLikeCount: TextView = view.findViewById(R.id.tvHeartCount)
+        val author: TextView = view.findViewById(R.id.tvUserName)
+        val title: TextView = view.findViewById(R.id.tvTitle)
+        val content: TextView = view.findViewById(R.id.tvContent)
+        val category: TextView = view.findViewById(R.id.tvCategory)
+        val region: TextView = view.findViewById(R.id.tvRegion)
+        val endTime: TextView = view.findViewById(R.id.tvPeriod)
+        val createdAt: TextView = view.findViewById(R.id.tvPostTime)
+
 
 
     }
@@ -32,21 +32,23 @@ class TeamBuildingRVAdapter(private val teamBuildingList: MutableList<Team>,priv
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = teamBuildingList[position]
-        holder.teamCategory.text = item.category
-        holder.teamTitle.text = item.title
-        holder.teamContent.text = item.content
-        holder.teamRecruitTime.text = item.recruitTime
-        holder.teamRegion.text = item.regionArea
-        holder.teamDisplayName.text = item.displayName
-        holder.teamUploadTime.text = item.uploadTime
-//        holder.teamLikeCount.text = item.likeCount.toString()
+        holder.author.text = item.author
+        holder.title.text = item.title
+        holder.content.text = item.content
+        holder.category.text = item.category
+        holder.region.text = item.region
+        holder.endTime.text = item.endTime
+        holder.createdAt.text = item.uploadTime
+
 
 
         holder.itemView.setOnClickListener {
             val intent = Intent(it.context, TeamBuildingInsideActivity::class.java)
-            intent.putExtra("key", teamBuildingKeyList[position])
-            it.context.startActivity(intent)
+            holder.itemView.context.startActivity(intent)
+            //todo: 한번 더 확인
         }
+
+
 
 
     }

@@ -1,7 +1,9 @@
 package com.example.pathfinder.data.di
 
 import com.example.pathfinder.data.repository.BoardRefactorRepository
+import com.example.pathfinder.data.repository.TeamBuildingRepository
 import com.example.pathfinder.data.source.remote.board.BoardDetailRemoteDataSource
+import com.example.pathfinder.data.source.remote.teamBuilding.TeamBuildingRemoteDataSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,6 +26,18 @@ class RepositoryModule {
             boardDetailRemoteDataSource = boardDetailRemoteDataSource,
             ioDispatcher = ioDispatcher
 
+        )
+    }
+
+    @Singleton
+    @Provides
+    fun provideTeamBuildingRemoteDataSource(
+        teamBuildingRemoteDataSource: TeamBuildingRemoteDataSource,
+        @IoDispatcher ioDispatcher: CoroutineDispatcher
+    ): TeamBuildingRepository {
+        return TeamBuildingRepository(
+            teamBuildingRemoteDataSource = teamBuildingRemoteDataSource,
+            ioDispatcher = ioDispatcher
         )
     }
 

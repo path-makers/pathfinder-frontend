@@ -7,64 +7,48 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.PopupMenu
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.pathfinder.R
+import com.example.pathfinder.data.model.Board
+import com.example.pathfinder.data.model.Results
 import com.example.pathfinder.databinding.FragmentTeamBuildingBinding
 import com.example.pathfinder.data.model.Team
+import com.example.pathfinder.ui.teamBuilding.viewmodel.TeamBuildingViewModel
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class TeamBuildingFragment : Fragment() {
 
-   private lateinit var binding: FragmentTeamBuildingBinding
-    private val teamDataList = mutableListOf<Team>()
-    private val teamKeyList = mutableListOf<String>()
+    private val viewModel: TeamBuildingViewModel by viewModels()
+    private lateinit var binding: FragmentTeamBuildingBinding
     private lateinit var teamRVAdapter: TeamBuildingRVAdapter
-    private val TAG = TeamBuildingFragment::class.java.simpleName
-    private val db = Firebase.firestore
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
-    private val startWriteActivityForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result.resultCode == Activity.RESULT_OK) {
-            getFBTeamData()
+    private val startWriteActivityForResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                getFBTeamData()
+            }
         }
-    }
-
 
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_team_building, container, false)
         // 메뉴
-        binding.button2.setOnClickListener {
-            val popupMenu = PopupMenu(context, it)
-            popupMenu.menuInflater.inflate(R.menu.menu_option, popupMenu.menu)
-            popupMenu.setOnMenuItemClickListener { menuItem ->
-                when (menuItem.itemId) {
-                    R.id.menu_refresh -> {
-                        getFBTeamData()
-                        true
-                    }
-                    else -> {
-                        false
-                    }
-                }
-            }
-            popupMenu.show()
-        }
 
-        initTeamListView()
+
+        initTeamRecyclerView()
         initWriteButton()
 
 
@@ -93,11 +77,27 @@ class TeamBuildingFragment : Fragment() {
 
 
 
-    private fun initTeamListView() {
-        teamRVAdapter = TeamBuildingRVAdapter(teamDataList, teamKeyList)
-        binding.teamBuildingRecyclerView.adapter = teamRVAdapter
-        binding.teamBuildingRecyclerView.layoutManager = LinearLayoutManager(context)
-    }
+
+
+
+        private fun initTeamRecyclerView() {
+            viewModel.teamDataList.observe(viewLifecycleOwner, Observer { result ->
+                when (result) {
+                    is Results.Success -> {
+                        teamRVAdapter = TeamBuildingRVAdapter(result.data as MutableList<Team>)
+                        binding.teamBuildingRecyclerView.adapter = teamRVAdapter
+                    }
+                    is Results.Loading -> {
+                        // 로딩 처리
+                    }
+                    is Results.Failure -> {
+                        // 오류 처리
+                    }
+                }
+            })
+            binding.teamBuildingRecyclerView.layoutManager = LinearLayoutManager(context)
+        }
+
 
     private fun initWriteButton() {
         binding.teamWriteBtn.setOnClickListener {
@@ -107,36 +107,12 @@ class TeamBuildingFragment : Fragment() {
     }
 
     private fun getFBTeamData() {
-        db.collection("teamBuilding")
-            .orderBy("uploadTime", Query.Direction.ASCENDING)
-            .addSnapshotListener { teamdatas, e ->
-                if (e != null) {
-                    Log.w(TAG, "Listen failed.", e)
-                    return@addSnapshotListener
-                }
-
-                if (teamdatas != null) {
-                    Log.d(TAG, "Current data: ${teamdatas.documents}")
-                    handleSnapshot(teamdatas)
-                }
-            }
+     viewModel.getTeamData()
     }
 
-    private fun handleSnapshot(teamdatas: QuerySnapshot) {
-        teamDataList.clear()
-        teamKeyList.clear()
 
-        for (teamdata in teamdatas) {
-            Log.d(TAG, teamdata.id + " => " + teamdata.data)
-            val item = teamdata.toObject(Team::class.java)
-            teamDataList.add(item)
-            teamKeyList.add(teamdata.id)
-        }
 
-        teamDataList.reverse()
-        teamKeyList.reverse()
-        teamRVAdapter.notifyDataSetChanged()
-    }
+
 
 }
 

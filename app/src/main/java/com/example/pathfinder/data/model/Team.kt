@@ -2,16 +2,13 @@ package com.example.pathfinder.data.model
 
 import java.io.Serializable
 
-data class Team  (
-        val category : String="",
-        val title : String="",
-        val content : String="",
-        val regionArea : String="",
-        val recruitTime : String="",
-        var displayName: String? = null,
-        val uploadTime : String="",
-        val likeCount : Int = 0,
-        val commentCount : Int = 0
+data class Team(
+        var author: String = "",
+        val title: String = "",
+        val content: String = "",
+        val category: String = "",
+        val region: String = "",
+        val endTime: String = "",
+        val uploadTime: String = "",
 
-
-    ): Serializable
+) : Serializable

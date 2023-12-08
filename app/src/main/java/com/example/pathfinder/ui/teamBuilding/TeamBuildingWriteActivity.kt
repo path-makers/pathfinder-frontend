@@ -45,7 +45,7 @@ class TeamBuildingWriteActivity : AppCompatActivity() {
             val displayName = Firebase.auth.currentUser?.displayName
             val errorMessage = "모든 사항을 입력해주세요."
 
-            val team = Team(category, title, content, regionArea, recruitTime, displayName, uploadTime)
+            val team = Team(category, title, content, regionArea, recruitTime, displayName.toString(), uploadTime)
             if (title.isEmpty() || content.isEmpty() || regionArea.isEmpty() || recruitTime.isEmpty()) {
                 // Show a Toast message to fill all details
                 Toaster.show(errorMessage)

@@ -124,7 +124,7 @@ class TeamBuildingInsideActivity : AppCompatActivity() {
         with(binding) {
             typeArea.text = team.category
             titleArea.text = team.title
-            userNameArea.text = team.displayName
+            userNameArea.text = team.author
             timeArea.text = team.uploadTime
             textArea.text = team.content
         }
