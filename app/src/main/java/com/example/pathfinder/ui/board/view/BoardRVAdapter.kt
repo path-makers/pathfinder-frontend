@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pathfinder.R
 import com.example.pathfinder.data.model.Board
 import com.example.pathfinder.ui.board.view.BoardInsideActivity
+import com.example.pathfinder.utils.Common.Companion.formatDate
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -54,11 +55,7 @@ class BoardRVAdapter(private val boardList: MutableList<Board>) :
         return boardList.size
     }
 
-    private fun formatDate(timeStamp: Long): String {
-        val date = Date(timeStamp)
-        val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault())
-        return sdf.format(date)
-    }
+
 
     private fun displayTags(tagsLayout: LinearLayout, tags: List<String>) {
         tagsLayout.removeAllViews()

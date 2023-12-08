@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pathfinder.R
 import com.example.pathfinder.data.model.Comment
+import com.example.pathfinder.utils.Common.Companion.formatDate
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -36,9 +37,5 @@ class CommentRVAdapter(val commentList : MutableList<Comment>) : RecyclerView.Ad
 
 
 
-    private fun formatDate(timeStamp: Long): String {
-        val date = Date(timeStamp)
-        val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault())
-        return sdf.format(date)
-    }
+
 }

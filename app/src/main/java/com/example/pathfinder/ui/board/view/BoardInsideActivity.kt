@@ -21,6 +21,7 @@ import com.example.pathfinder.data.repository.BoardRepository
 import com.example.pathfinder.ui.board.view.viewModel.BoardViewModel
 import com.example.pathfinder.ui.board.view.viewModel.BoardViewModelFactory
 import com.example.pathfinder.utils.CommentRVAdapter
+import com.example.pathfinder.utils.Common.Companion.formatDate
 import com.example.pathfinder.utils.FBAuth
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -149,10 +150,5 @@ class BoardInsideActivity : AppCompatActivity() {
     }
 
 
-    private fun formatDate(timeStamp: Long): String {
-        val date = Date(timeStamp)
-        val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault())
-        return sdf.format(date)
-    }
 
 }
