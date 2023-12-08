@@ -127,7 +127,7 @@ class BoardRepository(private val context: Context) { // Context 추가
 
         val requestBody = JSONObject()
         requestBody.put("uid", userId)
-        Log.d(TAG, "getBoardDataByAlgorithm: $requestBody")
+
 
         val jsonObjectRequest = CustomJsonObjectRequest(
             Request.Method.GET, url, requestBody,
@@ -159,9 +159,8 @@ class BoardRepository(private val context: Context) { // Context 추가
 
                         )
 
-                    Log.d(TAG, "getBoardDataByAlgorithm: $board")
-                    boardDataList.add(board)
-                    Log.d(TAG, "getBoardDataByAlgorithm: $boardDataList")
+
+
                 }
 
                 success(boardDataList)

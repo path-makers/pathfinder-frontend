@@ -78,7 +78,7 @@ class JoinActivity : AppCompatActivity() {
                             user?.updateProfile(profileUpdates)
                                 ?.addOnCompleteListener { task ->
                                     if (task.isSuccessful) {
-                                        Log.d(TAG, "User profile updated.")
+
                                         // Navigate to MainActivity
                                         val intent = Intent(this, MainActivity::class.java)
                                         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP

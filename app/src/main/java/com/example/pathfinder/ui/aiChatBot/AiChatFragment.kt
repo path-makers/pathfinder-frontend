@@ -69,7 +69,7 @@ class AiChatFragment : Fragment() {
 
 
         val userResponses = arguments?.getString("userResponses")
-        Log.d("AiChatFragment", "userResponses: $userResponses")
+
         if (userResponses != null) {
             performAction(userResponses)
         }
@@ -99,7 +99,7 @@ class AiChatFragment : Fragment() {
         jsonObject.put("messages", jsonArray)
         jsonObject.put("model", "gpt-4")
         jsonObject.put("max_tokens", 4096)
-        Log.d("NetworkRequest", "Request: $jsonArray")
+
         val stringRequest = object : JsonObjectRequest(
             Request.Method.POST, url, jsonObject,
             Response.Listener<JSONObject> { response ->
@@ -123,7 +123,7 @@ class AiChatFragment : Fragment() {
                 var map = HashMap<String, String>()
                 map.put("Content-Type", "application/json")
                 map.put("Authorization", "Bearer ")
-                Log.d("NetworkHeaders", "Headers: $map")
+
                 return map
             }
 
@@ -143,7 +143,7 @@ class AiChatFragment : Fragment() {
 
 
         queue.add(stringRequest)
-        Log.d("NetworkRequest", "Request: $stringRequest")
+
     }
 
 

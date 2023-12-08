@@ -114,7 +114,7 @@ class AiQuestionFragment : Fragment() {
 
         val bundle = Bundle()
         bundle.putString("userResponses", contentBuilder.toString())
-        Log.d("AiQuestionFragment", "userResponses: ${bundle.getString("userResponses")}")
+
 
         findNavController().navigate(R.id.action_aiQuestionFragment_to_chatFragment, bundle)
     }

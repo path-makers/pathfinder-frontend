@@ -108,11 +108,11 @@ class TeamBuildingInsideActivity : AppCompatActivity() {
             .addSnapshotListener { snapshot, e ->
                 if (e != null) {
                     // Handle the error
-                    Log.e("loadComments", "Error loading comments", e)
+
                     return@addSnapshotListener
                 }
                 snapshot?.toObjects(Comment::class.java)?.let { comments ->
-                    Log.d("loadComments", "Comments loaded: ${comments.size}")
+
                     commentList.clear()
                     commentList.addAll(comments)
                     commentAdapter.notifyDataSetChanged()
