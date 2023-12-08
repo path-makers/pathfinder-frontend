@@ -1,18 +1,13 @@
 package com.example.pathfinder.ui.userProfile
 
 import android.app.Activity
-import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -21,17 +16,11 @@ import com.bumptech.glide.Glide
 
 import com.example.pathfinder.R
 import com.example.pathfinder.databinding.FragmentUserProfileBinding
-import com.example.pathfinder.ui.board.view.BoardWriteActivity
 import com.example.pathfinder.ui.setting.SettingActivity
-import com.example.pathfinder.utils.FBAuth
 import com.google.android.material.tabs.TabLayout
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.ktx.storage
-import com.yalantis.ucrop.UCrop
 //import com.yalantis.ucrop.UCrop
-import java.io.File
 
 
 class UserProfileFragment : Fragment() {

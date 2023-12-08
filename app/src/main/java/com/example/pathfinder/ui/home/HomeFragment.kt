@@ -15,8 +15,8 @@ import com.example.pathfinder.R
 import com.example.pathfinder.data.model.Board
 import com.example.pathfinder.data.repository.BoardRepository
 import com.example.pathfinder.databinding.FragmentHomeBinding
-import com.example.pathfinder.ui.board.view.viewModel.BoardViewModel
-import com.example.pathfinder.ui.board.view.viewModel.BoardViewModelFactory
+import com.example.pathfinder.ui.board.viewModel.BoardViewModel
+import com.example.pathfinder.ui.board.viewModel.BoardViewModelFactory
 import com.example.pathfinder.utils.FBAuth
 
 import com.google.android.material.bottomnavigation.BottomNavigationView

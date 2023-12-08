@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pathfinder.R
 import com.example.pathfinder.data.model.Board
-import com.example.pathfinder.ui.board.view.BoardInsideActivity
+import com.example.pathfinder.ui.board.BoardInsideActivity
 import java.lang.StrictMath.min
 
 class HomeRVAdapter(private val boardList : MutableList<Board>):

@@ -1,3 +1,5 @@
+package com.example.pathfinder.ui.board
+
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -7,11 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pathfinder.R
 import com.example.pathfinder.data.model.Board
-import com.example.pathfinder.ui.board.view.BoardInsideActivity
 import com.example.pathfinder.utils.Common.Companion.formatDate
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
 
 
 class BoardRVAdapter(private val boardList: MutableList<Board>) :

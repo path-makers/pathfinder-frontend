@@ -1,34 +1,27 @@
-package com.example.pathfinder.ui.board.view
+package com.example.pathfinder.ui.board
 
 
 
-import BoardRVAdapter
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.PopupMenu
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.pathfinder.R
-import com.example.pathfinder.data.repository.BoardRepository
 import com.example.pathfinder.data.model.Board
 import com.example.pathfinder.data.model.Results
 import com.example.pathfinder.databinding.FragmentBoardBinding
-import com.example.pathfinder.ui.board.view.viewModel.BoardRefactorViewModel
-import com.example.pathfinder.ui.board.view.viewModel.BoardViewModelFactory
-import com.example.pathfinder.ui.board.view.viewModel.BoardViewModel
+import com.example.pathfinder.ui.board.viewModel.BoardRefactorViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

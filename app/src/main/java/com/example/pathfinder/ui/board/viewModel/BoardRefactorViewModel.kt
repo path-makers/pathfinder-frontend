@@ -1,4 +1,4 @@
-package com.example.pathfinder.ui.board.view.viewModel
+package com.example.pathfinder.ui.board.viewModel
 
 import android.util.Log
 import androidx.lifecycle.ViewModel

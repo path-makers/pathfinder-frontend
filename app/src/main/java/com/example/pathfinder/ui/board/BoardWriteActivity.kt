@@ -1,4 +1,4 @@
-package com.example.pathfinder.ui.board.view
+package com.example.pathfinder.ui.board
 
 import android.app.Activity
 import android.os.Bundle
@@ -11,8 +11,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.pathfinder.R
 import com.example.pathfinder.databinding.ActivityBoardWriteBinding
 import com.example.pathfinder.data.repository.BoardRepository
-import com.example.pathfinder.ui.board.view.viewModel.BoardViewModel
-import com.example.pathfinder.ui.board.view.viewModel.BoardViewModelFactory
+import com.example.pathfinder.ui.board.viewModel.BoardViewModel
+import com.example.pathfinder.ui.board.viewModel.BoardViewModelFactory
 import com.example.pathfinder.ui.components.BottomSheetTagFragment
 import com.example.pathfinder.utils.FBAuth
 import com.hjq.toast.Toaster
