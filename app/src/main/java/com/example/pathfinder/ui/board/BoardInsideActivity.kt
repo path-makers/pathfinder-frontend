@@ -23,7 +23,9 @@ import com.example.pathfinder.ui.board.viewModel.BoardViewModelFactory
 import com.example.pathfinder.utils.CommentRVAdapter
 import com.example.pathfinder.utils.Common.Companion.formatDate
 import com.example.pathfinder.utils.FBAuth
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class BoardInsideActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityBoardInsideBinding
@@ -59,26 +61,6 @@ class BoardInsideActivity : AppCompatActivity() {
         binding.backButton.setOnClickListener {
             finish()
         }
-
-        // 메뉴
-        binding.boardSettingIcon.setOnClickListener {
-            val popupMenu = PopupMenu(this, it)
-            popupMenu.menuInflater.inflate(R.menu.menu_option, popupMenu.menu)
-            popupMenu.setOnMenuItemClickListener { menuItem ->
-                when (menuItem.itemId) {
-                    R.id.menu_refresh -> {
-                        // 새로고침
-                        getFBBoardDataById(boardId)
-                        true
-                    }
-                    else -> {
-                        false
-                    }
-                }
-            }
-            popupMenu.show()
-        }
-
 
 
     }

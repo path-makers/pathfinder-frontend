@@ -8,6 +8,7 @@ fun responseTeamBuildingModelToDataModel(
 ): List<Team> {
     return teamBuildingList.map { team ->
         Team(
+            id = team.id,
             author = team.author ?: "익명 유저",
             title = team.title,
             content = team.content,

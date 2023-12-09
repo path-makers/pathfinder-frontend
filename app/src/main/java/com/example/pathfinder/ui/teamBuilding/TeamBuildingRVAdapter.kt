@@ -44,6 +44,7 @@ class TeamBuildingRVAdapter(private val teamBuildingList: MutableList<Team>) :
 
         holder.itemView.setOnClickListener {
             val intent = Intent(it.context, TeamBuildingInsideActivity::class.java)
+            intent.putExtra("key", item.id)
             holder.itemView.context.startActivity(intent)
             //todo: 한번 더 확인
         }

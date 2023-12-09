@@ -4,8 +4,8 @@ import com.google.gson.annotations.SerializedName
 
 data class Team(
 
-//    @SerializedName("id")
-//    val id: String,
+    @SerializedName("id")
+    val id: String,
 //    @SerializedName("uid")
 //    val uid: String,
     @SerializedName("author")

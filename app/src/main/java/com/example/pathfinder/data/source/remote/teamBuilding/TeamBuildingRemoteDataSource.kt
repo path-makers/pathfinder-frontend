@@ -2,6 +2,7 @@ package com.example.pathfinder.data.source.remote.teamBuilding
 
 import com.example.pathfinder.data.di.IoDispatcher
 import com.example.pathfinder.data.response.TeamBuildingResponse
+import com.example.pathfinder.data.response.model.Team
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import retrofit2.Response
@@ -15,6 +16,13 @@ class TeamBuildingRemoteDataSource @Inject constructor(
         return withContext(ioDispatcher){
             return@withContext teamBuildingApi.getTeamData()
         }
+    }
+
+    suspend fun getSingleTeamBuildingData(teamId:String): Response<Team> {
+        return withContext(ioDispatcher){
+            return@withContext teamBuildingApi.getSingleTeamData(teamId)
+        }
+
     }
 
 }
