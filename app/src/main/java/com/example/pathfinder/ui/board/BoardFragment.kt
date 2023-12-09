@@ -1,7 +1,6 @@
 package com.example.pathfinder.ui.board
 
 
-
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
@@ -34,18 +33,6 @@ class BoardFragment : Fragment() {
     private lateinit var boardRVAdapter: BoardRVAdapter
     private var currentBoardType = "MENTOR"
 
-    private val startWriteActivityForResult =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-
-                Handler(Looper.getMainLooper()).postDelayed({
-                    //서버와 프론트 시간 차이로 인해 글 작성후 업데이트 전 0.1초 딜레이
-                    getBoardData()
-                    subscribeToDataChanges(currentBoardType)
-                }, 100)
-            }
-        }//글 작성후 업데이트
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -54,35 +41,28 @@ class BoardFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_board, container, false)
         binding.mentorBtn.isChecked = true //첫 진입시 멘토
 
-
-
         initBoardRecyclerView()
         initWriteButton()
 
-
-
         return binding.root
     }//뷰 생성과 초기화
-
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         swipeRefreshLayout = binding.swipeRefreshLayout
-
         swipeRefreshLayout.setOnRefreshListener {
-            // 사용자가 새로고침을 요청하면 실행될 로직
             getBoardData()
-
-            // 데이터 로딩이 끝난 후에는 새로고침 종료
             swipeRefreshLayout.isRefreshing = false
         }//pull to refresh 구현
 
         if (viewModel.boardDataListMentor.value == null) {
             getBoardData()
-        }
+        }//todo: 지워도 될듯
+
         subscribeToDataChanges(currentBoardType)
+
     }//뷰가 생성된 후 데이터를 연결
 
     private fun initBoardRecyclerView() {
@@ -94,14 +74,25 @@ class BoardFragment : Fragment() {
             binding.mentorBtn.isChecked = mentorSelected
             binding.menteeBtn.isChecked = !mentorSelected
 
-            binding.mentorBtn.setTextColor(ContextCompat.getColor(requireContext(), if (mentorSelected) R.color.black else R.color.gray))
-            binding.menteeBtn.setTextColor(ContextCompat.getColor(requireContext(), if (mentorSelected) R.color.gray else R.color.black))
+            binding.mentorBtn.setTextColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    if (mentorSelected) R.color.black else R.color.gray
+                )
+            )
+            binding.menteeBtn.setTextColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    if (mentorSelected) R.color.gray else R.color.black
+                )
+            )
 
             subscribeToDataChanges(if (mentorSelected) "MENTOR" else "MENTEE")
         }
 
         binding.mentorBtn.setOnClickListener {
-            if (currentBoardType != "MENTOR") { currentBoardType = "MENTOR"
+            if (currentBoardType != "MENTOR") {
+                currentBoardType = "MENTOR"
                 updateButtonState(true)
             }
         }
@@ -123,40 +114,51 @@ class BoardFragment : Fragment() {
         }
     }//글 작성
 
+    private val startWriteActivityForResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+
+                Handler(Looper.getMainLooper()).postDelayed({
+                    //서버와 프론트 시간 차이로 인해 글 작성후 업데이트 전 0.1초 딜레이
+                    getBoardData()
+                    subscribeToDataChanges(currentBoardType)
+                }, 100)
+            }
+        }//글 작성후 업데이트
+
 
     private fun getBoardData() {
-
         viewModel.getBoardDataMentor()
         viewModel.getBoardDataMentee()
 
     }//데이터 가져오기
 
+    private val observer = { results: Results<List<Board>> ->
+        when (results) {
+            is Results.Loading -> {
+                // 로딩 처리
+            }
+
+            is Results.Success -> {
+                updateUI(results.data)
+            }
+
+            is Results.Failure -> {
+                // 오류 처리
+            }
+        }
+    }//데이터 변경 관찰자
+
     private fun subscribeToDataChanges(boardType: String) {
         viewModel.boardDataListMentor.removeObservers(viewLifecycleOwner)
         viewModel.boardDataListMentee.removeObservers(viewLifecycleOwner)
-
-        val observer = { results: Results<List<Board>> ->
-            when (results) {
-                is Results.Loading -> {
-                    // 로딩 처리
-                }
-                is Results.Success -> {
-                    updateUI(results.data)
-                }
-                is Results.Failure -> {
-                    // 오류 처리
-                }
-            }
-        }
-
+        //이전에 연결된 데이터 변경 관찰자 제거
         if (boardType == "MENTOR") {
             viewModel.boardDataListMentor.observe(viewLifecycleOwner, observer)
         } else {
             viewModel.boardDataListMentee.observe(viewLifecycleOwner, observer)
-        }
-    }//데이터 변경시에 불려와서 리사이클러뷰 업데이트, 중복 구독 안되게 관찰자 제거해줘야 함
-
-
+        }//라이브 데이터에 관찰자 등록
+    }
 
 
     private fun updateUI(newDataList: List<Board>) {
