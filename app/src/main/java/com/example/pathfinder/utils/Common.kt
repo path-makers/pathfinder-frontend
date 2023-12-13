@@ -12,5 +12,11 @@ class Common {
             return sdf.format(date)
         }
 
+        fun formatEndDate(timeStamp: Long): String {
+            val date = Date(timeStamp)
+            val sdf = SimpleDateFormat("MM월 dd일 까지", Locale.getDefault())
+            return sdf.format(date)
+        }
+
     }
 }
