@@ -1,6 +1,7 @@
 package com.example.pathfinder.data.source.remote.teamBuilding
 
 import com.example.pathfinder.data.response.TeamBuildingResponse
+import com.example.pathfinder.data.response.TeamBuildingSingleResponse
 import com.example.pathfinder.data.response.model.Board
 import com.example.pathfinder.data.response.model.Team
 import retrofit2.Response
@@ -12,6 +13,6 @@ interface TeamBuildingApi {
     suspend fun getTeamData(): Response<TeamBuildingResponse>
 
     @GET("/api/project/single/{teamId}")
-    suspend fun getSingleTeamData(@Path("teamId")teamId:String): Response<Team>
+    suspend fun getSingleTeamData(@Path("teamId")teamId:String): Response<TeamBuildingSingleResponse>
 
 }
