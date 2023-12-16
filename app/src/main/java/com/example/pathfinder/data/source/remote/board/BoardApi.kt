@@ -1,6 +1,7 @@
 package com.example.pathfinder.data.source.remote.board
 
 
+import com.example.pathfinder.data.model.BoardRequest
 import com.example.pathfinder.data.model.CommentRequest
 import com.example.pathfinder.data.response.BoardResponse
 import com.example.pathfinder.data.response.BoardSingleResponse
@@ -26,6 +27,9 @@ interface BoardApi {
         @Path("boardId") boardId: String,
         @Body commentRequest: CommentRequest
     ): Response<Unit>
+
+    @POST("/api/board")
+    suspend fun addBoard(@Body boardRequest: BoardRequest): Response<Unit>
 
 
 }

@@ -5,6 +5,7 @@ import com.example.pathfinder.data.mapper.responseBoardListModelToDataModel
 import com.example.pathfinder.data.mapper.responseBoardModelToDataModel
 
 import com.example.pathfinder.data.model.Board
+import com.example.pathfinder.data.model.BoardRequest
 import com.example.pathfinder.data.model.Comment
 import com.example.pathfinder.data.model.CommentRequest
 
@@ -67,6 +68,18 @@ class BoardRefactorRepository constructor(
         return flow {
             emit(Results.Loading)
             val response = boardDetailRemoteDataSource.addComment(commentRequest,boardId)
+            if (response.isSuccessful) {
+                emit(Results.Success(Unit))
+            } else {
+                emit(Results.Failure(response.message()))
+            }
+        }.flowOn(ioDispatcher)
+    }
+
+    fun addBoard(boardRequest: BoardRequest): Flow<Results<Unit>> {
+        return flow {
+            emit(Results.Loading)
+            val response = boardDetailRemoteDataSource.addBoard(boardRequest)
             if (response.isSuccessful) {
                 emit(Results.Success(Unit))
             } else {

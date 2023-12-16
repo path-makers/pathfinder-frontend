@@ -9,13 +9,16 @@ import com.example.pathfinder.data.repository.BoardRefactorRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import androidx.lifecycle.asLiveData
+import com.example.pathfinder.data.model.BoardRequest
 import com.example.pathfinder.data.model.Comment
 import com.example.pathfinder.data.model.CommentRequest
 import com.example.pathfinder.data.repository.BoardRepository
+import com.example.pathfinder.domain.usecases.AddBoardUseCase
 import com.example.pathfinder.domain.usecases.AddCommentUseCase
 import com.example.pathfinder.domain.usecases.GetBoardDataByAlgorithmUseCase
 import com.example.pathfinder.domain.usecases.GetBoardDataByIdUseCase
 import com.example.pathfinder.domain.usecases.GetBoardDataMentorUseCase
+import com.example.pathfinder.utils.FBAuth
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.catch
 import javax.inject.Inject
@@ -28,8 +31,8 @@ class BoardRefactorViewModel @Inject constructor(
     private val getBoardDataByIdUseCase: GetBoardDataByIdUseCase,
     private val getBoardDataByAlgorithmUseCase: GetBoardDataByAlgorithmUseCase,
     private val addCommentUseCase: AddCommentUseCase,
-
-
+    private val addBoardUseCase: AddBoardUseCase
+//todo:check
     ) :
     ViewModel() {
 
@@ -46,14 +49,10 @@ class BoardRefactorViewModel @Inject constructor(
     val boardDataListAlgorithm = _boardDataListAlgorithm.asLiveData()
 
 
-
-
     init {
         getBoardDataMentor()
         getBoardDataMentee()
-
     }
-
 
     fun getBoardDataMentor() {
         viewModelScope.launch {
@@ -70,6 +69,7 @@ class BoardRefactorViewModel @Inject constructor(
             }
         }
     }
+
     fun getBoardDataMentee() {
         viewModelScope.launch {
             getBoardDataMenteeUseCase().collect { result ->
@@ -86,7 +86,6 @@ class BoardRefactorViewModel @Inject constructor(
         }
     }
 
-
     fun getBoardDataById(boardId: String) {
         viewModelScope.launch {
            getBoardDataByIdUseCase(boardId).collect { result ->
@@ -102,6 +101,7 @@ class BoardRefactorViewModel @Inject constructor(
             }
         }
     }
+
     fun getBoardDataByAlgorithm(userId: String) {
         viewModelScope.launch {
             getBoardDataByAlgorithmUseCase(userId).collect { result ->
@@ -124,7 +124,6 @@ class BoardRefactorViewModel @Inject constructor(
             content = content,
             author = author,
         )
-
         viewModelScope.launch {
             addCommentUseCase(commentRequest,boardId).collect { result ->
                 when (result) {
@@ -137,28 +136,31 @@ class BoardRefactorViewModel @Inject constructor(
                 }
             }
         }
-
     }
 
+    fun addBoard(title: String, content: String, uid: String, boardType: String, tags: List<String>) {
+        val boardRequest = BoardRequest(
+            title = title,
+            content = content,
+            uid = uid,
+            boardType = boardType,
+            tags = tags,
+            author = FBAuth.getUserName()
+        )
+        viewModelScope.launch {
+            addBoardUseCase(boardRequest).collect { result ->
+                when (result) {
+                    is Results.Success -> {
+                    }
+                    is Results.Loading -> {
+                    }
+                    is Results.Failure -> {
+                    }
+                }
+            }
+        }
 
-
-
-
-//    fun addBoard(title: String, content: String, uid: String, boardType: String, tags: List<String>) {
-//        val board = Board(
-//            title = title,
-//            content = content,
-//            uid = uid,
-//            date = "",
-//            boardType = boardType,
-//            tags = tags,
-//            comments = emptyList() //todo:코멘트
-//        )
-//        boardRepository.sendBoardData(board)
-//    }
-
-
-
+    }
 
 
 

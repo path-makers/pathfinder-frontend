@@ -1,6 +1,7 @@
 package com.example.pathfinder.data.source.remote.board
 
 import com.example.pathfinder.data.di.IoDispatcher
+import com.example.pathfinder.data.model.BoardRequest
 import com.example.pathfinder.data.model.CommentRequest
 import com.example.pathfinder.data.response.BoardResponse
 import com.example.pathfinder.data.response.BoardSingleResponse
@@ -48,5 +49,10 @@ class BoardDetailRemoteDataSource @Inject constructor(
         }
     }
 
+    suspend fun addBoard(boardRequest: BoardRequest): Response<Unit> {
+        return withContext(ioDispatcher) {
+            return@withContext boardApi.addBoard(boardRequest)
+        }
+    }
 
 }

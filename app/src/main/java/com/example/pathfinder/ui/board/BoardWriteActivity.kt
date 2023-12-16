@@ -5,31 +5,29 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.ArrayAdapter
 import android.widget.TextView
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
 import com.example.pathfinder.R
 import com.example.pathfinder.databinding.ActivityBoardWriteBinding
-import com.example.pathfinder.data.repository.BoardRepository
-import com.example.pathfinder.ui.board.viewModel.BoardViewModel
-import com.example.pathfinder.ui.board.viewModel.BoardViewModelFactory
+import com.example.pathfinder.ui.board.viewModel.BoardRefactorViewModel
 import com.example.pathfinder.ui.components.BottomSheetTagFragment
 import com.example.pathfinder.utils.FBAuth
 import com.hjq.toast.Toaster
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class BoardWriteActivity : AppCompatActivity() {
 
+    private val viewModel: BoardRefactorViewModel by viewModels()
     private lateinit var binding: ActivityBoardWriteBinding
     private val selectedTags = mutableListOf<String>()
-    private lateinit var viewModel: BoardViewModel
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_board_write)
 
-        val boardRepository = BoardRepository(this)
-        val viewModelFactory = BoardViewModelFactory(boardRepository)
-        viewModel = ViewModelProvider(this, viewModelFactory)[BoardViewModel::class.java]
 
         Toaster.init(application)
         initSpinner()
