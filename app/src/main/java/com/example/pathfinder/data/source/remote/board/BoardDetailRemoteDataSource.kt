@@ -3,6 +3,7 @@ package com.example.pathfinder.data.source.remote.board
 import android.util.Log
 import com.example.pathfinder.data.di.IoDispatcher
 import com.example.pathfinder.data.response.BoardResponse
+import com.example.pathfinder.data.response.BoardSingleResponse
 import com.example.pathfinder.data.response.model.Board
 
 import kotlinx.coroutines.CoroutineDispatcher
@@ -24,7 +25,7 @@ class BoardDetailRemoteDataSource @Inject constructor(
         }
     }
 
-    suspend fun getBoardDataById(boardId: String): Response<Board> {
+    suspend fun getBoardDataById(boardId: String): Response<BoardSingleResponse> {
         return withContext(ioDispatcher) {
             return@withContext boardApi.getBoardDataById(boardId)
         }

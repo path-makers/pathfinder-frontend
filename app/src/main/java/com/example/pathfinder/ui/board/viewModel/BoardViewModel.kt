@@ -57,7 +57,7 @@ class BoardViewModel(private val boardRepository: BoardRepository) : ViewModel()
             title = title,
             content = content,
             uid = uid,
-            date = "",
+            createdAt = "",
             boardType = boardType,
             tags = tags,
             comments = emptyList() //todo:코멘트

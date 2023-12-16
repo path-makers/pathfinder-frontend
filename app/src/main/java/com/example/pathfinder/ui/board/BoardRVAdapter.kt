@@ -35,7 +35,7 @@ class BoardRVAdapter(private val boardList: MutableList<Board>) :
         val board = boardList[position]
         holder.title.text = board.title
         holder.content.text = board.content
-        holder.date.text = formatDate(board.date.toLong())
+        holder.date.text = formatDate(board.createdAt.toLong())
         holder.author.text = board.author
         // 태그 표시 로직
         displayTags(holder.tagsLayout, board.tags)

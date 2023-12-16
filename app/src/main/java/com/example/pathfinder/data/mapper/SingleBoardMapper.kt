@@ -3,21 +3,22 @@ package com.example.pathfinder.data.mapper
 
 import com.example.pathfinder.data.model.Board
 import com.example.pathfinder.data.model.Comment
-import com.example.pathfinder.data.response.model.Board as ResponseBoard
+import com.example.pathfinder.data.response.BoardSingleResponse
+
 
 fun responseBoardModelToDataModel(
-    board: ResponseBoard
+    board: BoardSingleResponse
 ): Board {
     return Board(
-            author = board.author,
-            id = board.id,
-            title = board.title,
-            content = board.content,
-            uid = board.uid,
-            date = board.date,
-            boardType = board.boardType,
-            tags = board.tags.orEmpty(),
-            comments = board.comments.orEmpty().map { comment ->
+            author = board.board.author,
+            id = board.board.id,
+            title = board.board.title,
+            content = board.board.content,
+            uid = board.board.uid,
+            createdAt = board.board.createdAt,
+            boardType = board.board.boardType,
+            tags = board.board.tags.orEmpty(),
+            comments = board.board.comments.orEmpty().map { comment ->
                 Comment(
                     author = comment.author,
                     content = comment.content,

@@ -9,6 +9,8 @@ import com.example.pathfinder.data.repository.BoardRefactorRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import androidx.lifecycle.asLiveData
+import com.example.pathfinder.data.model.Comment
+import com.example.pathfinder.data.repository.BoardRepository
 import com.example.pathfinder.domain.usecases.GetBoardDataByAlgorithmUseCase
 import com.example.pathfinder.domain.usecases.GetBoardDataByIdUseCase
 import com.example.pathfinder.domain.usecases.GetBoardDataMentorUseCase
@@ -19,11 +21,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class BoardRefactorViewModel @Inject constructor(
-    private val boardRefactorRepository: BoardRefactorRepository,
     private val getBoardDataMentorUseCase: GetBoardDataMentorUseCase,
     private val getBoardDataMenteeUseCase: GetBoardDataMentorUseCase,
     private val getBoardDataByIdUseCase: GetBoardDataByIdUseCase,
-    private val getBoardDataByAlgorithmUseCase: GetBoardDataByAlgorithmUseCase
+    private val getBoardDataByAlgorithmUseCase: GetBoardDataByAlgorithmUseCase,
+
 
 ) :
     ViewModel() {
@@ -39,6 +41,8 @@ class BoardRefactorViewModel @Inject constructor(
 
     private val _boardDataListAlgorithm = MutableStateFlow<Results<List<Board>>>(Results.Loading)
     val boardDataListAlgorithm = _boardDataListAlgorithm.asLiveData()
+
+
 
     init {
         getBoardDataMentor()
@@ -109,6 +113,32 @@ class BoardRefactorViewModel @Inject constructor(
             }
         }
     }
+
+//    fun addBoard(title: String, content: String, uid: String, boardType: String, tags: List<String>) {
+//        val board = Board(
+//            title = title,
+//            content = content,
+//            uid = uid,
+//            date = "",
+//            boardType = boardType,
+//            tags = tags,
+//            comments = emptyList() //todo:코멘트
+//        )
+//        boardRepository.sendBoardData(board)
+//    }
+//    fun addComment(uid: String, content: String, boardId: String,author:String) {
+//        val comment = Comment(
+//            uid = uid,
+//            content = content,
+//            author = author,
+//        )
+//        boardRepository.sendCommentData(comment, boardId)
+//        { success ->
+//            if (success) {
+//                getBoardDataById(boardId)
+//            }
+//        }
+//    }
 
 
 

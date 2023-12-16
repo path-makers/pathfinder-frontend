@@ -20,7 +20,7 @@ data class Board(
     @SerializedName("content")
     val content: String,
     @SerializedName("createdAt")
-    val date: String,
+    val createdAt: String,
     @SerializedName("comments")
     val comments: List<Comment>
 

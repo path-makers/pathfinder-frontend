@@ -44,7 +44,7 @@ class BoardRepository(private val context: Context) { // Context 추가
                         title = item.getString("title"),
                         content = item.getString("content"),
                         uid = item.getString("uid"),
-                        date = item.optString("createdAt", "Unknown"),
+//                        date = item.optString("createdAt", "Unknown"),
                         boardType = item.getString("boardType"),
                         tags = tagsList,
 
@@ -104,7 +104,7 @@ class BoardRepository(private val context: Context) { // Context 추가
                     title = boardJson.getString("title"),
                     content = boardJson.getString("content"),
                     uid = boardJson.getString("uid"),
-                    date = boardJson.optString("createdAt", "Unknown"),
+//                    date = boardJson.optString("createdAt", "Unknown"),
                     boardType = boardJson.getString("boardType"),
                     tags = tagsList,
                     comments = commentsList
@@ -153,7 +153,7 @@ class BoardRepository(private val context: Context) { // Context 추가
                         title = item.getString("title"),
                         content = item.getString("content"),
                         uid = item.getString("uid"),
-                        date = item.optString("createdAt", "Unknown"),
+//                        date = item.optString("createdAt", "Unknown"),
                         boardType = item.getString("boardType"),
                         tags = tagsList,
 

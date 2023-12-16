@@ -15,7 +15,7 @@ fun responseBoardListModelToDataModel(
             title = board.title,
             content = board.content,
             uid = board.uid,
-            date = board.date,
+            createdAt = board.createdAt,
             boardType = board.boardType,
             tags = board.tags.orEmpty(),
 
