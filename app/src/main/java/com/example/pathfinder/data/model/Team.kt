@@ -1,5 +1,6 @@
 package com.example.pathfinder.data.model
 
+
 import java.io.Serializable
 
 data class Team(
@@ -11,5 +12,6 @@ data class Team(
         val region: String = "",
         val endTime: String = "",
         val uploadTime: String = "",
+        val comment: List<Comment> = listOf()
 
 ) : Serializable

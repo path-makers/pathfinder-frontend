@@ -14,7 +14,8 @@ fun responseSingleTeamBuildingModelToDataModel(
         category = team.team.category,
         region = team.team.region,
         endTime = team.team.endTime,
-        uploadTime = team.team.uploadTime
+        uploadTime = team.team.uploadTime,
+        comment = team.team.comments
     )
 
 
