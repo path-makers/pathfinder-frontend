@@ -9,7 +9,6 @@ import kotlinx.coroutines.launch
 import androidx.lifecycle.asLiveData
 import com.example.pathfinder.data.model.BoardRequest
 import com.example.pathfinder.data.model.CommentRequest
-import com.example.pathfinder.data.repository.BoardRepository
 import com.example.pathfinder.domain.usecases.AddBoardUseCase
 import com.example.pathfinder.domain.usecases.AddCommentUseCase
 import com.example.pathfinder.domain.usecases.GetBoardDataByAlgorithmUseCase
@@ -17,7 +16,6 @@ import com.example.pathfinder.domain.usecases.GetBoardDataByIdUseCase
 import com.example.pathfinder.domain.usecases.GetBoardDataMentorUseCase
 import com.example.pathfinder.utils.FBAuth
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.catch
 import javax.inject.Inject
 
 
