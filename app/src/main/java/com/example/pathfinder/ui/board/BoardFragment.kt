@@ -57,9 +57,6 @@ class BoardFragment : Fragment() {
             swipeRefreshLayout.isRefreshing = false
         }//pull to refresh 구현
 
-        if (viewModel.boardDataListMentor.value == null) {
-            getBoardData()
-        }//todo: 지워도 될듯
 
         subscribeToDataChanges(currentBoardType)
 

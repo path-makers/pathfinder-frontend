@@ -24,12 +24,12 @@
         <activity
             android:name=".ui.userProfile.ModifyActivity"
             android:exported="false" />
-        <activity android:name=".ui.board.view.BoardEditActivity"/>
+
         <activity android:name=".ui.board.BoardInsideActivity"/>
         <activity android:name=".ui.board.BoardWriteActivity"/>
         <activity android:name=".ui.teamBuilding.TeamBuildingWriteActivity" />
         <activity android:name=".ui.teamBuilding.TeamBuildingInsideActivity" />
-        <activity android:name=".ui.board.BoardActivity" />
+
 
 
 
