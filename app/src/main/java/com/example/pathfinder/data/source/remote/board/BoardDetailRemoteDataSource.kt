@@ -1,10 +1,9 @@
 package com.example.pathfinder.data.source.remote.board
 
-import android.util.Log
 import com.example.pathfinder.data.di.IoDispatcher
+import com.example.pathfinder.data.model.CommentRequest
 import com.example.pathfinder.data.response.BoardResponse
 import com.example.pathfinder.data.response.BoardSingleResponse
-import com.example.pathfinder.data.response.model.Board
 
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
@@ -37,11 +36,17 @@ class BoardDetailRemoteDataSource @Inject constructor(
         }
     }
 
-
-
-
-
-
+    suspend fun addComment(
+        commentRequest: CommentRequest,
+        boardId: String
+    ): Response<Unit> {
+        return withContext(ioDispatcher) {
+            return@withContext boardApi.addComment(
+                boardId,
+                commentRequest
+            )
+        }
+    }
 
 
 }

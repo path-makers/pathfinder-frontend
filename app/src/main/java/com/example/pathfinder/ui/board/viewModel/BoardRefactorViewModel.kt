@@ -10,7 +10,9 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import androidx.lifecycle.asLiveData
 import com.example.pathfinder.data.model.Comment
+import com.example.pathfinder.data.model.CommentRequest
 import com.example.pathfinder.data.repository.BoardRepository
+import com.example.pathfinder.domain.usecases.AddCommentUseCase
 import com.example.pathfinder.domain.usecases.GetBoardDataByAlgorithmUseCase
 import com.example.pathfinder.domain.usecases.GetBoardDataByIdUseCase
 import com.example.pathfinder.domain.usecases.GetBoardDataMentorUseCase
@@ -25,9 +27,10 @@ class BoardRefactorViewModel @Inject constructor(
     private val getBoardDataMenteeUseCase: GetBoardDataMentorUseCase,
     private val getBoardDataByIdUseCase: GetBoardDataByIdUseCase,
     private val getBoardDataByAlgorithmUseCase: GetBoardDataByAlgorithmUseCase,
+    private val addCommentUseCase: AddCommentUseCase,
 
 
-) :
+    ) :
     ViewModel() {
 
     private val _boardDataListMentor = MutableStateFlow<Results<List<Board>>>(Results.Loading)
@@ -41,6 +44,7 @@ class BoardRefactorViewModel @Inject constructor(
 
     private val _boardDataListAlgorithm = MutableStateFlow<Results<List<Board>>>(Results.Loading)
     val boardDataListAlgorithm = _boardDataListAlgorithm.asLiveData()
+
 
 
 
@@ -114,6 +118,32 @@ class BoardRefactorViewModel @Inject constructor(
         }
     }
 
+    fun addComment(uid: String, content: String, boardId: String,author:String) {
+        val commentRequest = CommentRequest(
+            uid = uid,
+            content = content,
+            author = author,
+        )
+
+        viewModelScope.launch {
+            addCommentUseCase(commentRequest,boardId).collect { result ->
+                when (result) {
+                    is Results.Success -> {
+                    }
+                    is Results.Loading -> {
+                    }
+                    is Results.Failure -> {
+                    }
+                }
+            }
+        }
+
+    }
+
+
+
+
+
 //    fun addBoard(title: String, content: String, uid: String, boardType: String, tags: List<String>) {
 //        val board = Board(
 //            title = title,
@@ -126,19 +156,7 @@ class BoardRefactorViewModel @Inject constructor(
 //        )
 //        boardRepository.sendBoardData(board)
 //    }
-//    fun addComment(uid: String, content: String, boardId: String,author:String) {
-//        val comment = Comment(
-//            uid = uid,
-//            content = content,
-//            author = author,
-//        )
-//        boardRepository.sendCommentData(comment, boardId)
-//        { success ->
-//            if (success) {
-//                getBoardDataById(boardId)
-//            }
-//        }
-//    }
+
 
 
 

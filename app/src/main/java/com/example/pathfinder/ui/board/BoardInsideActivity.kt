@@ -42,24 +42,28 @@ class BoardInsideActivity : AppCompatActivity() {
         setupComment()//댓글 리스트뷰 설정
         getBoardDataById(boardId)//보드 아이디로 내부정보 받아옴
         binding.backButton.setOnClickListener { finish() }//뒤로가기 버튼을 누르면 액티비티 종료
-//        addComment()
+        addComment()
 
 
     }
 
-//    private fun addComment() {
-//        binding.commentBtn.setOnClickListener {
-//            viewModel.addComment(
-//                FBAuth.getUid(),
-//                binding.commentArea.text.toString(),
-//                boardId,
-//                FBAuth.getUserName()
-//            )
-//            binding.commentArea.text.clear()
-//            hideKeyboard()
-//
-//        }
-//    }//댓글 작성 버튼을 누르면 댓글을 추가하고 키보드를 숨김
+    private fun addComment() {
+        binding.commentBtn.setOnClickListener {
+            viewModel.addComment(
+                FBAuth.getUid(),
+                binding.commentArea.text.toString(),
+                boardId,
+                FBAuth.getUserName()
+            )
+
+            binding.commentArea.text.clear()
+            hideKeyboard()
+
+
+        }
+    }//댓글 작성 버튼을 누르면 댓글을 추가하고 키보드를 숨김
+    //todo: 댓글 작성 후 댓글 리스트뷰 업데이트
+    //todo: 보드프래그먼트와 비교
 
 
     private fun getBoardDataById(boardId: String) {
@@ -99,6 +103,7 @@ class BoardInsideActivity : AppCompatActivity() {
         commentList.clear()
         commentList.addAll(boardData.comments)
         commentAdapter.notifyDataSetChanged()
+        displayTags(binding.tagsLayout, boardData.tags)
 
     }//리사이클러뷰 업데이트
 
