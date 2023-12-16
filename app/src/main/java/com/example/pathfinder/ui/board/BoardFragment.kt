@@ -20,13 +20,13 @@ import com.example.pathfinder.R
 import com.example.pathfinder.data.model.Board
 import com.example.pathfinder.data.model.Results
 import com.example.pathfinder.databinding.FragmentBoardBinding
-import com.example.pathfinder.ui.board.viewModel.BoardRefactorViewModel
+import com.example.pathfinder.ui.board.viewModel.BoardViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class BoardFragment : Fragment() {
 
-    private val viewModel: BoardRefactorViewModel by viewModels()
+    private val viewModel: BoardViewModel by viewModels()
     private lateinit var binding: FragmentBoardBinding
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
     private val boardDataList = mutableListOf<Board>()

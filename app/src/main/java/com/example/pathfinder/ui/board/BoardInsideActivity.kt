@@ -16,7 +16,7 @@ import com.example.pathfinder.databinding.ActivityBoardInsideBinding
 
 import com.example.pathfinder.data.model.Comment
 import com.example.pathfinder.data.model.Results
-import com.example.pathfinder.ui.board.viewModel.BoardRefactorViewModel
+import com.example.pathfinder.ui.board.viewModel.BoardViewModel
 import com.example.pathfinder.utils.CommentRVAdapter
 import com.example.pathfinder.utils.Common.Companion.formatDate
 import com.example.pathfinder.utils.FBAuth
@@ -25,7 +25,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class BoardInsideActivity : AppCompatActivity() {
 
-    private val viewModel: BoardRefactorViewModel by viewModels()
+    private val viewModel: BoardViewModel by viewModels()
     private lateinit var binding: ActivityBoardInsideBinding
     private val commentList = mutableListOf<Comment>()
     private lateinit var commentAdapter: CommentRVAdapter

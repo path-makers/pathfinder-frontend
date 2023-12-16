@@ -15,7 +15,7 @@ import com.example.pathfinder.R
 import com.example.pathfinder.data.model.Board
 import com.example.pathfinder.data.model.Results
 import com.example.pathfinder.databinding.FragmentHomeBinding
-import com.example.pathfinder.ui.board.viewModel.BoardRefactorViewModel
+import com.example.pathfinder.ui.board.viewModel.BoardViewModel
 import com.example.pathfinder.utils.FBAuth
 
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -26,7 +26,7 @@ class HomeFragment : Fragment() {
 
 
     private lateinit var binding: FragmentHomeBinding
-    private val viewModel: BoardRefactorViewModel by viewModels()
+    private val viewModel: BoardViewModel by viewModels()
     private lateinit var boardRVAdapterMentor: HomeRVAdapter
     private lateinit var boardRVAdapterMentee: HomeRVAdapter
     private lateinit var boardRVAdapterAlgorithm: HomeRVAlgorithmAdapter

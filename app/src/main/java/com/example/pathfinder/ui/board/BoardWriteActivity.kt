@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.pathfinder.R
 import com.example.pathfinder.databinding.ActivityBoardWriteBinding
-import com.example.pathfinder.ui.board.viewModel.BoardRefactorViewModel
+import com.example.pathfinder.ui.board.viewModel.BoardViewModel
 import com.example.pathfinder.ui.components.BottomSheetTagFragment
 import com.example.pathfinder.utils.FBAuth
 import com.hjq.toast.Toaster
@@ -19,7 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class BoardWriteActivity : AppCompatActivity() {
 
-    private val viewModel: BoardRefactorViewModel by viewModels()
+    private val viewModel: BoardViewModel by viewModels()
     private lateinit var binding: ActivityBoardWriteBinding
     private val selectedTags = mutableListOf<String>()
 

@@ -1,16 +1,13 @@
 package com.example.pathfinder.ui.board.viewModel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.pathfinder.data.model.Board
 import com.example.pathfinder.data.model.Results
-import com.example.pathfinder.data.repository.BoardRefactorRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import androidx.lifecycle.asLiveData
 import com.example.pathfinder.data.model.BoardRequest
-import com.example.pathfinder.data.model.Comment
 import com.example.pathfinder.data.model.CommentRequest
 import com.example.pathfinder.data.repository.BoardRepository
 import com.example.pathfinder.domain.usecases.AddBoardUseCase
@@ -25,7 +22,7 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-class BoardRefactorViewModel @Inject constructor(
+class BoardViewModel @Inject constructor(
     private val getBoardDataMentorUseCase: GetBoardDataMentorUseCase,
     private val getBoardDataMenteeUseCase: GetBoardDataMentorUseCase,
     private val getBoardDataByIdUseCase: GetBoardDataByIdUseCase,
