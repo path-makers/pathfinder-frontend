@@ -1,6 +1,6 @@
 package com.example.pathfinder.data.di
 
-import com.example.pathfinder.data.repository.BoardRefactorRepository
+import com.example.pathfinder.data.repository.BoardRepository
 import com.example.pathfinder.data.repository.TeamBuildingRepository
 import com.example.pathfinder.data.source.remote.board.BoardDetailRemoteDataSource
 import com.example.pathfinder.data.source.remote.teamBuilding.TeamBuildingRemoteDataSource
@@ -21,8 +21,8 @@ class RepositoryModule {
     fun provideBoardRefactorRepository(
         boardDetailRemoteDataSource: BoardDetailRemoteDataSource,
         @IoDispatcher ioDispatcher: CoroutineDispatcher
-    ): BoardRefactorRepository {
-        return BoardRefactorRepository(
+    ): BoardRepository {
+        return BoardRepository(
             boardDetailRemoteDataSource = boardDetailRemoteDataSource,
             ioDispatcher = ioDispatcher
 

@@ -10,7 +10,7 @@ import androidx.lifecycle.asLiveData
 import com.example.pathfinder.data.model.BoardRequest
 import com.example.pathfinder.data.model.CommentRequest
 import com.example.pathfinder.domain.usecases.AddBoardUseCase
-import com.example.pathfinder.domain.usecases.AddCommentUseCase
+import com.example.pathfinder.domain.usecases.AddBoardCommentUseCase
 import com.example.pathfinder.domain.usecases.GetBoardDataByAlgorithmUseCase
 import com.example.pathfinder.domain.usecases.GetBoardDataByIdUseCase
 import com.example.pathfinder.domain.usecases.GetBoardDataMentorUseCase
@@ -25,7 +25,7 @@ class BoardViewModel @Inject constructor(
     private val getBoardDataMenteeUseCase: GetBoardDataMentorUseCase,
     private val getBoardDataByIdUseCase: GetBoardDataByIdUseCase,
     private val getBoardDataByAlgorithmUseCase: GetBoardDataByAlgorithmUseCase,
-    private val addCommentUseCase: AddCommentUseCase,
+    private val addBoardCommentUseCase: AddBoardCommentUseCase,
     private val addBoardUseCase: AddBoardUseCase
 //todo:check
     ) :
@@ -120,7 +120,7 @@ class BoardViewModel @Inject constructor(
             author = author,
         )
         viewModelScope.launch {
-            addCommentUseCase(commentRequest,boardId).collect { result ->
+            addBoardCommentUseCase(commentRequest,boardId).collect { result ->
                 when (result) {
                     is Results.Success -> {
                     }
