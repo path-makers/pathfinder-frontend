@@ -13,6 +13,7 @@ import com.example.pathfinder.domain.usecases.AddBoardUseCase
 import com.example.pathfinder.domain.usecases.AddBoardCommentUseCase
 import com.example.pathfinder.domain.usecases.GetBoardDataByAlgorithmUseCase
 import com.example.pathfinder.domain.usecases.GetBoardDataByIdUseCase
+import com.example.pathfinder.domain.usecases.GetBoardDataMenteeUseCase
 import com.example.pathfinder.domain.usecases.GetBoardDataMentorUseCase
 import com.example.pathfinder.utils.FBAuth
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -22,7 +23,7 @@ import javax.inject.Inject
 @HiltViewModel
 class BoardViewModel @Inject constructor(
     private val getBoardDataMentorUseCase: GetBoardDataMentorUseCase,
-    private val getBoardDataMenteeUseCase: GetBoardDataMentorUseCase,
+    private val getBoardDataMenteeUseCase: GetBoardDataMenteeUseCase,
     private val getBoardDataByIdUseCase: GetBoardDataByIdUseCase,
     private val getBoardDataByAlgorithmUseCase: GetBoardDataByAlgorithmUseCase,
     private val addBoardCommentUseCase: AddBoardCommentUseCase,
