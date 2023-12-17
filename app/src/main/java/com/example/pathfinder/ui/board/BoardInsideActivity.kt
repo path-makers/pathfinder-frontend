@@ -17,7 +17,6 @@ import com.example.pathfinder.databinding.ActivityBoardInsideBinding
 import com.example.pathfinder.data.model.Comment
 import com.example.pathfinder.data.model.Results
 import com.example.pathfinder.ui.board.viewModel.BoardViewModel
-import com.example.pathfinder.utils.CommentRVAdapter
 import com.example.pathfinder.utils.Common.Companion.formatDate
 import com.example.pathfinder.utils.FBAuth
 import dagger.hilt.android.AndroidEntryPoint

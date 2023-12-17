@@ -11,7 +11,6 @@ import com.example.pathfinder.data.model.Results
 import com.example.pathfinder.data.model.Team
 import com.example.pathfinder.databinding.ActivityBoardInsideBinding
 import com.example.pathfinder.ui.teamBuilding.viewmodel.TeamBuildingViewModel
-import com.example.pathfinder.utils.CommentRVAdapter
 import com.example.pathfinder.utils.Common.Companion.formatDate
 import dagger.hilt.android.AndroidEntryPoint
 

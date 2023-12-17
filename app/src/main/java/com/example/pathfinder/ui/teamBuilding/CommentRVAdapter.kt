@@ -1,4 +1,4 @@
-package com.example.pathfinder.utils
+package com.example.pathfinder.ui.teamBuilding
 
 import android.view.LayoutInflater
 import android.view.View
