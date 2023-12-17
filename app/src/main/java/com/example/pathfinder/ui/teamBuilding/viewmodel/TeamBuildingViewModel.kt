@@ -3,8 +3,13 @@ package com.example.pathfinder.ui.teamBuilding.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.pathfinder.data.model.CommentRequest
+import com.example.pathfinder.data.model.ProjectRequest
 import com.example.pathfinder.data.model.Results
 import com.example.pathfinder.data.model.Team
+import com.example.pathfinder.domain.usecases.AddBoardCommentUseCase
+import com.example.pathfinder.domain.usecases.AddProjectCommentUseCase
+import com.example.pathfinder.domain.usecases.AddProjectUseCase
 import com.example.pathfinder.domain.usecases.GetTeamDataUseCase
 import com.example.pathfinder.domain.usecases.GetSingleTeamDataUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,7 +20,9 @@ import javax.inject.Inject
 @HiltViewModel
 class TeamBuildingViewModel @Inject constructor(
     private val getTeamDataUseCase: GetTeamDataUseCase,
-    private val getSingleTeamDataUseCase: GetSingleTeamDataUseCase
+    private val getSingleTeamDataUseCase: GetSingleTeamDataUseCase,
+    private val addProjectCommentUseCase: AddProjectCommentUseCase,
+    private val addProjectUseCase: AddProjectUseCase
 ) :
     ViewModel() {
 
@@ -63,6 +70,45 @@ class TeamBuildingViewModel @Inject constructor(
             }
         }
     }
+
+    fun addComment(commentRequest: CommentRequest, projectId: String) {
+        viewModelScope.launch {
+            addProjectCommentUseCase(commentRequest,projectId).collect { result ->
+                when (result) {
+                    is Results.Success -> {
+                    }
+                    is Results.Loading -> {
+                    }
+                    is Results.Failure -> {
+                    }
+
+                    else -> {}
+                }
+            }
+        }
+    }
+
+    fun addProject(projectRequest: ProjectRequest) {
+        viewModelScope.launch {
+            addProjectUseCase(projectRequest).collect { result ->
+                when (result) {
+                    is Results.Success -> {
+                    }
+                    is Results.Loading -> {
+                    }
+                    is Results.Failure -> {
+                    }
+
+                    else -> {}
+                }
+            }
+        }
+    }
+
+
+
+
+
 
 
 }

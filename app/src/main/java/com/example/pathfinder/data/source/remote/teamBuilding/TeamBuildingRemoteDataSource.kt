@@ -1,6 +1,9 @@
 package com.example.pathfinder.data.source.remote.teamBuilding
 
 import com.example.pathfinder.data.di.IoDispatcher
+import com.example.pathfinder.data.model.BoardRequest
+import com.example.pathfinder.data.model.CommentRequest
+import com.example.pathfinder.data.model.ProjectRequest
 import com.example.pathfinder.data.response.TeamBuildingResponse
 import com.example.pathfinder.data.response.TeamBuildingSingleResponse
 import com.example.pathfinder.data.response.model.Team
@@ -24,6 +27,25 @@ class TeamBuildingRemoteDataSource @Inject constructor(
             return@withContext teamBuildingApi.getSingleTeamData(teamId)
         }
 
+    }
+
+
+    suspend fun addComment(
+        commentRequest: CommentRequest,
+        projectId: String
+    ): Response<Unit> {
+        return withContext(ioDispatcher) {
+            return@withContext teamBuildingApi.addComment(
+                projectId,
+                commentRequest
+            )
+        }
+    }
+
+    suspend fun addProject(projectRequest: ProjectRequest): Response<Unit> {
+        return withContext(ioDispatcher) {
+            return@withContext teamBuildingApi.addProject(projectRequest)
+        }
     }
 
 }

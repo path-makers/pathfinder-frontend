@@ -2,6 +2,9 @@ package com.example.pathfinder.data.repository
 
 import com.example.pathfinder.data.mapper.responseSingleTeamBuildingModelToDataModel
 import com.example.pathfinder.data.mapper.responseTeamBuildingModelToDataModel
+import com.example.pathfinder.data.model.BoardRequest
+import com.example.pathfinder.data.model.CommentRequest
+import com.example.pathfinder.data.model.ProjectRequest
 import com.example.pathfinder.data.model.Results
 import com.example.pathfinder.data.model.Team
 import com.example.pathfinder.data.source.remote.teamBuilding.TeamBuildingRemoteDataSource
@@ -46,4 +49,30 @@ class TeamBuildingRepository constructor(
         }.flowOn(ioDispatcher)
 
     }
+
+    fun addComment(commentRequest: CommentRequest, projectId: String): Flow<Results<Unit>> {
+        return flow {
+            emit(Results.Loading)
+            val response = teamBuildingRemoteDataSource.addComment(commentRequest,projectId)
+            if (response.isSuccessful) {
+                emit(Results.Success(Unit))
+            } else {
+                emit(Results.Failure(response.message()))
+            }
+        }.flowOn(ioDispatcher)
+    }
+
+    fun addProject(projectRequest: ProjectRequest): Flow<Results<Unit>> {
+        return flow {
+            emit(Results.Loading)
+            val response = teamBuildingRemoteDataSource.addProject(projectRequest)
+            if (response.isSuccessful) {
+                emit(Results.Success(Unit))
+            } else {
+                emit(Results.Failure(response.message()))
+            }
+        }.flowOn(ioDispatcher)
+    }
+
+
 }
