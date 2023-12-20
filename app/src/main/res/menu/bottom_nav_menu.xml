@@ -8,7 +8,7 @@
         android:icon="@drawable/ic_board"
         android:title="게시판"/>
     <item
-        android:id="@+id/teamBuildingFragment"
+        android:id="@+id/projectFragment"
         android:icon="@drawable/ic_team"
         android:title="프로젝트"/>
 

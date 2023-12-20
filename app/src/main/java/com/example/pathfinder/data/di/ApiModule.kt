@@ -1,7 +1,7 @@
 package com.example.pathfinder.data.di
 
 import com.example.pathfinder.data.source.remote.board.BoardApi
-import com.example.pathfinder.data.source.remote.teamBuilding.TeamBuildingApi
+import com.example.pathfinder.data.source.remote.project.ProjectApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,7 +20,7 @@ class ApiModule {
 
     @Provides
     @Singleton
-    fun provideTeamBuildingApi(retrofit: Retrofit): TeamBuildingApi {
-        return retrofit.create(TeamBuildingApi::class.java)
+    fun provideProjectApi(retrofit: Retrofit): ProjectApi {
+        return retrofit.create(ProjectApi::class.java)
     }
 }

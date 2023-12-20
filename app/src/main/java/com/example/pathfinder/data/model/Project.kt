@@ -3,7 +3,7 @@ package com.example.pathfinder.data.model
 
 import java.io.Serializable
 
-data class Team(
+data class Project(
         val id: String = "",
         var author: String = "",
         val title: String = "",

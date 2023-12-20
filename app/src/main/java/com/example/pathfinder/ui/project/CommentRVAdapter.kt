@@ -1,4 +1,4 @@
-package com.example.pathfinder.ui.teamBuilding
+package com.example.pathfinder.ui.project
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,9 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pathfinder.R
 import com.example.pathfinder.data.model.Comment
 import com.example.pathfinder.utils.Common.Companion.formatDate
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
 
 class CommentRVAdapter(val commentList : MutableList<Comment>) : RecyclerView.Adapter<CommentRVAdapter.CommentViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommentViewHolder {

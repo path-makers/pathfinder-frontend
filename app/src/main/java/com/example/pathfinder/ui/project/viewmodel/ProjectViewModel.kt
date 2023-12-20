@@ -1,4 +1,4 @@
-package com.example.pathfinder.ui.teamBuilding.viewmodel
+package com.example.pathfinder.ui.project.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
@@ -6,30 +6,29 @@ import androidx.lifecycle.viewModelScope
 import com.example.pathfinder.data.model.CommentRequest
 import com.example.pathfinder.data.model.ProjectRequest
 import com.example.pathfinder.data.model.Results
-import com.example.pathfinder.data.model.Team
-import com.example.pathfinder.domain.usecases.AddBoardCommentUseCase
+import com.example.pathfinder.data.model.Project
 import com.example.pathfinder.domain.usecases.AddProjectCommentUseCase
 import com.example.pathfinder.domain.usecases.AddProjectUseCase
-import com.example.pathfinder.domain.usecases.GetTeamDataUseCase
-import com.example.pathfinder.domain.usecases.GetSingleTeamDataUseCase
+import com.example.pathfinder.domain.usecases.GetProjectDataUseCase
+import com.example.pathfinder.domain.usecases.GetSingleProjectDataUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class TeamBuildingViewModel @Inject constructor(
-    private val getTeamDataUseCase: GetTeamDataUseCase,
-    private val getSingleTeamDataUseCase: GetSingleTeamDataUseCase,
+class ProjectViewModel @Inject constructor(
+    private val getProjectDataUseCase: GetProjectDataUseCase,
+    private val getSingleProjectDataUseCase: GetSingleProjectDataUseCase,
     private val addProjectCommentUseCase: AddProjectCommentUseCase,
     private val addProjectUseCase: AddProjectUseCase
 ) :
     ViewModel() {
 
-        private val _teamDataList = MutableStateFlow<Results<List<Team>>>(Results.Loading)
-        val teamDataList = _teamDataList.asLiveData()
-        private val _singleTeamDataList = MutableStateFlow<Results<Team>>(Results.Loading)
-        val singleTeamDataList = _singleTeamDataList.asLiveData()
+        private val _projectDataList = MutableStateFlow<Results<List<Project>>>(Results.Loading)
+        val teamDataList = _projectDataList.asLiveData()
+        private val _singleProjectDataList = MutableStateFlow<Results<Project>>(Results.Loading)
+        val singleTeamDataList = _singleProjectDataList.asLiveData()
 
     init {
             getTeamData()
@@ -37,10 +36,10 @@ class TeamBuildingViewModel @Inject constructor(
 
     fun getTeamData() {
             viewModelScope.launch {
-                getTeamDataUseCase().collect { result ->
+                getProjectDataUseCase().collect { result ->
                     when (result) {
                         is Results.Success -> {
-                            _teamDataList.value = result
+                            _projectDataList.value = result
                         }
                         is Results.Loading -> {
                         }
@@ -55,10 +54,10 @@ class TeamBuildingViewModel @Inject constructor(
 
     fun getSingleTeamData(teamId:String) {
         viewModelScope.launch {
-            getSingleTeamDataUseCase(teamId).collect { result ->
+            getSingleProjectDataUseCase(teamId).collect { result ->
                 when (result) {
                     is Results.Success -> {
-                        _singleTeamDataList.value = result
+                        _singleProjectDataList.value = result
                     }
                     is Results.Loading -> {
                     }

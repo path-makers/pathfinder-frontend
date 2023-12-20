@@ -1,4 +1,4 @@
-package com.example.pathfinder.ui.teamBuilding
+package com.example.pathfinder.ui.project
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pathfinder.R
-import com.example.pathfinder.data.model.Team
+import com.example.pathfinder.data.model.Project
 
-class TeamBuildingRVAdapter(private val teamBuildingList: MutableList<Team>) :
-    RecyclerView.Adapter<TeamBuildingRVAdapter.ViewHolder>() {
+class ProjectRVAdapter(private val projectBuildingList: MutableList<Project>) :
+    RecyclerView.Adapter<ProjectRVAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val author: TextView = view.findViewById(R.id.tvUserName)
@@ -26,12 +26,12 @@ class TeamBuildingRVAdapter(private val teamBuildingList: MutableList<Team>) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_team_building_list, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_project_list, parent, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = teamBuildingList[position]
+        val item = projectBuildingList[position]
         holder.author.text = item.author
         holder.title.text = item.title
         holder.content.text = item.content
@@ -43,7 +43,7 @@ class TeamBuildingRVAdapter(private val teamBuildingList: MutableList<Team>) :
 
 
         holder.itemView.setOnClickListener {
-            val intent = Intent(it.context, TeamBuildingInsideActivity::class.java)
+            val intent = Intent(it.context, ProjectInsideActivity::class.java)
             intent.putExtra("key", item.id)
             holder.itemView.context.startActivity(intent)
             //todo: 한번 더 확인
@@ -54,5 +54,5 @@ class TeamBuildingRVAdapter(private val teamBuildingList: MutableList<Team>) :
 
     }
 
-    override fun getItemCount() = teamBuildingList.size
+    override fun getItemCount() = projectBuildingList.size
 }

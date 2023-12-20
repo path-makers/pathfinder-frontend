@@ -1,30 +1,28 @@
-package com.example.pathfinder.data.source.remote.teamBuilding
+package com.example.pathfinder.data.source.remote.project
 
 import com.example.pathfinder.data.di.IoDispatcher
-import com.example.pathfinder.data.model.BoardRequest
 import com.example.pathfinder.data.model.CommentRequest
 import com.example.pathfinder.data.model.ProjectRequest
-import com.example.pathfinder.data.response.TeamBuildingResponse
-import com.example.pathfinder.data.response.TeamBuildingSingleResponse
-import com.example.pathfinder.data.response.model.Team
+import com.example.pathfinder.data.response.ProjectResponse
+import com.example.pathfinder.data.response.ProjectSingleResponse
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import retrofit2.Response
 import javax.inject.Inject
 
-class TeamBuildingRemoteDataSource @Inject constructor(
-    private val teamBuildingApi: TeamBuildingApi,
+class ProjectRemoteDataSource @Inject constructor(
+    private val projectApi: ProjectApi,
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher
 ){
-    suspend fun getTeamBuildingData(): Response<TeamBuildingResponse> {
+    suspend fun getTeamBuildingData(): Response<ProjectResponse> {
         return withContext(ioDispatcher){
-            return@withContext teamBuildingApi.getTeamData()
+            return@withContext projectApi.getTeamData()
         }
     }
 
-    suspend fun getSingleTeamBuildingData(teamId:String): Response<TeamBuildingSingleResponse> {
+    suspend fun getSingleTeamBuildingData(teamId:String): Response<ProjectSingleResponse> {
         return withContext(ioDispatcher){
-            return@withContext teamBuildingApi.getSingleTeamData(teamId)
+            return@withContext projectApi.getSingleTeamData(teamId)
         }
 
     }
@@ -35,7 +33,7 @@ class TeamBuildingRemoteDataSource @Inject constructor(
         projectId: String
     ): Response<Unit> {
         return withContext(ioDispatcher) {
-            return@withContext teamBuildingApi.addComment(
+            return@withContext projectApi.addComment(
                 projectId,
                 commentRequest
             )
@@ -44,7 +42,7 @@ class TeamBuildingRemoteDataSource @Inject constructor(
 
     suspend fun addProject(projectRequest: ProjectRequest): Response<Unit> {
         return withContext(ioDispatcher) {
-            return@withContext teamBuildingApi.addProject(projectRequest)
+            return@withContext projectApi.addProject(projectRequest)
         }
     }
 

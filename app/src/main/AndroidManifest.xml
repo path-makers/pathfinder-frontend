@@ -27,8 +27,8 @@
 
         <activity android:name=".ui.board.BoardInsideActivity"/>
         <activity android:name=".ui.board.BoardWriteActivity"/>
-        <activity android:name=".ui.teamBuilding.TeamBuildingWriteActivity" />
-        <activity android:name=".ui.teamBuilding.TeamBuildingInsideActivity" />
+        <activity android:name=".ui.project.ProjectWriteActivity" />
+        <activity android:name=".ui.project.ProjectInsideActivity" />
 
 
 

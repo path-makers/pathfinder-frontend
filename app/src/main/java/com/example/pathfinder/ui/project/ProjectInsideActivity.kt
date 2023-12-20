@@ -1,4 +1,4 @@
-package com.example.pathfinder.ui.teamBuilding
+package com.example.pathfinder.ui.project
 
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -8,17 +8,17 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pathfinder.R
 import com.example.pathfinder.data.model.Comment
 import com.example.pathfinder.data.model.Results
-import com.example.pathfinder.data.model.Team
+import com.example.pathfinder.data.model.Project
 import com.example.pathfinder.databinding.ActivityBoardInsideBinding
-import com.example.pathfinder.ui.teamBuilding.viewmodel.TeamBuildingViewModel
+import com.example.pathfinder.ui.project.viewmodel.ProjectViewModel
 import com.example.pathfinder.utils.Common.Companion.formatDate
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class TeamBuildingInsideActivity : AppCompatActivity() {
+class ProjectInsideActivity : AppCompatActivity() {
 
 
-    private val viewModel: TeamBuildingViewModel by viewModels()
+    private val viewModel: ProjectViewModel by viewModels()
     private lateinit var binding: ActivityBoardInsideBinding
     private val commentList = mutableListOf<Comment>()
     private lateinit var commentAdapter: CommentRVAdapter
@@ -64,13 +64,13 @@ class TeamBuildingInsideActivity : AppCompatActivity() {
     }
 
 
-    private fun updateUITeam(teamData: Team) {
-        binding.titleArea.text = teamData.title
-        binding.textArea.text = teamData.content
-        binding.userNameArea.text = teamData.author
-        binding.timeArea.text = formatDate(teamData.uploadTime.toLong())
+    private fun updateUITeam(projectData: Project) {
+        binding.titleArea.text = projectData.title
+        binding.textArea.text = projectData.content
+        binding.userNameArea.text = projectData.author
+        binding.timeArea.text = formatDate(projectData.uploadTime.toLong())
         commentList.clear()
-        commentList.addAll(teamData.comment)
+        commentList.addAll(projectData.comment)
         commentAdapter.notifyDataSetChanged()
 
     }

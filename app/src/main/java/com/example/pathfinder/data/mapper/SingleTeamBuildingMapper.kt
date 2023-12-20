@@ -1,21 +1,21 @@
 package com.example.pathfinder.data.mapper
 
-import com.example.pathfinder.data.model.Team
-import com.example.pathfinder.data.response.TeamBuildingSingleResponse
+import com.example.pathfinder.data.model.Project
+import com.example.pathfinder.data.response.ProjectSingleResponse
 
 fun responseSingleTeamBuildingModelToDataModel(
-    team: TeamBuildingSingleResponse
-): Team{
-    return Team(
-        id = team.team.id,
-        author = team.team.author,
-        title = team.team.title,
-        content = team.team.content,
-        category = team.team.category,
-        region = team.team.region,
-        endTime = team.team.endTime,
-        uploadTime = team.team.uploadTime,
-        comment = team.team.comments
+    team: ProjectSingleResponse
+): Project{
+    return Project(
+        id = team.project.id,
+        author = team.project.author,
+        title = team.project.title,
+        content = team.project.content,
+        category = team.project.category,
+        region = team.project.region,
+        endTime = team.project.endTime,
+        uploadTime = team.project.uploadTime,
+        comment = team.project.comments
     )
 
 

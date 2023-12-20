@@ -1,6 +1,6 @@
 
 
-package com.example.pathfinder.ui.teamBuilding
+package com.example.pathfinder.ui.project
 
 import android.app.Activity
 import android.app.DatePickerDialog
@@ -10,8 +10,8 @@ import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import com.example.pathfinder.R
 import com.example.pathfinder.data.model.ProjectRequest
-import com.example.pathfinder.databinding.ActivityTeamBuildingWriteBinding
-import com.example.pathfinder.ui.teamBuilding.viewmodel.TeamBuildingViewModel
+import com.example.pathfinder.databinding.ActivityProjectWriteBinding
+import com.example.pathfinder.ui.project.viewmodel.ProjectViewModel
 import com.example.pathfinder.utils.FBAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -20,17 +20,17 @@ import com.hjq.toast.Toaster
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class TeamBuildingWriteActivity : AppCompatActivity() {
+class ProjectWriteActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityTeamBuildingWriteBinding
-    private val viewModel : TeamBuildingViewModel by viewModels()
+    private lateinit var binding: ActivityProjectWriteBinding
+    private val viewModel : ProjectViewModel by viewModels()
     private var endTimeInMillis: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Toaster.init(application);
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_team_building_write)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_project_write)
 
         initProjectWriteButton()
         setupDatePicker()

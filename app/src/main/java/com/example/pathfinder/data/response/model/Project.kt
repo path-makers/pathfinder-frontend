@@ -4,7 +4,7 @@ import com.example.pathfinder.data.model.Comment
 
 import com.google.gson.annotations.SerializedName
 
-data class Team(
+data class Project(
 
     @SerializedName("id")
     val id: String,

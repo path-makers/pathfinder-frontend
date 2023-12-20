@@ -22,8 +22,8 @@
             android:id="@+id/action_homeFragment_to_aiIntroFragment"
             app:destination="@id/aiIntroFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_teamBuildingFragment"
-            app:destination="@id/teamBuildingFragment" />
+            android:id="@+id/action_homeFragment_to_projectFragment"
+            app:destination="@id/projectFragment" />
         <action
             android:id="@+id/action_homeFragment_to_chatFragment"
             app:destination="@id/chatFragment" />
@@ -43,8 +43,8 @@
             android:id="@+id/action_storeFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
         <action
-            android:id="@+id/action_userProfileFragment_to_teamBuildingFragment"
-            app:destination="@id/teamBuildingFragment" />
+            android:id="@+id/action_userProfileFragment_to_projectFragment"
+            app:destination="@id/projectFragment" />
     </fragment>
     <fragment
         android:id="@+id/boardFragment"
@@ -60,8 +60,8 @@
             android:id="@+id/action_boardFragment_to_userProfileFragment"
             app:destination="@id/userProfileFragment" />
         <action
-            android:id="@+id/action_boardFragment_to_teamBuildingFragment"
-            app:destination="@id/teamBuildingFragment" />
+            android:id="@+id/action_boardFragment_to_projectFragment"
+            app:destination="@id/projectFragment" />
     </fragment>
     <fragment
         android:id="@+id/chatFragment"
@@ -69,10 +69,10 @@
         android:label="fragment_chat"
         tools:layout="@layout/fragment_ai_chat" />
     <fragment
-        android:id="@+id/teamBuildingFragment"
-        android:name="com.example.pathfinder.ui.teamBuilding.TeamBuildingFragment"
-        android:label="fragment_team_building"
-        tools:layout="@layout/fragment_team_building" />
+        android:id="@+id/projectFragment"
+        android:name="com.example.pathfinder.ui.project.ProjectFragment"
+        android:label="fragment_project"
+        tools:layout="@layout/fragment_project" />
     <fragment
         android:id="@+id/aiIntroFragment"
         android:name="com.example.pathfinder.ui.aiChatBot.AiIntroFragment"

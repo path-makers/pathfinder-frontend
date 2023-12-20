@@ -1,4 +1,4 @@
-package com.example.pathfinder.ui.teamBuilding
+package com.example.pathfinder.ui.project
 
 import android.app.Activity
 import android.content.Intent
@@ -15,17 +15,17 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.pathfinder.R
 import com.example.pathfinder.data.model.Results
-import com.example.pathfinder.databinding.FragmentTeamBuildingBinding
-import com.example.pathfinder.data.model.Team
-import com.example.pathfinder.ui.teamBuilding.viewmodel.TeamBuildingViewModel
+import com.example.pathfinder.databinding.FragmentProjectBinding
+import com.example.pathfinder.data.model.Project
+import com.example.pathfinder.ui.project.viewmodel.ProjectViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class TeamBuildingFragment : Fragment() {
+class ProjectFragment : Fragment() {
 
-    private val viewModel: TeamBuildingViewModel by viewModels()
-    private lateinit var binding: FragmentTeamBuildingBinding
-    private lateinit var teamRVAdapter: TeamBuildingRVAdapter
+    private val viewModel: ProjectViewModel by viewModels()
+    private lateinit var binding: FragmentProjectBinding
+    private lateinit var teamRVAdapter: ProjectRVAdapter
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
     private val startWriteActivityForResult =
@@ -40,7 +40,7 @@ class TeamBuildingFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_team_building, container, false)
+            DataBindingUtil.inflate(inflater, R.layout.fragment_project, container, false)
         initTeamRecyclerView()
         initWriteButton()
         return binding.root
@@ -61,7 +61,7 @@ class TeamBuildingFragment : Fragment() {
         viewModel.teamDataList.observe(viewLifecycleOwner, Observer { result ->
             when (result) {
                 is Results.Success -> {
-                    teamRVAdapter = TeamBuildingRVAdapter(result.data as MutableList<Team>)
+                    teamRVAdapter = ProjectRVAdapter(result.data as MutableList<Project>)
                     binding.teamBuildingRecyclerView.adapter = teamRVAdapter
                 }
 
@@ -80,7 +80,7 @@ class TeamBuildingFragment : Fragment() {
 
     private fun initWriteButton() {
         binding.teamWriteBtn.setOnClickListener {
-            val intent = Intent(context, TeamBuildingWriteActivity::class.java)
+            val intent = Intent(context, ProjectWriteActivity::class.java)
             startWriteActivityForResult.launch(intent)
         }
     }

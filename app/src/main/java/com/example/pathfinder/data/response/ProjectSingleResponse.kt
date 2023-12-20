@@ -1,11 +1,11 @@
 package com.example.pathfinder.data.response
 
-import com.example.pathfinder.data.response.model.Team
+import com.example.pathfinder.data.response.model.Project
 import com.google.gson.annotations.SerializedName
 
-data class TeamBuildingSingleResponse(
+data class ProjectSingleResponse(
 
     @SerializedName("project")
-    val team: Team
+    val project: Project
 
 )
