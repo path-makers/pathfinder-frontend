@@ -9,7 +9,7 @@
         android:title="게시판"/>
     <item
         android:id="@+id/projectFragment"
-        android:icon="@drawable/ic_team"
+        android:icon="@drawable/ic_project"
         android:title="프로젝트"/>
 
     <item

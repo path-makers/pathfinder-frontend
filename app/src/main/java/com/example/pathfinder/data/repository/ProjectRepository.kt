@@ -1,6 +1,6 @@
 package com.example.pathfinder.data.repository
 
-import com.example.pathfinder.data.mapper.responseSingleTeamBuildingModelToDataModel
+import com.example.pathfinder.data.mapper.responseSingleProjectModelToDataModel
 import com.example.pathfinder.data.mapper.responseProjectModelToDataModel
 import com.example.pathfinder.data.model.CommentRequest
 import com.example.pathfinder.data.model.ProjectRequest
@@ -18,13 +18,13 @@ class ProjectRepository constructor(
     private val ioDispatcher: CoroutineDispatcher
 
     ){
-    fun getTeamBuildingData(): Flow<Results<List<Project>>> {
+    fun getProjectData(): Flow<Results<List<Project>>> {
         return flow {
             emit(Results.Loading)
-            val response = projectRemoteDataSource.getTeamBuildingData()
-            val teamData = response.body()?.projects?.let { responseProjectModelToDataModel(it) }
-            if (response.isSuccessful && teamData != null) {
-                emit(Results.Success(teamData))
+            val response = projectRemoteDataSource.getProjectData()
+            val projectData = response.body()?.projects?.let { responseProjectModelToDataModel(it) }
+            if (response.isSuccessful && projectData != null) {
+                emit(Results.Success(projectData))
             } else {
                 emit(Results.Failure(response.message()))
             }
@@ -34,13 +34,13 @@ class ProjectRepository constructor(
 
     }
 
-    fun getSingleTeamBuildingData(teamId:String): Flow<Results<Project>> {
+    fun getSingleProjectData(teamId:String): Flow<Results<Project>> {
         return flow {
             emit(Results.Loading)
             val response = projectRemoteDataSource.getSingleTeamBuildingData(teamId)
-            val teamData = response.body()?.let { responseSingleTeamBuildingModelToDataModel(it) }
-            if (response.isSuccessful && teamData != null) {
-                emit(Results.Success(teamData))
+            val projectData = response.body()?.let { responseSingleProjectModelToDataModel(it) }
+            if (response.isSuccessful && projectData != null) {
+                emit(Results.Success(projectData))
             } else {
                 emit(Results.Failure(response.message()))
             }

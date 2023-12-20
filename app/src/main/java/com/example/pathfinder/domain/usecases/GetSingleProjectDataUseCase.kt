@@ -12,7 +12,7 @@ class GetSingleProjectDataUseCase @Inject constructor(
     private val projectRepository: ProjectRepository
 ) {
     operator fun invoke(teamId:String): Flow<Results<Project>> {
-        return projectRepository.getSingleTeamBuildingData(teamId)
+        return projectRepository.getSingleProjectData(teamId)
     }
 
 }

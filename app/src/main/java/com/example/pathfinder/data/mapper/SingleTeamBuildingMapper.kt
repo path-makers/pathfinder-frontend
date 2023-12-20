@@ -3,19 +3,19 @@ package com.example.pathfinder.data.mapper
 import com.example.pathfinder.data.model.Project
 import com.example.pathfinder.data.response.ProjectSingleResponse
 
-fun responseSingleTeamBuildingModelToDataModel(
-    team: ProjectSingleResponse
+fun responseSingleProjectModelToDataModel(
+    project: ProjectSingleResponse
 ): Project{
     return Project(
-        id = team.project.id,
-        author = team.project.author,
-        title = team.project.title,
-        content = team.project.content,
-        category = team.project.category,
-        region = team.project.region,
-        endTime = team.project.endTime,
-        uploadTime = team.project.uploadTime,
-        comment = team.project.comments
+        id = project.project.id,
+        author = project.project.author,
+        title = project.project.title,
+        content = project.project.content,
+        category = project.project.category,
+        region = project.project.region,
+        endTime = project.project.endTime,
+        uploadTime = project.project.uploadTime,
+        comment = project.project.comments
     )
 
 

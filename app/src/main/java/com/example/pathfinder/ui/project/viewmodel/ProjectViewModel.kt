@@ -26,15 +26,15 @@ class ProjectViewModel @Inject constructor(
     ViewModel() {
 
         private val _projectDataList = MutableStateFlow<Results<List<Project>>>(Results.Loading)
-        val teamDataList = _projectDataList.asLiveData()
+        val projectDataList = _projectDataList.asLiveData()
         private val _singleProjectDataList = MutableStateFlow<Results<Project>>(Results.Loading)
-        val singleTeamDataList = _singleProjectDataList.asLiveData()
+        val singleProjectDataList = _singleProjectDataList.asLiveData()
 
     init {
-            getTeamData()
+            getProjectData()
         }
 
-    fun getTeamData() {
+    fun getProjectData() {
             viewModelScope.launch {
                 getProjectDataUseCase().collect { result ->
                     when (result) {
@@ -52,7 +52,7 @@ class ProjectViewModel @Inject constructor(
             }
         }
 
-    fun getSingleTeamData(teamId:String) {
+    fun getSingleProjectData(teamId:String) {
         viewModelScope.launch {
             getSingleProjectDataUseCase(teamId).collect { result ->
                 when (result) {

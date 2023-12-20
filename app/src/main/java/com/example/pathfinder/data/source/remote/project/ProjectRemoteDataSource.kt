@@ -14,15 +14,15 @@ class ProjectRemoteDataSource @Inject constructor(
     private val projectApi: ProjectApi,
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher
 ){
-    suspend fun getTeamBuildingData(): Response<ProjectResponse> {
+    suspend fun getProjectData(): Response<ProjectResponse> {
         return withContext(ioDispatcher){
-            return@withContext projectApi.getTeamData()
+            return@withContext projectApi.getProjectData()
         }
     }
 
     suspend fun getSingleTeamBuildingData(teamId:String): Response<ProjectSingleResponse> {
         return withContext(ioDispatcher){
-            return@withContext projectApi.getSingleTeamData(teamId)
+            return@withContext projectApi.getSingleProjectData(teamId)
         }
 
     }

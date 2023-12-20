@@ -22,21 +22,21 @@ class ProjectInsideActivity : AppCompatActivity() {
     private lateinit var binding: ActivityBoardInsideBinding
     private val commentList = mutableListOf<Comment>()
     private lateinit var commentAdapter: CommentRVAdapter
-    private lateinit var teamId: String
+    private lateinit var projectId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_board_inside)
-        teamId = intent.getStringExtra("key") ?: return
-        getSingleTeamData()
+        projectId = intent.getStringExtra("key") ?: return
+        getSingleProjectData()
         setupComment()
 
     }
-    private fun getSingleTeamData() {
-        viewModel.getSingleTeamData(teamId)
+    private fun getSingleProjectData() {
+        viewModel.getSingleProjectData(projectId)
 
         binding.backButton.setOnClickListener { finish() }
-        viewModel.singleTeamDataList.observe(this) { result ->
+        viewModel.singleProjectDataList.observe(this) { result ->
             when (result) {
                 is Results.Loading -> {
                     // 로딩 UI 처리

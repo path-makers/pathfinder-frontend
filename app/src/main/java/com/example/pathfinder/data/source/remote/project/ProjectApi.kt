@@ -12,10 +12,10 @@ import retrofit2.http.Path
 
 interface ProjectApi {
     @GET("/api/project/all")
-    suspend fun getTeamData(): Response<ProjectResponse>
+    suspend fun getProjectData(): Response<ProjectResponse>
 
     @GET("/api/project/single/{teamId}")
-    suspend fun getSingleTeamData(@Path("teamId")teamId:String): Response<ProjectSingleResponse>
+    suspend fun getSingleProjectData(@Path("teamId")teamId:String): Response<ProjectSingleResponse>
 
 
     @POST("/api/project/comment/{projectId}")

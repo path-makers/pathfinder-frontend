@@ -25,13 +25,13 @@ class ProjectFragment : Fragment() {
 
     private val viewModel: ProjectViewModel by viewModels()
     private lateinit var binding: FragmentProjectBinding
-    private lateinit var teamRVAdapter: ProjectRVAdapter
+    private lateinit var projectRVAdapter: ProjectRVAdapter
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
     private val startWriteActivityForResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
-                getTeamData()
+                getProjectData()
             }
         }
 
@@ -41,7 +41,7 @@ class ProjectFragment : Fragment() {
     ): View? {
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_project, container, false)
-        initTeamRecyclerView()
+        initProjectRecyclerView()
         initWriteButton()
         return binding.root
 
@@ -52,17 +52,17 @@ class ProjectFragment : Fragment() {
 
         swipeRefreshLayout = binding.swipeRefreshLayout
         swipeRefreshLayout.setOnRefreshListener {
-            getTeamData()
+            getProjectData()
             swipeRefreshLayout.isRefreshing = false
         }//pull to refresh 구현
     }//뷰가 생성된 후 데이터를 연결
 
-    private fun initTeamRecyclerView() {
-        viewModel.teamDataList.observe(viewLifecycleOwner, Observer { result ->
+    private fun initProjectRecyclerView() {
+        viewModel.projectDataList.observe(viewLifecycleOwner, Observer { result ->
             when (result) {
                 is Results.Success -> {
-                    teamRVAdapter = ProjectRVAdapter(result.data as MutableList<Project>)
-                    binding.teamBuildingRecyclerView.adapter = teamRVAdapter
+                    projectRVAdapter = ProjectRVAdapter(result.data as MutableList<Project>)
+                    binding.teamBuildingRecyclerView.adapter = projectRVAdapter
                 }
 
                 is Results.Loading -> {
@@ -85,8 +85,8 @@ class ProjectFragment : Fragment() {
         }
     }
 
-    private fun getTeamData() {
-        viewModel.getTeamData()
+    private fun getProjectData() {
+        viewModel.getProjectData()
     }
 
 

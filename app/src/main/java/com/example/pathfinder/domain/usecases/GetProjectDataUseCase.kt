@@ -13,7 +13,7 @@ class GetProjectDataUseCase @Inject constructor(
 ){
 
     operator fun invoke(): Flow<Results<List<Project>>> {
-        return projectRepository.getTeamBuildingData()
+        return projectRepository.getProjectData()
     }
     //todo: 싱글톤 작성 이유
 }
