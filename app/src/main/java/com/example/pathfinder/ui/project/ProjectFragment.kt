@@ -3,6 +3,8 @@ package com.example.pathfinder.ui.project
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,12 +30,7 @@ class ProjectFragment : Fragment() {
     private lateinit var projectRVAdapter: ProjectRVAdapter
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
-    private val startWriteActivityForResult =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                getProjectData()
-            }
-        }
+
 
 
     override fun onCreateView(
@@ -58,7 +55,7 @@ class ProjectFragment : Fragment() {
     }//뷰가 생성된 후 데이터를 연결
 
     private fun initProjectRecyclerView() {
-        viewModel.projectDataList.observe(viewLifecycleOwner, Observer { result ->
+        viewModel.projectDataList.observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Results.Success -> {
                     projectRVAdapter = ProjectRVAdapter(result.data as MutableList<Project>)
@@ -73,7 +70,7 @@ class ProjectFragment : Fragment() {
                     // 오류 처리
                 }
             }
-        })
+        }
         binding.teamBuildingRecyclerView.layoutManager = LinearLayoutManager(context)
     }
 
@@ -84,6 +81,16 @@ class ProjectFragment : Fragment() {
             startWriteActivityForResult.launch(intent)
         }
     }
+
+    private val startWriteActivityForResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                Handler(Looper.getMainLooper()).postDelayed({
+                    //서버와 프론트 시간 차이로 인해 글 작성후 업데이트 전 0.1초 딜레이
+                   getProjectData()
+                }, 500)
+            }
+        }
 
     private fun getProjectData() {
         viewModel.getProjectData()
