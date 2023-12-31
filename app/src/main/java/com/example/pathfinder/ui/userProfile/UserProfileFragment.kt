@@ -37,11 +37,6 @@ class UserProfileFragment : Fragment() {
         private const val MODIFY_REQUEST_CODE = 1001
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
