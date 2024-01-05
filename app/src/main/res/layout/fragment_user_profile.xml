@@ -49,37 +49,37 @@
                 android:id="@+id/userImage"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:layout_marginTop="30dp"
                 android:layout_marginStart="24dp"
+                android:layout_marginTop="30dp"
                 android:background="@drawable/background_circle"
                 android:cropToPadding="true"
                 android:scaleType="centerCrop"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/titleTextView"/>
+                app:layout_constraintTop_toBottomOf="@id/titleTextView" />
 
             <ImageView
                 android:id="@+id/userImage2"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:layout_marginTop="30dp"
                 android:layout_marginStart="24dp"
-                android:src="@drawable/ic_profildefault"
+                android:layout_marginTop="30dp"
                 android:cropToPadding="true"
                 android:scaleType="centerCrop"
+                android:src="@drawable/ic_profildefault"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/titleTextView"/>
+                app:layout_constraintTop_toBottomOf="@id/titleTextView" />
 
             <TextView
                 android:id="@+id/userName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
                 android:text="닉네임"
-                android:textSize="16dp"
                 android:textColor="@color/black"
+                android:textSize="16dp"
                 app:layout_constraintStart_toEndOf="@id/userImage"
-                app:layout_constraintTop_toTopOf="@+id/userImage"/>
+                app:layout_constraintTop_toTopOf="@+id/userImage" />
 
             <TextView
                 android:id="@+id/email"
@@ -87,10 +87,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="이메일"
-                android:textSize="12dp"
                 android:textColor="@color/Gray_700"
+                android:textSize="12dp"
                 app:layout_constraintStart_toStartOf="@id/userName"
-                app:layout_constraintTop_toBottomOf="@+id/userName"/>
+                app:layout_constraintTop_toBottomOf="@+id/userName" />
 
             <ImageView
                 android:id="@+id/imageview"
@@ -99,14 +99,14 @@
                 android:layout_marginTop="24dp"
                 android:background="@color/light_gray"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/userImage"/>
+                app:layout_constraintTop_toBottomOf="@+id/userImage" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:orientation="vertical"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageview"
-                android:orientation="vertical">
+                app:layout_constraintTop_toBottomOf="@+id/imageview">
 
                 <com.google.android.material.tabs.TabLayout
                     android:id="@+id/profileTabLayout"
@@ -114,177 +114,16 @@
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
                     app:tabGravity="fill"
+                    app:tabIndicatorColor="@color/black"
                     app:tabMode="fixed"
-                    app:tabSelectedTextColor="@color/black"
-                    app:tabIndicatorColor="@color/black" />
+                    app:tabSelectedTextColor="@color/black" />
 
                 <androidx.viewpager.widget.ViewPager
                     android:id="@+id/profileViewPager"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
+
             </LinearLayout>
-
-<!--            <Button-->
-<!--                android:id="@+id/btnChangeImage"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="24dp"-->
-<!--                android:background="@drawable/custom_button"-->
-<!--                android:paddingLeft="16dp"-->
-<!--                android:paddingRight="16dp"-->
-<!--                android:text="프로필 이미지 변경"-->
-<!--                android:textStyle="bold"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/userImage" />-->
-
-<!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-<!--            <ScrollView-->
-<!--                android:id="@+id/userProfileContainer"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="0dp"-->
-
-
-<!--                app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/linearLayout1">-->
-
-
-<!--                <LinearLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:orientation="vertical"-->
-<!--                    android:padding="24dp">-->
-
-<!--                    <EditText-->
-<!--                        android:id="@+id/editUserName"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:hint="닉네임" />-->
-
-<!--                    <Button-->
-<!--                        android:id="@+id/btnUpdateName"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_gravity="center_horizontal"-->
-<!--                        android:layout_marginTop="8dp"-->
-<!--                        android:background="@drawable/custom_button"-->
-<!--                        android:paddingLeft="16dp"-->
-<!--                        android:paddingRight="16dp"-->
-<!--                        android:text="닉네임 업데이트"-->
-<!--                        android:textStyle="bold" />-->
-
-<!--                    <EditText-->
-<!--                        android:id="@+id/editEmail"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_marginTop="8dp"-->
-<!--                        android:hint="이메일" />-->
-
-<!--                    <Button-->
-<!--                        android:id="@+id/btnUpdateEmail"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_gravity="center_horizontal"-->
-<!--                        android:layout_marginTop="8dp"-->
-<!--                        android:background="@drawable/custom_button"-->
-<!--                        android:paddingLeft="16dp"-->
-<!--                        android:paddingRight="16dp"-->
-<!--                        android:text="이메일 업데이트"-->
-<!--                        android:textStyle="bold" />-->
-
-<!--                    <EditText-->
-<!--                        android:id="@+id/editPassword"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_marginTop="8dp"-->
-<!--                        android:hint="비밀번호"-->
-<!--                        android:inputType="textPassword" />-->
-
-<!--                    <Button-->
-<!--                        android:id="@+id/btnUpdatePassword"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_gravity="center_horizontal"-->
-<!--                        android:layout_marginTop="8dp"-->
-<!--                        android:background="@drawable/custom_button"-->
-<!--                        android:paddingLeft="16dp"-->
-<!--                        android:paddingRight="16dp"-->
-<!--                        android:text="비밀번호 업데이트"-->
-<!--                        android:textStyle="bold" />-->
-
-<!--                    <ImageView-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="20dp"-->
-<!--                        android:background="@color/transparent_ripple_color" />-->
-
-<!--                </LinearLayout>-->
-
-<!--            </ScrollView>-->
-<!--            <LinearLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="3dp"-->
-<!--                app:layout_constraintBottom_toTopOf="@+id/linearLayout4">-->
-
-<!--                <LinearLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:layout_weight="1"-->
-<!--                    />-->
-
-
-
-<!--                <LinearLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:layout_weight="1"/>-->
-
-
-
-<!--                <LinearLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:layout_weight="1"-->
-<!--                    android:background="@color/mainColor"-->
-<!--                    />-->
-
-
-<!--            </LinearLayout>-->
-<!--            <LinearLayout-->
-<!--                android:id="@+id/linearLayout4"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="60dp"-->
-<!--                android:background="@color/white"-->
-<!--                android:gravity="center"-->
-<!--                app:layout_constraintBottom_toBottomOf="parent">-->
-
-<!--                <ImageView-->
-<!--                    android:id="@+id/homeTab"-->
-<!--                    android:layout_width="0dp"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_weight="1"-->
-<!--                    android:src="@drawable/bottom_hometap" />-->
-
-
-
-<!--                <ImageView-->
-<!--                    android:id="@+id/talkTab"-->
-<!--                    android:layout_width="0dp"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_weight="1"-->
-<!--                    android:src="@drawable/bottom_boardtap" />-->
-
-
-
-<!--                <ImageView-->
-<!--                    android:id="@+id/storeTab"-->
-<!--                    android:layout_width="0dp"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_weight="1"-->
-<!--                    android:src="@drawable/bottom_control" />-->
-
-<!--            </LinearLayout>-->
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </FrameLayout>
