@@ -25,7 +25,7 @@ class UserProfileViewModel @Inject constructor(
 
     init {
     getUserBoardData(userId)
-    getUserProjectData()
+    getUserProjectData(userId)
 
     }
 

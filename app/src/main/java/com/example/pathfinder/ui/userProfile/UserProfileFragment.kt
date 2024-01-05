@@ -32,6 +32,7 @@ class UserProfileFragment : Fragment() {
     private lateinit var tabLayout: TabLayout  // 탭 레이아웃
     private lateinit var viewPager: ViewPager  // 뷰페이저
     private var tabCurrentIdx = 0  // 현재 탭 인덱스
+    val user = Firebase.auth.currentUser  // 현재 로그인한 사용자 정보
 
     companion object {
         private const val MODIFY_REQUEST_CODE = 1001  // 수정 요청 코드
@@ -44,7 +45,7 @@ class UserProfileFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_user_profile, container, false)
 
         // Firebase에서 사용자 정보를 불러오는 부분
-        val user = Firebase.auth.currentUser
+
         user?.let {
             val name = it.displayName
             val email = it.email
@@ -111,7 +112,6 @@ class UserProfileFragment : Fragment() {
 
     // 사용자 프로필 UI 업데이트 메소드
     private fun updateUserProfileUI() {
-        val user = Firebase.auth.currentUser
         user?.let {
             binding.userName.setText(it.displayName)
             binding.email.setText(it.email)
