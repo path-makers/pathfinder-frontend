@@ -22,7 +22,6 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class UserProfileFragment : Fragment() {
-    private val viewModel: UserProfileViewModel by viewModels()
     private lateinit var binding: FragmentUserProfileBinding
     private val user = Firebase.auth.currentUser
 
