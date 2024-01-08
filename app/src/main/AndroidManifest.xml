@@ -22,7 +22,7 @@
 <!--            android:name=".pages.board.edit.BoardEditActivity"-->
 <!--            android:exported="false" />-->
         <activity
-            android:name=".ui.userProfile.ModifyActivity"
+            android:name=".ui.userProfile.EditUserProfileActivity"
             android:exported="false" />
 
         <activity android:name=".ui.board.BoardInsideActivity"/>

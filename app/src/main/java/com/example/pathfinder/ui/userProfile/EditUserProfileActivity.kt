@@ -14,7 +14,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.userProfileChangeRequest
 import com.google.firebase.ktx.Firebase
 
-class ModifyActivity : AppCompatActivity() {
+class EditUserProfileActivity : AppCompatActivity() {
 
     // Firebase 인증 인스턴스 초기화
     private lateinit var auth: FirebaseAuth

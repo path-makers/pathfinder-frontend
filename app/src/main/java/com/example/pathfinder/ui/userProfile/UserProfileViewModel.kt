@@ -8,6 +8,7 @@ import com.example.pathfinder.data.model.Project
 import com.example.pathfinder.data.model.Results
 import com.example.pathfinder.domain.usecases.GetUserBoardUseCase
 import com.example.pathfinder.domain.usecases.GetUserProjectUseCase
+import com.example.pathfinder.utils.FBAuth
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
@@ -23,9 +24,11 @@ class UserProfileViewModel @Inject constructor(
     private val _userProjectDataList = MutableStateFlow<Results<List<Project>>>(Results.Loading)
             val userProjectDataList = _userProjectDataList.asLiveData()
 
+    private val userId = FBAuth.getUid()
+
     init {
     getUserBoardData(userId)
-    getUserProjectData()
+    getUserProjectData(userId)
 
     }
 
@@ -44,7 +47,7 @@ class UserProfileViewModel @Inject constructor(
             }
         }
     }
-    private fun getUserProjectData(userId:String) {
+   fun getUserProjectData(userId:String) {
         viewModelScope.launch {
             getUserProjectUseCase(userId).collect { result ->
                 when (result) {
