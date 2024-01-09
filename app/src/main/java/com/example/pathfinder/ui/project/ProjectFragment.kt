@@ -12,14 +12,13 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.pathfinder.R
 import com.example.pathfinder.data.model.Results
 import com.example.pathfinder.databinding.FragmentProjectBinding
 import com.example.pathfinder.data.model.Project
-import com.example.pathfinder.ui.project.viewmodel.ProjectViewModel
+import com.example.pathfinder.ui.project.viewModel.ProjectViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -19,7 +19,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
+
 class UserProfileFragment : Fragment() {
     private lateinit var binding: FragmentUserProfileBinding
     private val user = Firebase.auth.currentUser

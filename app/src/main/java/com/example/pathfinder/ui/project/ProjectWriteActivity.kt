@@ -11,7 +11,7 @@ import androidx.databinding.DataBindingUtil
 import com.example.pathfinder.R
 import com.example.pathfinder.data.model.ProjectRequest
 import com.example.pathfinder.databinding.ActivityProjectWriteBinding
-import com.example.pathfinder.ui.project.viewmodel.ProjectViewModel
+import com.example.pathfinder.ui.project.viewModel.ProjectViewModel
 import com.example.pathfinder.utils.FBAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
