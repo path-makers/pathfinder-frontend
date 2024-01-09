@@ -12,7 +12,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.pathfinder.R
 import com.example.pathfinder.data.model.Board
 import com.example.pathfinder.data.model.Results
-import com.example.pathfinder.databinding.FragmentBoardBinding
 import com.example.pathfinder.databinding.FragmentUserWrittenBoardBinding
 import com.example.pathfinder.ui.board.BoardRVAdapter
 import com.example.pathfinder.utils.FBAuth
@@ -20,7 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class UserWrittenPostsFragment : Fragment() {
+class UserWrittenBoardFragment : Fragment() {
 
     private val viewModel: UserProfileViewModel by viewModels()
     private lateinit var binding: FragmentUserWrittenBoardBinding

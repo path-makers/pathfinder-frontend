@@ -59,7 +59,7 @@ class ProjectFragment : Fragment() {
             when (result) {
                 is Results.Success -> {
                     projectRVAdapter = ProjectRVAdapter(result.data as MutableList<Project>)
-                    binding.teamBuildingRecyclerView.adapter = projectRVAdapter
+                    binding.projectRecyclerView.adapter = projectRVAdapter
                 }
 
                 is Results.Loading -> {
@@ -71,7 +71,7 @@ class ProjectFragment : Fragment() {
                 }
             }
         }
-        binding.teamBuildingRecyclerView.layoutManager = LinearLayoutManager(context)
+        binding.projectRecyclerView.layoutManager = LinearLayoutManager(context)
     }
 
 

@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.bumptech.glide.Glide
 import com.example.pathfinder.R
@@ -71,7 +70,7 @@ class UserProfileFragment : Fragment() {
 
     private fun setupTabLayoutAndViewPager() {
         val tabTitles = arrayOf("작성글", "댓글", "북마크")
-        val fragments = arrayOf(UserWrittenPostsFragment(), UserCommentsFragment(), UserBookmarksFragment())
+        val fragments = arrayOf(UserWrittenBoardFragment(), UserCommentsFragment(), UserBookmarksFragment())
 
         val adapter = UserProfileTabsAdapter(this, fragments)
         binding.viewPager.adapter = adapter

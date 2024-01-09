@@ -49,7 +49,7 @@
             app:layout_constraintTop_toBottomOf="@+id/button2">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/teamBuildingRecyclerView"
+                android:id="@+id/projectRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
