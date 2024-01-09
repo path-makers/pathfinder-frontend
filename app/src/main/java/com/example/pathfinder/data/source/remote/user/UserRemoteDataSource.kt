@@ -11,21 +11,17 @@ import javax.inject.Inject
 class UserRemoteDataSource @Inject constructor(
     private val userApi: UserApi,
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher
-){
-    suspend fun getUserBoardData(userId:String) : Response<BoardResponse> {
-        return withContext(ioDispatcher){
+) {
+    suspend fun getUserBoardData(userId: String): Response<BoardResponse> {
+        return withContext(ioDispatcher) {
             return@withContext userApi.getUserBoardData(userId)
         }
-
-
     }
 
-    suspend fun getUserProjectData(userId:String) : Response<ProjectResponse> {
-        return withContext(ioDispatcher){
+    suspend fun getUserProjectData(userId: String): Response<ProjectResponse> {
+        return withContext(ioDispatcher) {
             return@withContext userApi.getUserProjectData(userId)
         }
-
-
     }
 
 }

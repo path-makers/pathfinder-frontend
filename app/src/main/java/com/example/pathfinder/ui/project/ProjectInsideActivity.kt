@@ -10,7 +10,7 @@ import com.example.pathfinder.data.model.Comment
 import com.example.pathfinder.data.model.Results
 import com.example.pathfinder.data.model.Project
 import com.example.pathfinder.databinding.ActivityBoardInsideBinding
-import com.example.pathfinder.ui.project.viewmodel.ProjectViewModel
+import com.example.pathfinder.ui.project.viewModel.ProjectViewModel
 import com.example.pathfinder.utils.Common.Companion.formatDate
 import dagger.hilt.android.AndroidEntryPoint
 
