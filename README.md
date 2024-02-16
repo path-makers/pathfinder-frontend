@@ -38,12 +38,13 @@
 - **Kotlin JVM Target**: `1.8`
 
 ### 주요 라이브러리
-- Glide for image loading `4.13.0`
 - Stfalcon's Chatkit `0.4.1`
-- Android Volley for network requests `1.2.1`
+- Retrofit2 for network requests `2.9.0`
 - Firebase Firestore `24.9.1`
 - Toaster for toast messages `12.5`
 - Emoji Rating Bar `1.0.5`
+- dagger:hilt-android `2.44`
+- coroutines-android `1.7.2`
 
 - **안드로이드 스튜디오 버전**: Android Studio Girraffe(2022.3.1 patch2)
 - **Gradle 버전**: 8.0
